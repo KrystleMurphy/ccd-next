@@ -84,7 +84,7 @@ const Header = () => {
           <Link href="/About" className="text-sm font-semibold leading-6 text-ccDarkBlue" onClick={closeMenu}>
             About
           </Link>
-          <Link href="/News" className="text-sm font-semibold leading-6 text-ccDarkBlue" onClick={closeMenu}>
+          <Link href="/news" className="text-sm font-semibold leading-6 text-ccDarkBlue" onClick={closeMenu}>
             News
           </Link>
           <ContactHeavy />
@@ -145,7 +145,7 @@ const Header = () => {
                   <Link href="/About" className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-ccDarkBlue hover:bg-gray-50" onClick={closeMenu}>
                     About
                   </Link>
-                  <Link href="/News" className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-ccDarkBlue hover:bg-gray-50" onClick={closeMenu}>
+                  <Link href="/news" className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-ccDarkBlue hover:bg-gray-50" onClick={closeMenu}>
                     News
                   </Link>
                   <ContactHeavy />

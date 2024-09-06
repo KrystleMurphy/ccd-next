@@ -14,10 +14,9 @@ export default function Pipeline() {
             improving cancer diagnostics. We are actively pursuing further
             development and advancing our product portfolio.
           </p>
-          <Link href="/about">
-            <a className="text-sm font-semibold leading-6 text-ccDarkBlue hover:text-ccLightBlue">
-              About <span aria-hidden="true">→</span>
-            </a>
+          {/* Refactored Link component without <a> inside */}
+          <Link href="/about" className="text-sm font-semibold leading-6 text-ccDarkBlue hover:text-ccLightBlue">
+            About <span aria-hidden="true">→</span>
           </Link>
         </div>
       </div>

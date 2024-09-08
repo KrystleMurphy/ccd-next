@@ -1,13 +1,17 @@
-import React, { useState } from "react";
+'use client'; // This component will likely need client-side state and effects
+
+import { useState } from "react";
 import { MagnifyingGlassIcon, FolderArrowDownIcon, FolderOpenIcon } from "@heroicons/react/24/outline";
-import AirtableDocuments from "../../components/common/Airtable/AirtableDocumentation";
+import airtableBase from "../../utils/airtableapi";
 
 const SearchBar = () => {
   const [lotNo, setLotNo] = useState("");
-  const [searchTrigger, setSearchTrigger] = useState(false);
   const [noRecordsFound, setNoRecordsFound] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [isSearchInitiated, setIsSearchInitiated] = useState(false);
+  const [documents, setDocuments] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleInputChange = (event) => {
     setLotNo(event.target.value);
@@ -16,8 +20,8 @@ const SearchBar = () => {
     setIsSearchInitiated(false);
   };
 
-  const handleSearch = () => {
-    const trimmedLotNo = lotNo.trim(); // Trim whitespace
+  const handleSearch = async () => {
+    const trimmedLotNo = lotNo.trim(); 
     if (!trimmedLotNo) {
       setErrorMessage("Please enter a lot number.");
       return;
@@ -29,7 +33,21 @@ const SearchBar = () => {
     }
 
     setIsSearchInitiated(true);
-    setSearchTrigger((prev) => !prev);
+    setIsLoading(true);
+
+    try {
+      const records = await airtableBase('Documentation')
+        .select({ view: 'Grid view', filterByFormula: `{lotNo} = '${lotNo}'` })
+        .all();
+      const filteredDocuments = records.map((record) => record._rawJson);
+      setDocuments(filteredDocuments);
+      setNoRecordsFound(filteredDocuments.length === 0);
+    } catch (error) {
+      console.error("Error fetching documentation:", error);
+      setError(error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleKeyDown = (event) => {
@@ -101,15 +119,12 @@ const SearchBar = () => {
       </div>
 
       <div aria-live="polite" className="mt-4">
-        {isSearchInitiated && /^\d{5}$/.test(lotNo) && (
-          <AirtableDocuments
-            key={searchTrigger}
-            tableName="Documentation"
-            view="Grid view"
-            renderItem={renderDocumentation}
-            setNoRecordsFound={setNoRecordsFound}
-            filterByFormula={`{lotNo} = '${lotNo}'`}
-          />
+      {isSearchInitiated && /^\d{5}$/.test(lotNo) && ( 
+          <>
+            {isLoading && <p className="p-4">Searching...</p>} {/* Loading state */}
+            {!isLoading && error && <p>Error: {error.message}</p>} {/* Error state */}
+            {!isLoading && !error && documents.map(renderDocumentation)} {/* Render results */}
+          </>
         )}
         {noRecordsFound && (
           <p className="mt-4 text-red-500">No records found for lot number: {lotNo}</p>

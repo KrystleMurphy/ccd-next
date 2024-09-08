@@ -1,15 +1,15 @@
-// components/Nav.jsx
-import React, { useState, useEffect } from 'react';
+"use client"; // This component will need client-side state and effects
+
+import { useState } from "react"; // Removed useEffect as it was used to scroll to the top on navigation. Next.js handles this automatically.
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import Image from 'next/image';
-import ContactHeavy from '../../components/common/ContactButtons/ContactHeavy';
+import logo from "@/src/assets/images/logo.png";
+import ContactHeavy from '@/src/components/contact-buttons/ContactHeavy';
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const router = useRouter();
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -19,13 +19,9 @@ const Header = () => {
     setMenuOpen(false);
   };
 
-  // Scroll to top on page change
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [router.asPath]);
-
   // Dropdown menu component
-  const dropdown = () => (
+  const dropdown = () => {
+    return (
     <Menu as="div" className="relative inline-block text-left">
       <div className="flex items-center">
         <Link href="/Products" className="text-sm font-semibold leading-6 text-ccDarkBlue">
@@ -64,14 +60,23 @@ const Header = () => {
         </div>
       </MenuItems>
     </Menu>
-  );
+    );
+  };
 
   return (
     <header className="sticky top-0 z-50 bg-white backdrop-blur-lg">
       <nav className="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
         <div className="flex lg:flex-1">
           <Link href="/" onClick={closeMenu}>
-            <Image className="h-8 w-auto" src="/images/logo.png" alt="Logo" width={32} height={32} />
+          <span className="sr-only">CC Diagnostics</span>
+          <Image
+              src={logo}
+              alt="CC Diagnostics logo"
+              width={32} // Provide width and height for better performance
+              height={32}
+              className="h-8 w-auto"
+              priority // Prioritize loading this image
+            />
           </Link>
         </div>
         <div className="hidden lg:flex lg:ml-auto lg:gap-x-12 items-center">
@@ -116,7 +121,7 @@ const Header = () => {
           <div className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-ccAliceBlue/10">
             <div className="flex items-center justify-between">
               <Link href="/" onClick={closeMenu}>
-                <Image className="h-8 w-auto" src="/images/logo.png" alt="Logo" width={32} height={32} />
+                <Image className="h-8 w-auto" src={logo} alt="CC Diagnostics Logo" width={32} height={32} />
               </Link>
               <button type="button" className="-m-2.5 rounded-md p-2.5 text-gray-700" onClick={toggleMenu}>
                 <span className="sr-only">Close menu</span>

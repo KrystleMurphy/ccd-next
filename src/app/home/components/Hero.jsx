@@ -1,6 +1,6 @@
 'use client'
 import DNA from '../assets/DNA.jpeg'
-import ContactLight from "../../../components/common/ContactButtons/ContactLight"
+import ContactLight from "../../../components/contact-buttons/ContactLight"
 
 export default function Hero() {
 

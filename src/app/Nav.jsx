@@ -24,7 +24,7 @@ const Header = () => {
     return (
     <Menu as="div" className="relative inline-block text-left">
       <div className="flex items-center">
-        <Link href="/Products" className="text-sm font-semibold leading-6 text-ccDarkBlue">
+        <Link href="/products" className="text-sm font-semibold leading-6 text-ccDarkBlue">
           Products
         </Link>
 
@@ -38,7 +38,7 @@ const Header = () => {
           <MenuItem>
             {({ active }) => (
               <Link
-                href="/Products#searchCTA"
+                href="/products#searchCTA"
                 className={`block px-4 py-2 text-sm ${active ? 'text-ccLightBlue' : 'text-gray-700'}`}
                 onClick={closeMenu}
               >
@@ -49,7 +49,7 @@ const Header = () => {
           <MenuItem>
             {({ active }) => (
               <Link
-                href="/Products#pipeline"
+                href="/products#pipeline"
                 className={`block px-4 py-2 text-sm ${active ? 'text-ccLightBlue' : 'text-gray-700'}`}
                 onClick={closeMenu}
               >
@@ -86,7 +86,7 @@ const Header = () => {
 
           {dropdown()}
 
-          <Link href="/About" className="text-sm font-semibold leading-6 text-ccDarkBlue" onClick={closeMenu}>
+          <Link href="/about" className="text-sm font-semibold leading-6 text-ccDarkBlue" onClick={closeMenu}>
             About
           </Link>
           <Link href="/news" className="text-sm font-semibold leading-6 text-ccDarkBlue" onClick={closeMenu}>
@@ -147,7 +147,7 @@ const Header = () => {
 
                   {dropdown()}
 
-                  <Link href="/About" className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-ccDarkBlue hover:bg-gray-50" onClick={closeMenu}>
+                  <Link href="/about" className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-ccDarkBlue hover:bg-gray-50" onClick={closeMenu}>
                     About
                   </Link>
                   <Link href="/news" className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-ccDarkBlue hover:bg-gray-50" onClick={closeMenu}>

@@ -1,7 +1,10 @@
-import { ArrowTrendingUpIcon, BeakerIcon, LifebuoyIcon, NewspaperIcon, PhoneIcon, ShieldCheckIcon } from '@heroicons/react/24/outline'
 
-import Methica_CC_prototype_2 from '../../../../src/assets/images/Methica_CC_prototype_2.jpg'
-import ContactLight from '../../common/ContactButtons/ContactLight'
+'use client';
+import Image from 'next/image';
+import Link from 'next/link';
+import { ArrowTrendingUpIcon, BeakerIcon, LifebuoyIcon, NewspaperIcon, PhoneIcon, ShieldCheckIcon } from '@heroicons/react/24/outline'
+import Methica_CC_prototype_2 from '@/src/assets/images/Methica_CC_prototype_2.jpg'
+import ContactLight from "@/src/components/contact-buttons/ContactLight"
 
 const supportLinks = [
   {
@@ -33,11 +36,13 @@ export default function MethicaKit() {
       {/* Header */}
       <div className="relative bg-white pb-32"> 
         <div className="absolute inset-0 opacity-50">
-          <img
-            alt="Methica Kit"
-            src={Methica_CC_prototype_2}
-            className="h-full w-full object-cover"
-          />
+        <Image
+          src={Methica_CC_prototype_2}
+          alt="Methica Kit"
+          fill
+          className="absolute inset-0 -z-10 h-full w-full object-cover"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        />
           <div aria-hidden="true" className="absolute inset-0 bg-ccDarkBlue mix-blend-screen backdrop-blur-sm	" />
         </div>
         <div className="relative mx-auto max-w-7xl px-6 py-32 sm:py-40 lg:px-8">
@@ -69,9 +74,12 @@ export default function MethicaKit() {
         </div>
       </section>
       <div className='flex justify-center items-center'>
-      <a href="/products" className="relative mx-auto max-w-7xl px-6 py-12 sm:py-12 lg:px-8 text-sm font-semibold leading-6 text-cc-DarkBlue hover:text-ccLightBlue">
-        Learn More <span aria-hidden="true">→</span>
-      </a>
+      <Link // Use Next.js Link component
+          href="/products"
+          className="relative mx-auto max-w-7xl px-6 py-12 sm:py-12 lg:px-8 text-sm font-semibold leading-6 text-cc-DarkBlue hover:text-ccLightBlue"
+        >
+          Learn More <span aria-hidden="true">→</span>
+        </Link>
       </div>
     </div>
   )

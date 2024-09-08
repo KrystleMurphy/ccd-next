@@ -1,36 +1,48 @@
-import React, { useState, useCallback, useEffect } from "react";
-import Airtable from "../../common/Airtable/Airtable";
-import dayjs from "dayjs";
-import placeholder from "../../../assets/images/placeholder.png";
-import { Link } from 'react-router-dom';
+'use client'; 
 
-const NewsFeed = () => {
+import { useState, useEffect } from "react";
+import dayjs from "dayjs";
+import placeholder from "@/src/assets/images/placeholder.png";
+import Link from "next/link";
+import Image from "next/image"; 
+
+const NewsFeed = ({ allNews }) => { // Receive allNews as a prop
   const [selectedYear, setSelectedYear] = useState(dayjs().year().toString());
   const [years, setYears] = useState([]);
-  const [hasArticles, setHasArticles] = useState(false); // New state to track if there are any articles for the selected year
+  const [filteredPosts, setFilteredPosts] = useState([]); 
 
- // Memoized function to handle records fetched from Airtable
-  const handleRecordsFetched = useCallback((fetchedPosts) => {
-    // Extract years from the fetched posts
-    const uniqueYears = [...new Set(fetchedPosts.map(post => dayjs(post.fields.Published).year()))];
-    const currentYear = dayjs().year();
-  
-    // Generate a list of years up to the current year
-    const yearOptions = [];
-    for (let year = currentYear; year >= Math.min(...uniqueYears); year--) {
-      yearOptions.push(year.toString());
-    }
 
-    console.log("Generated Year Options:", yearOptions);
-    setYears(yearOptions);
+ // Extract years and filter posts when allNews prop changes
+ useEffect(() => {
+  const uniqueYears = [...new Set(allNews.map((post) => dayjs(post.fields.Published).year()))];
+  const currentYear = dayjs().year();
 
-    // Check if any posts exist for the selected year
-    const postsForSelectedYear = fetchedPosts.filter(post => dayjs(post.fields.Published).format('YYYY') === selectedYear);
-    setHasArticles(postsForSelectedYear.length > 0); // Update hasArticles based on filtered posts
-  }, [selectedYear]);
+  const yearOptions = [];
+  for (let year = currentYear; year >= Math.min(...uniqueYears); year--) {
+    yearOptions.push(year.toString());
+  }
+
+  setYears(yearOptions);
+
+  filterPostsByYear(selectedYear); // Initial filtering
+  }, [allNews, selectedYear]); 
+
+
+  const filterPostsByYear = (year) => {
+    const postsForSelectedYear = allNews.filter((post) =>
+      dayjs(post.fields.Published).format("YYYY") === year
+    );
+    setFilteredPosts(postsForSelectedYear);
+  };
+
+  const handleYearChange = (year) => {
+    setSelectedYear(year);
+    filterPostsByYear(year);
+  };
 
   const renderNewsItem = (post) => {
     const formattedDate = dayjs(post.fields.Published).format("D MMM, YYYY");
+
 
     return (
       <article
@@ -38,22 +50,26 @@ const NewsFeed = () => {
         className="relative isolate flex flex-col gap-8 lg:flex-row lg:w-full"
       >
         <div className="relative aspect-[16/9] sm:aspect-[2/1] lg:aspect-square lg:w-64 lg:shrink-0">
-          <img
+        <Image
             alt=""
             src={
               post.fields.Photo && post.fields.Photo.length > 0
                 ? post.fields.Photo[0].url
                 : placeholder
             }
+            fill
             className="absolute inset-0 h-full w-full rounded-2xl bg-gray-50 object-cover"
+            sizes="(max-width: 768px) 100vw,
+                     (max-width: 1200px) 50vw,
+                     33vw"
           />
           <div className="absolute inset-0 pointer-events-none rounded-2xl ring-1 ring-inset ring-gray-900/10" />
         </div>
         
         <div className="group relative max-w-xl">
           <h3 className="mt-0 text-lg font-semibold leading-6 text-ccDarkBlue group-hover:text-ccLightBlue text-left">
-            <Link to={`/article/${post.id}`} state={{ post }}> {/* Pass post data in state */}
-              <span className="absolute inset-0 pointer-events-none" />
+          <Link href={`/news/${post.id}`} legacyBehavior>
+              <a className="absolute inset-0 pointer-events-none" />
               {post.fields.Title}
             </Link>
           </h3>
@@ -81,7 +97,7 @@ const NewsFeed = () => {
               className={`lg:p-4 p-8 cursor-pointer hover:text-ccLightBlue ${
                 selectedYear === year ? "text-ccLightBlue" : ""
               }`}
-              onClick={() => setSelectedYear(year)}
+              onClick={() => handleYearChange(year)}
             >
               {year}
             </h2>
@@ -92,19 +108,10 @@ const NewsFeed = () => {
         <div className="col-span-2">
           <div className="mx-auto max-w-2xl lg:max-w-4xl">
             <div className="space-y-20 lg:space-y-20">
-              <Airtable
-                tableName="News"
-                view="Grid view"
-                renderItem={(post) => {
-                  if (dayjs(post.fields.Published).format('YYYY') !== selectedYear) {
-                    return null; // Don't render if year doesn't match
-                  }
-                  return renderNewsItem(post); // Render if year matches
-                }}
-                onRecordsFetched={handleRecordsFetched} // Set years after posts are fetched and determine if articles exist for the selected year
-              />
-              {!hasArticles && (
-                <p>No article available for the current year.</p>
+{/* Render filtered posts */}
+{filteredPosts.map(renderNewsItem)}
+              {filteredPosts.length === 0 && (
+                <p>No article available for the selected year.</p>
               )}
             </div>
           </div>

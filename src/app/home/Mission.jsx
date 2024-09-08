@@ -1,5 +1,8 @@
-import ContactLight from "../../common/ContactButtons/ContactLight";
-import women from "../../../assets/images/women.png"
+"use client";
+
+import ContactLight from "@/src/components/contact-buttons/ContactLight"
+import Image from "next/image";
+import women from "@/src/assets/images/women.png"
   
   export default function Mission() {
     return (
@@ -9,11 +12,16 @@ import women from "../../../assets/images/women.png"
           {/* img container below */}
             <div className="lg:pr-4 h-full">
               <div className="relative overflow-hidden rounded-3xl bg-gray-900 px-6 pb-9 pt-64 shadow-2xl sm:px-12 lg:max-w-lg lg:px-8 lg:pb-8 xl:px-10 xl:pb-10 h-full">
-                <img
-                  alt=""
-                  src={women}
-                  className="absolute inset-0 h-full w-full object-cover"
-                />
+                {/* Optimized image using next/image */}
+              <Image
+                src={women}
+                alt="" 
+                fill
+                className="absolute inset-0 h-full w-full object-cover"
+                sizes="(max-width: 768px) 100vw,
+                       (max-width: 1024px) 50vw,
+                       33vw"
+              />
                 {/* <div className="absolute inset-0 bg-gray-900 mix-blend-multiply" /> */}
 
               </div>

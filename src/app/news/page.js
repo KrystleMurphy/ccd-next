@@ -1,9 +1,15 @@
+'use client';
+
+import { use } from 'react';
 import FeaturedNews from './components/FeaturedNews';
 import NewsFeed from './components/NewsFeed';
 import SEO from '@/src/components/SEO'
-import airtableBase from '@/src/utils/airtableapi';
+import NewsData from './data'
 
-export default function NewsPage({ featuredNews, allNews }) { 
+export default function NewsPage() {
+    const featuredNewsData = use(NewsData({ view: 'Featured', revalidate: 604800 })); 
+    const allNewsData = use(NewsData({ view: 'Grid view', revalidate: 604800 })); 
+  
     return (
       <>
       <SEO 
@@ -13,37 +19,8 @@ export default function NewsPage({ featuredNews, allNews }) {
         url="https://www.cc-diagnostics.netlify.app/news"
         image="https://www.cc-diagnostics.netlify.app/assets/logo-COHLTM4X.png"  // Using company logo for meta image
       />
-        <FeaturedNews featuredNews={featuredNews} />
-        <NewsFeed allNews={allNews} /> 
+      <FeaturedNews featuredNews={featuredNewsData} />
+      <NewsFeed allNews={allNewsData} /> 
       </>
     );
-  }
-  
-  // Fetch data at build time (using getStaticProps)
-  export async function getStaticProps() {
-    try {
-      const featuredRecords = await airtableBase('News').select({ view: 'Featured' }).all();
-      const allRecords = await airtableBase('News').select({ view: 'Grid view' }).all();
-  
-      const featuredNews = featuredRecords.map((record) => record._rawJson);
-      const allNews = allRecords.map((record) => record._rawJson);
-  
-      return {
-        props: {
-          featuredNews,
-          allNews
-        },
-        revalidate: 604800, // Revalidate every week
-      };
-    } catch (error) {
-      console.error("Error fetching news data:", error);
-      // Handle the error gracefully
-      return {
-        props: {
-          featuredNews: [],
-          allNews: [],
-        },
-        revalidate: 60, // Revalidate more frequently in case of errors
-      };
-    }
   }

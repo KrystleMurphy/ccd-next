@@ -1,5 +1,6 @@
 "use client";
 
+import { use } from 'react';
 import Image from "next/image";
 import logo from "@/src/assets/images/logo.png";
 import { PhoneIcon, EnvelopeIcon, MapPinIcon } from "@heroicons/react/24/outline";
@@ -64,16 +65,20 @@ const ContactInfo = (contact) => {
 };
 
 const Policy = (policy) => {
-  <ul role="list" className="mt-6 space-y-4">
-    <li key={policy.id}>
-      <a href={policy.fields.Document[0].url} target="_blank" rel="noopener noreferrer">
-        <p className="text-sm leading-6 text-gray-600">{policy.fields.Policy}</p>
-      </a>
-    </li>
-  </ul>
+  return (
+    <Link 
+      href={policy.fields.Document[0].url} 
+      target="_blank" 
+      rel="noopener noreferrer"
+      className="text-sm leading-6 text-gray-600 hover:text-ccLightBlue"
+    >
+      {policy.fields.Policy}
+    </Link>
+  );
 };
 
 export default function Footer() {
+  const { contactDetails, policies } = use(FooterData({ revalidate: 604800 })); // Fetch data from Server Component
   return (
     <footer aria-labelledby="footer-heading" className="bg-ccAliceBlue">
       <h2 id="footer-heading" className="sr-only">Footer</h2>
@@ -125,7 +130,7 @@ export default function Footer() {
             </div>
             <div className="mt-10 md:mt-0 px-6 col-span-2">
               <h3 className="text-sm font-semibold leading-6 text-ccDarkBlue">Contact</h3>
-              {contactInfo.map(ContactInfo)}
+              {contactDetails.map(ContactInfo)}
             </div>
           </div>
         </div>

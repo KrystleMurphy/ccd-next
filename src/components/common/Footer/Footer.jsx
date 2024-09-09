@@ -1,30 +1,34 @@
 // components/Footer.jsx
-import React from "react";
+import React from 'react';
+import PropTypes from 'prop-types';
 import Image from 'next/image';
-import { PhoneIcon, EnvelopeIcon, MapPinIcon } from "@heroicons/react/24/outline";
-import SearchBar from "../../SearchDocs/SearchBar";
+import Link from 'next/link';
+import { PhoneIcon, EnvelopeIcon, MapPinIcon } from '@heroicons/react/24/outline';
+import SearchBar from '../../SearchDocs/SearchBar';
 
+// Navigation configuration
 const navigation = {
   siteMap: [
-    { name: "Products", href: "/products" },
-    { name: "About", href: "/about" },
-    { name: "News", href: "/news" },
-    { name: "Contact", href: "/contact" },
+    { name: 'Products', href: '/products' },
+    { name: 'About', href: '/about' },
+    { name: 'News', href: '/news' },
+    { name: 'Contact', href: '/contact' },
   ],
   social: [
-    // Social icons as before
+    // Social links configuration
   ],
 };
 
+// Icons for contact methods
 const methodIcons = {
   Phone: <PhoneIcon className="h-5 w-5 text-ccDarkBlue" aria-hidden="true" />,
   Email: <EnvelopeIcon className="h-5 w-5 text-ccDarkBlue" aria-hidden="true" />,
   Address: <MapPinIcon className="h-5 w-5 text-ccDarkBlue" aria-hidden="true" />,
 };
 
+// Contact Info Component
 const ContactInfo = ({ contact }) => {
   const { Method, info } = contact.fields;
-
   return (
     <ul role="list" className="mt-6 space-y-4">
       <li key={contact.id} className="flex items-center space-x-2">
@@ -35,17 +39,35 @@ const ContactInfo = ({ contact }) => {
   );
 };
 
-const Policy = ({ policy }) => (
-  <ul role="list" className="mt-6 space-y-4">
-    <li key={policy.id}>
-      <a href={policy.fields.Document[0].url} target="_blank" rel="noopener noreferrer">
-        <p className="text-sm leading-6 text-gray-600">{policy.fields.Policy}</p>
-      </a>
-    </li>
-  </ul>
-);
+// Policy Component
+const Policy = ({ policy }) => {
+  const url = policy.fields.Document[0].url;
+  const isInternalLink = url.startsWith('/');
 
-export default function Footer({ policies, contacts }) {
+  return (
+    <ul role="list" className="mt-6 space-y-4">
+      <li key={policy.id}>
+        {isInternalLink ? (
+          <Link href={url} className="text-sm leading-6 text-gray-600 hover:text-ccLightBlue">
+            {policy.fields.Policy}
+          </Link>
+        ) : (
+          <a
+            href={url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm leading-6 text-gray-600 hover:text-ccLightBlue"
+          >
+            {policy.fields.Policy}
+          </a>
+        )}
+      </li>
+    </ul>
+  );
+};
+
+// Footer Main Component
+const Footer = ({ policies = [], contacts = [] }) => {
   return (
     <footer aria-labelledby="footer-heading" className="bg-ccAliceBlue">
       <h2 id="footer-heading" className="sr-only">Footer</h2>
@@ -58,6 +80,7 @@ export default function Footer({ policies, contacts }) {
               src="/images/logo.png"
               width={100}
               height={28}
+              priority // Use priority for important images
             />
             <p className="text-sm text-left leading-6 text-ccDarkBlue font-bold">
               Revolutionising cancer diagnostics
@@ -77,26 +100,32 @@ export default function Footer({ policies, contacts }) {
               ))}
             </div>
           </div>
+
           {/* Site map, policies, and contact sections */}
           <div className="mt-16 grid grid-cols-4 gap-8 xl:col-span-2 xl:mt-0">
+            {/* Sitemap Section */}
             <div className="mt-10 md:mt-0 px-6">
               <h3 className="text-sm font-semibold leading-6 text-ccDarkBlue">Site Map</h3>
               <ul role="list" className="mt-6 space-y-4">
                 {navigation.siteMap.map((item) => (
                   <li key={item.name}>
-                    <a href={item.href} className="text-sm leading-6 text-gray-600 hover:text-ccLightBlue">
+                    <Link href={item.href} className="text-sm leading-6 text-gray-600 hover:text-ccLightBlue">
                       {item.name}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
             </div>
+
+            {/* Policies Section */}
             <div className="mt-10 md:mt-0 px-6">
               <h3 className="text-sm font-semibold leading-6 text-ccDarkBlue">Policies</h3>
               {policies.map((policy) => (
                 <Policy key={policy.id} policy={policy} />
               ))}
             </div>
+
+            {/* Contacts Section */}
             <div className="mt-10 md:mt-0 px-6 col-span-2">
               <h3 className="text-sm font-semibold leading-6 text-ccDarkBlue">Contact</h3>
               {contacts.map((contact) => (
@@ -105,11 +134,13 @@ export default function Footer({ policies, contacts }) {
             </div>
           </div>
         </div>
+
         {/* Documentation Search */}
         <p className="mt-6 text-sm text-left leading-6 text-gray-600">Documentation Search</p>
         <div className="mt-4 max-w-xs">
           <SearchBar />
         </div>
+
         {/* Footer bottom */}
         <div className="mt-16 border-t border-ccLightBlue/10 pt-8 sm:mt-20 lg:mt-24">
           <p className="text-xs leading-5 text-gray-400">&copy; 2024 CC Diagnostics</p>
@@ -117,4 +148,12 @@ export default function Footer({ policies, contacts }) {
       </div>
     </footer>
   );
-}
+};
+
+// PropTypes for type checking
+Footer.propTypes = {
+  policies: PropTypes.array,
+  contacts: PropTypes.array,
+};
+
+export default Footer;

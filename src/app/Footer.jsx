@@ -5,8 +5,8 @@ import Image from "next/image";
 import logo from "@/src/assets/images/logo.png";
 import { PhoneIcon, EnvelopeIcon, MapPinIcon } from "@heroicons/react/24/outline";
 import SearchBar from "./search-docs/SearchBar";
-import airtableBase from "@/src/utils/airtableapi";
 import Link from 'next/link';
+import FooterData from './FooterData'
 
 const navigation = {
   siteMap: [
@@ -146,33 +146,4 @@ export default function Footer() {
       </div>
     </footer>
   );
-}
-
-// Fetch data at build time (using getStaticProps)
-export async function getStaticProps() {
-  try {
-    const contactRecords = await airtableBase('Contact').select({ view: 'Grid view' }).all();
-    const policyRecords = await airtableBase('Policies').select({ view: 'Grid view' }).all();
-
-    const contactInfo = contactRecords.map((record) => record._rawJson);
-    const policies = policyRecords.map((record) => record._rawJson);
-
-    return {
-      props: {
-        contactInfo,
-        policies
-      },
-      revalidate: 604800, // Revalidate every week
-    };
-  } catch (error) {
-    console.error("Error fetching footer data:", error);
-    // Handle the error gracefully
-    return {
-      props: {
-        contactInfo: [],
-        policies: [],
-      },
-      revalidate: 60, // Revalidate more frequently in case of errors
-    };
-  }
 }

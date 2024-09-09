@@ -2,7 +2,7 @@
 import React from "react";
 import Image from 'next/image';
 import { PhoneIcon, EnvelopeIcon, MapPinIcon } from "@heroicons/react/24/outline";
-import SearchBar from "../SearchDocs/SearchBar";
+import SearchBar from "../../SearchDocs/SearchBar";
 
 const navigation = {
   siteMap: [

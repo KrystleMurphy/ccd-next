@@ -7,7 +7,7 @@ import ReactMarkdown from 'react-markdown';
 import ImageGallery from '../components/ImageGallery';
 import Link from 'next/link';
 import { use } from 'react';
-import NewsData from '../data'; // Import your Server Component
+import NewsData from '../../../../pages/api/NewsData'; // Import your Server Component
 
 export default function NewsArticlePage() {
     const params = useParams();

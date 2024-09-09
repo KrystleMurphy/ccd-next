@@ -7,7 +7,7 @@ import Mission from './home/Mission';
 import MethicaKit from './home/MethicaKit';
 import FeaturedNews from './news/components/FeaturedNews';
 import SEO from '../components/SEO';
-import NewsData from './news/data';
+import NewsData from '../../pages/api/NewsData';
 
 export default function HomePage() {
     const featuredNewsData = use(NewsData({ view: 'Featured', revalidate: 604800 }));

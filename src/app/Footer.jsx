@@ -6,7 +6,7 @@ import logo from "@/src/assets/images/logo.png";
 import { PhoneIcon, EnvelopeIcon, MapPinIcon } from "@heroicons/react/24/outline";
 import SearchBar from "./search-docs/SearchBar";
 import Link from 'next/link';
-import FooterData from './FooterData'
+import FooterData from '../../pages/api/FooterData'
 
 const navigation = {
   siteMap: [

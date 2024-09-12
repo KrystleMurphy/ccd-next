@@ -1,15 +1,29 @@
+'use client'; 
+
 import React from 'react';
-import {
-  BeakerIcon,
-  ArrowLongRightIcon,
-  ArrowPathIcon,
-} from '@heroicons/react/24/outline';
-import cc_arrowLong from "../../../assets/images/cc_arrowLong.png";
+import Image from 'next/image';
+import { ArrowRightIcon } from '@heroicons/react/24/outline';
+import cc_arrowLong from '../../../assets/images/cc_arrowLong.png';
+import bisulfiteDNA from '@/src/assets/images/bisulfiteDNA.png';
+import clinicalSample from '@/src/assets/images/clinicalSample.png';
+import isolatedDNA from '@/src/assets/images/isolatedDNA.png';
+import qPCR from '@/src/assets/images/qPCR.png';
 
 const Step = ({ icon: Icon, imageSrc, label }) => (
   <div className="flex flex-col items-center justify-center">
     {Icon && <Icon aria-hidden="true" className="h-12 w-12" />}
-    {imageSrc && <img src={imageSrc} aria-hidden="true" className="h-12 w-12" />}
+    {imageSrc && (
+      <Image
+        src={imageSrc}
+        alt={label}
+        width={204}
+        height={204}
+        layout="fixed"
+        objectFit="contain"
+        aria-hidden="true"
+        priority
+      />
+    )}
     <p className="text-center">{label}</p>
   </div>
 );
@@ -55,49 +69,52 @@ export default function Flow() {
           </div>
         </div>
 
-        <div className='py-24 sm:py-24'>
+        <div className="py-24 sm:py-24">
           {/* Section 1 */}
           <Section
             steps={[
-              { icon: BeakerIcon, label: 'Clinical sample' },
-              { imageSrc: cc_arrowLong, label: 'Nucleic acid isolation' },
-              { icon: ArrowPathIcon, label: 'Isolated DNA' }
+              { imageSrc: clinicalSample, label: 'Clinical sample' },
+              { icon: ArrowRightIcon, label: 'Nucleic acid isolation' },
+              { imageSrc: isolatedDNA, label: 'Isolated DNA' },
             ]}
             textSectionProps={{
               duration: '1h',
               handsOnTime: '30 min',
               samples: '96 samples',
-              description: 'DNA isolation with column-based or magnetic bead-based kits or equivalent'
+              description:
+                'DNA isolation with column-based or magnetic bead-based kits or equivalent',
             }}
           />
 
           {/* Section 2 */}
           <Section
             steps={[
-              { icon: BeakerIcon, label: 'Isolated DNA' },
-              { imageSrc: cc_arrowLong, label: 'Bisulfite treatment' },
-              { icon: ArrowPathIcon, label: 'Bisulfite treated DNA' }
+              { imageSrc: isolatedDNA, label: 'Isolated DNA' },
+              { icon: ArrowRightIcon, label: 'Bisulfite treatment' },
+              { imageSrc: bisulfiteDNA, label: 'Bisulfite treated DNA' },
             ]}
             textSectionProps={{
               duration: '17.5h (12-16h)',
               handsOnTime: '4h',
               samples: '96 samples',
-              description: 'After quality control bisulfite treatment performed with the EZ DNA Methylation TM kit'
+              description:
+                'After quality control bisulfite treatment performed with the EZ DNA Methylation TM kit',
             }}
           />
 
           {/* Section 3 */}
           <Section
             steps={[
-              { icon: BeakerIcon, label: 'Bisulfite treated DNA' },
-              { imageSrc: cc_arrowLong, label: 'Methica CC kit' },
-              { icon: ArrowPathIcon, label: 'Interpretation with qPCR software' }
+              { imageSrc: bisulfiteDNA, label: 'Bisulfite treated DNA' },
+              { icon: ArrowRightIcon, label: 'Methica CC kit' },
+              { imageSrc: qPCR, label: 'Interpretation with qPCR software' },
             ]}
             textSectionProps={{
               duration: '3h',
               handsOnTime: '30 min',
               samples: '94 samples',
-              description: 'Methica CC kit test preparation and interpretation with Lightcycler ® 480 instrument II'
+              description:
+                'Methica CC kit test preparation and interpretation with Lightcycler ® 480 instrument II',
             }}
           />
         </div>

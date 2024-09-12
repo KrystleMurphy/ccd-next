@@ -72,8 +72,6 @@ const Header = () => {
           <Image
               src={logo}
               alt="CC Diagnostics logo"
-              width={32} // Provide width and height for better performance
-              height={32}
               className="h-8 w-auto"
               priority // Prioritize loading this image
             />

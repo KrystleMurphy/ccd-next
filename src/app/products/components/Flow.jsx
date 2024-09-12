@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { BeakerIcon, ArrowPathIcon } from '@heroicons/react/24/outline';
+import { ArrowRightIcon } from '@heroicons/react/24/outline';
 import cc_arrowLong from '../../../assets/images/cc_arrowLong.png';
 import bisulfiteDNA from '@/src/assets/images/bisulfiteDNA.png';
 import clinicalSample from '@/src/assets/images/clinicalSample.png';
@@ -74,7 +74,7 @@ export default function Flow() {
           <Section
             steps={[
               { imageSrc: clinicalSample, label: 'Clinical sample' },
-              { imageSrc: cc_arrowLong, label: 'Nucleic acid isolation' },
+              { icon: ArrowRightIcon, label: 'Nucleic acid isolation' },
               { imageSrc: isolatedDNA, label: 'Isolated DNA' },
             ]}
             textSectionProps={{
@@ -90,7 +90,7 @@ export default function Flow() {
           <Section
             steps={[
               { imageSrc: isolatedDNA, label: 'Isolated DNA' },
-              { imageSrc: cc_arrowLong, label: 'Bisulfite treatment' },
+              { icon: ArrowRightIcon, label: 'Bisulfite treatment' },
               { imageSrc: bisulfiteDNA, label: 'Bisulfite treated DNA' },
             ]}
             textSectionProps={{
@@ -106,7 +106,7 @@ export default function Flow() {
           <Section
             steps={[
               { imageSrc: bisulfiteDNA, label: 'Bisulfite treated DNA' },
-              { imageSrc: cc_arrowLong, label: 'Methica CC kit' },
+              { icon: ArrowRightIcon, label: 'Methica CC kit' },
               { imageSrc: qPCR, label: 'Interpretation with qPCR software' },
             ]}
             textSectionProps={{

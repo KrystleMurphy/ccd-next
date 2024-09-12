@@ -1,19 +1,19 @@
 'use client';
 
-import { useRef, useState, useEffect } from "react";
-import teamPhoto from "@/src/assets/images/teamPhoto.jpg";
-import emailjs from "@emailjs/browser";
-import SEO from "@/src/components/SEO";
-import PrivacyPolicy from "@/src/assets/pdf/PrivacyPolicy.pdf";
+import { useRef, useState, useEffect } from 'react';
+import Head from 'next/head';
+import teamPhoto from '@/src/assets/images/teamPhoto.jpg';
+import emailjs from '@emailjs/browser';
+import Image from 'next/image';
 
 export default function ContactPage() {
+  const privacyPolicyUrl = '/pdf/PrivacyPolicy.pdf';
   const form = useRef();
   const [captchaValue, setCaptchaValue] = useState(null);
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState('');
   const serviceID = process.env.NEXT_PUBLIC_EMAIL_JS_SERVICE_ID;
   const templateID = process.env.NEXT_PUBLIC_EMAIL_JS_TEMPLATE_ID;
   const userID = process.env.NEXT_PUBLIC_EMAIL_JS_USER_ID;
-
   const recaptchaKey = process.env.NEXT_PUBLIC_RECAPTCHA_KEY;
 
   const [isEmpty, setEmpty] = useState(false);
@@ -22,7 +22,7 @@ export default function ContactPage() {
 
   const handleCaptchaChange = (value) => {
     setCaptchaValue(value);
-    setEmpty(false); 
+    setEmpty(false);
   };
 
   const handleClick = () => {
@@ -38,22 +38,22 @@ export default function ContactPage() {
 
     emailjs
       .sendForm(serviceID, templateID, form.current, userID, {
-        "g-recaptcha-response": captchaValue,
+        'g-recaptcha-response': captchaValue,
       })
       .then(
         () => {
-          console.log("SUCCESS!");
+          console.log('SUCCESS!');
           form.current.reset();
           setCaptchaValue(null);
           setEmpty(false);
           setMessage(
-            "Thank you for contacting us. We will be in touch with you soon."
+            'Thank you for contacting us. We will be in touch with you soon.'
           );
         },
         (error) => {
-          console.log("FAILED...", error.text);
+          console.log('FAILED...', error.text);
           setMessage(
-            "There seems to be an error, please try again later or alternatively you contact us at info@cc-diagnostics.com."
+            'There seems to be an error, please try again later or alternatively you contact us at info@cc-diagnostics.com.'
           );
         }
       );
@@ -63,11 +63,12 @@ export default function ContactPage() {
     if (window.grecaptcha) {
       setRecaptchaLoaded(true);
     } else {
-      console.error("reCAPTCHA script not found. Please check your index.html.");
+      console.error(
+        'reCAPTCHA script not found. Please check your index.html.'
+      );
     }
   }, []);
 
-  // New useEffect to render reCAPTCHA only when recaptchaRef.current is available
   useEffect(() => {
     if (recaptchaLoaded && recaptchaRef.current) {
       window.grecaptcha.ready(() => {
@@ -81,22 +82,37 @@ export default function ContactPage() {
 
   return (
     <>
-      {/* SEO Component */}
-      <SEO
-        title="Contact Us - CC Diagnostics"
-        description="Get in touch with CC Diagnostics for any inquiries, support, or information. Fill out our contact form to reach our team and we will get back to you promptly."
-        keywords="contact, CC Diagnostics, customer support, inquiries, contact form"
-        url="https://www.cc-diagnostics.netlify.app/contact"
-        image="https://www.cc-diagnostics.netlify.app/assets/logo-COHLTM4X.png" // Using company logo for meta image
-      />
+      <Head>
+        <title>Contact Us - CC Diagnostics</title>
+        <meta
+          name="description"
+          content="Get in touch with CC Diagnostics for any inquiries, support, or information. Fill out our contact form to reach our team and we will get back to you promptly."
+        />
+        <meta
+          name="keywords"
+          content="contact, CC Diagnostics, customer support, inquiries, contact form"
+        />
+        <meta
+          property="og:url"
+          content="https://www.cc-diagnostics.netlify.app/contact"
+        />
+        <meta
+          property="og:image"
+          content="https://www.cc-diagnostics.netlify.app/assets/logo-COHLTM4X.png"
+        />
+      </Head>
 
       <div className="relative bg-white">
-        <div className="lg:absolute lg:inset-0 lg:left-1/2">
-          <img
-            alt="team photo"
-            src={teamPhoto}
-            className="h-64 w-full bg-gray-50 object-contain sm:h-80 lg:absolute lg:h-full"
-          />
+        <div className="lg:absolute lg:inset-0 lg:left-1/2 pb-24 pt-16 sm:pb-32 sm:pt-24 lg:pt-32">
+
+          <Image
+  alt="Team photo"
+  src={teamPhoto}
+  className="h-64 w-full bg-gray-50 object-contain sm:h-80 lg:absolute lg:h-full"
+  layout="responsive" 
+  objectFit="contain"
+  priority
+/>
         </div>
         <div className="pb-24 pt-16 sm:pb-32 sm:pt-24 lg:mx-auto lg:grid lg:max-w-7xl lg:grid-cols-2 lg:pt-32">
           <div className="px-6 lg:px-8">
@@ -226,14 +242,14 @@ export default function ContactPage() {
                   </div>
                 </div>
                 {recaptchaLoaded && (
-                <div className="my-6" ref={recaptchaRef}></div> 
-              )}
+                  <div className="my-6" ref={recaptchaRef}></div>
+                )}
 
-              {isEmpty && (
-                <p className="block px-3.5 py-2 text-sm font-medium leading-6 text-red-600">
-                  *Please complete Captcha
-                </p>
-              )}
+                {isEmpty && (
+                  <p className="block px-3.5 py-2 text-sm font-medium leading-6 text-red-600">
+                    *Please complete Captcha
+                  </p>
+                )}
                 <div className="flex items-center mb-4">
                   <input
                     id="default-checkbox"
@@ -249,7 +265,7 @@ export default function ContactPage() {
                     I agree to the Privacy Policy
                   </label>
                   <a
-                    href={PrivacyPolicy}
+                    href={privacyPolicyUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="View Privacy Policy"
@@ -269,13 +285,13 @@ export default function ContactPage() {
                       />
                     </svg>
                   </a>
-                  <br/>
+                  <br />
                 </div>
-                  {message && (
-                    <p className="block py-2 text-sm font-medium leading-6 text-green-600">
-                      {message}
-                    </p>
-                  )}
+                {message && (
+                  <p className="block py-2 text-sm font-medium leading-6 text-green-600">
+                    {message}
+                  </p>
+                )}
                 <div className="mt-10 flex justify-end border-t border-gray-900/10 pt-8">
                   <button
                     type="submit"

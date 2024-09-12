@@ -1,15 +1,21 @@
-// src/app/components/ServerFooterData.js
-import Footer from '@/src/app/Footer'; // Adjust path if necessary
-import FooterData from '@/pages/api/FooterData'; // Ensure the correct path to your API route
+// src/components/ServerFooterData.js
 
-// Server component that fetches footer data and passes it to Footer
+import Footer from '@/src/app/Footer'; // Adjust path if necessary
+
 export default async function ServerFooterData() {
   try {
-    // Fetch data from the FooterData API or any server-side function directly
-    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/FooterData`);
+    // Define the base URL properly, using an environment variable or a direct string if not available.
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'; // Use localhost as fallback for development
+    const response = await fetch(`${baseUrl}/api/FooterData`); // Ensure the URL is correctly constructed
+
+    // Check if the response is okay, otherwise handle errors appropriately.
+    if (!response.ok) {
+      throw new Error(`Failed to fetch footer data: ${response.statusText}`);
+    }
+
     const footerData = await response.json();
 
-    // Extract necessary data
+    // Extract needed data
     const { contactDetails = [], policies = [] } = footerData;
 
     // Pass the fetched data to the Footer Client Component

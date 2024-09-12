@@ -35,22 +35,26 @@
 //     );
 // }
 
-// pages/api/FooterData.js
 
+// pages/api/FooterData.js
 import airtableBase from '@/src/utils/airtableapi'; 
 
 export default async function FooterData(req, res) {
-  const { view, revalidate } = req.query; // Assuming `view` and `revalidate` are passed as query params
+  // Safely destructure query parameters with default values
+  const { view = 'DefaultView', revalidate = 3600 } = req.query; // Set a default view value
 
   try {
-    // Fetch data from Airtable or your data source
+    // Check if the view is a valid string
+    if (typeof view !== 'string' || view.trim() === '') {
+      throw new Error('Invalid view parameter: must be a non-empty string.');
+    }
+
+    // Fetch data from Airtable
     const records = await airtableBase('Footer').select({ view }).all();
     const footerData = records.map((record) => record._rawJson);
 
     // Set Cache-Control header for ISR
-    if (revalidate) {
-      res.setHeader('Cache-Control', `s-maxage=1, stale-while-revalidate=${revalidate}`);
-    }
+    res.setHeader('Cache-Control', `s-maxage=1, stale-while-revalidate=${revalidate}`);
 
     // Send the response with the fetched data
     res.status(200).json(footerData);

@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import teamPhoto from '/public/images/teamPhoto.jpg'; // Ensure the image path is correct and inside the public folder
-import ContactHeavy from '../../common/ContactButtons/ContactHeavy';
+import teamPhoto from '@/src/assets/images/teamPhoto.jpg'; 
+import ContactHeavy from '@/src/components/contact-buttons/ContactHeavy';
 
 export default function Hero() {
   return (

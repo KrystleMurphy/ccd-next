@@ -29,7 +29,7 @@ const Step = ({ icon: Icon, imageSrc, label }) => (
 );
 
 const TextSection = ({ duration, handsOnTime, samples, description }) => (
-  <div className="flex flex-col justify-center w-full lg:w-1/2 pl-4 bg-ccAliceBlue/40 rounded py-4">
+  <div className="flex flex-col justify-center w-full lg:w-1/2 pl-4 bg-white rounded py-4">
     <h3 className="text-base font-semibold leading-6 text-ccDarkBlue">{`Duration: ${duration}`}</h3>
     <h3 className="text-base font-semibold leading-6 text-ccDarkBlue">{`Hands-on time: ${handsOnTime}`}</h3>
     <h3 className="text-base font-semibold leading-6 text-ccDarkBlue">{`Samples: ${samples}`}</h3>
@@ -40,7 +40,7 @@ const TextSection = ({ duration, handsOnTime, samples, description }) => (
 const Section = ({ steps, textSectionProps }) => (
   <div className="divide-y divide-gray-200 overflow-hidden rounded-lg mx-auto max-w-7xl sm:px-2 lg:px-4">
     <div className="rounded group relative bg-white p-6 flex flex-col lg:flex-row w-full">
-      <div className="flex items-center justify-between w-full lg:w-1/2 bg-ccAliceBlue/40 rounded">
+      <div className="flex items-center justify-between w-full lg:w-1/2 bg-white rounded">
         <div className="flex gap-12 w-full">
           {steps.map((step, index) => (
             <Step

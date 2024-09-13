@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import Info from './components/Info';
 import Tabs from './components/Tabs';
 import Flow from './components/Flow';
-// import SearchCTA from '@/src/app/search-docs/SearchCTA';
+import SearchCTA from '@/src/app/search-docs/SearchCTA';
 import Pipeline from './components/Pipeline'; 
 
 export default function Products({ technicalSpecifications }) {
@@ -28,7 +28,7 @@ export default function Products({ technicalSpecifications }) {
       <Tabs technicalSpecifications={technicalSpecifications} />
       <Flow />
       <Pipeline />
-      {/* <SearchCTA /> */}
+      <SearchCTA />
     </>
   );
 }

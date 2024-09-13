@@ -76,7 +76,7 @@ export default function MethicaKit() {
       <div className='flex justify-center items-center'>
       <Link // Use Next.js Link component
           href="/products"
-          className="relative mx-auto max-w-7xl px-6 py-12 sm:py-12 lg:px-8 text-sm font-semibold leading-6 text-cc-DarkBlue hover:text-ccLightBlue"
+          className="relative mx-auto max-w-7xl px-6 py-12 sm:py-12 lg:px-8 text-sm font-semibold leading-6 text-ccDarkBlue hover:text-ccLightBlue"
         >
           Learn More <span aria-hidden="true">→</span>
         </Link>

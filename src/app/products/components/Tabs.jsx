@@ -77,18 +77,18 @@ export default function Tabs({ technicalSpecifications }) {
                           </p>
                         </div>
                         <div className="lg:col-span-7">
-                          <div className="aspect-w-2 aspect-h-1 overflow-hidden rounded-lg bg-gray-100 sm:aspect-w-5 sm:aspect-h-2">
-                            {feature.imageSrc && (
-                              <Image
-                                alt={feature.imageAlt}
-                                src={feature.imageSrc}
-                                layout="responsive"
-                                width={500}
-                                height={300}
-                                className="object-cover object-center"
-                              />
-                            )}
-                          </div>
+                        <div className="relative overflow-hidden rounded-lg bg-gray-100" style={{ paddingBottom: '56.25%' }}> {/* 16:9 Aspect Ratio */}
+  {feature.imageSrc && (
+    <Image
+      alt={feature.imageAlt}
+      src={feature.imageSrc}
+      layout="fill" // This ensures the image will fill the entire container
+      objectFit="cover" // Scales the image to cover the container without distortion
+      objectPosition="center" // Centers the image both vertically and horizontally
+      className="rounded-lg"
+    />
+  )}
+</div>
                         </div>
                       </div>
                     ))}

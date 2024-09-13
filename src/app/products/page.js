@@ -1,6 +1,7 @@
 // src/app/products/page.js
 
 import Products from './Products'; // Import the client component
+import { getTechnicalSpecificationsData } from '@/pages/api/TechnicalSpecificationsData';
 
 // Metadata object for SEO purposes
 export const metadata = {
@@ -25,6 +26,12 @@ export const metadata = {
   },
 };
 
-export default function ProductsPage() {
-  return <Products />; // Render the client component
+export default async function ProductsPage() {
+  // Fetch the technical specifications data
+  const technicalSpecifications = await getTechnicalSpecificationsData('Grid view');
+
+  return (
+    // Pass the fetched data to the Products component
+    <Products technicalSpecifications={technicalSpecifications} />
+  );
 }

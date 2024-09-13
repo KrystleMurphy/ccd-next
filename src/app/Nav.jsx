@@ -1,6 +1,6 @@
 "use client"; // This component will need client-side state and effects
 
-import { useState } from "react"; // Removed useEffect as it was used to scroll to the top on navigation. Next.js handles this automatically.
+import { useState, useEffect } from "react";
 import Link from 'next/link';
 import Image from 'next/image';
 import logo from "@/src/assets/images/logo.png";
@@ -19,57 +19,69 @@ const Header = () => {
     setMenuOpen(false);
   };
 
+  // Effect to close the menu when switching to larger screens
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
+        setMenuOpen(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   // Dropdown menu component
   const dropdown = () => {
     return (
-    <Menu as="div" className="relative inline-block text-left">
-      <div className="flex items-center">
-        <Link href="/products" className="text-sm font-semibold leading-6 text-ccDarkBlue">
-          Products
-        </Link>
+      <Menu as="div" className="relative inline-block text-left">
+        <div className="flex items-center">
+          <Link href="/products" className="text-sm font-semibold leading-6 text-ccDarkBlue">
+            Products
+          </Link>
 
-        <MenuButton className="inline-flex items-center ml-2 text-sm font-semibold text-gray-900 bg-white rounded-md ring-gray-300 hover:bg-gray-50">
-          <ChevronDownIcon aria-hidden="true" className="h-5 w-5 text-ccLightBlue" />
-        </MenuButton>
-      </div>
-
-      <MenuItems className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-        <div className="py-1">
-          <MenuItem>
-            {({ active }) => (
-              <Link
-                href="/products#searchCTA"
-                className={`block px-4 py-2 text-sm ${active ? 'text-ccLightBlue' : 'text-gray-700'}`}
-                onClick={closeMenu}
-              >
-                Documentation
-              </Link>
-            )}
-          </MenuItem>
-          <MenuItem>
-            {({ active }) => (
-              <Link
-                href="/products#pipeline"
-                className={`block px-4 py-2 text-sm ${active ? 'text-ccLightBlue' : 'text-gray-700'}`}
-                onClick={closeMenu}
-              >
-                Pipeline
-              </Link>
-            )}
-          </MenuItem>
+          <MenuButton className="inline-flex items-center ml-2 text-sm font-semibold text-gray-900 bg-white rounded-md ring-gray-300 hover:bg-gray-50">
+            <ChevronDownIcon aria-hidden="true" className="h-5 w-5 text-ccLightBlue" />
+          </MenuButton>
         </div>
-      </MenuItems>
-    </Menu>
+
+        <MenuItems className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+          <div className="py-1">
+            <MenuItem>
+              {({ active }) => (
+                <Link
+                  href="/products#searchCTA"
+                  className={`block px-4 py-2 text-sm ${active ? 'text-ccLightBlue' : 'text-gray-700'}`}
+                  onClick={closeMenu}
+                >
+                  Documentation
+                </Link>
+              )}
+            </MenuItem>
+            <MenuItem>
+              {({ active }) => (
+                <Link
+                  href="/products#pipeline"
+                  className={`block px-4 py-2 text-sm ${active ? 'text-ccLightBlue' : 'text-gray-700'}`}
+                  onClick={closeMenu}
+                >
+                  Pipeline
+                </Link>
+              )}
+            </MenuItem>
+          </div>
+        </MenuItems>
+      </Menu>
     );
   };
 
   return (
     <header className="sticky top-0 z-50 bg-white backdrop-blur-lg">
-      <nav className="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
+      <nav className="flex items-center justify-between p-6 lg:px-8 " aria-label="Global">
         <div className="flex lg:flex-1">
           <Link href="/" onClick={closeMenu}>
-          <span className="sr-only">CC Diagnostics</span>
-          <Image
+            <span className="sr-only">CC Diagnostics</span>
+            <Image
               src={logo}
               alt="CC Diagnostics logo"
               className="h-8 w-auto"
@@ -77,7 +89,7 @@ const Header = () => {
             />
           </Link>
         </div>
-        <div className="hidden lg:flex lg:ml-auto lg:gap-x-12 items-center">
+        <div className="hidden lg:flex lg:ml-auto lg:gap-x-12 items-center ">
           <Link href="/" className="text-sm font-semibold leading-6 text-ccDarkBlue" onClick={closeMenu}>
             Home
           </Link>
@@ -114,44 +126,43 @@ const Header = () => {
       </nav>
 
       {menuOpen && (
-        <div className="lg:hidden" role="dialog" aria-modal="true">
-          <div className="fixed inset-0 z-50"></div>
-          <div className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-ccAliceBlue/10">
-            <div className="flex items-center justify-between">
-              <Link href="/" onClick={closeMenu}>
-                <Image className="h-8 w-auto" src={logo} alt="CC Diagnostics Logo" width={32} height={32} />
-              </Link>
-              <button type="button" className="-m-2.5 rounded-md p-2.5 text-gray-700" onClick={toggleMenu}>
-                <span className="sr-only">Close menu</span>
-                <svg
-                  className="h-6 w-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-            </div>
+        <div className="fixed inset-0 z-50 bg-white px-6 py-6 sm:ring-1 sm:ring-ccAliceBlue/10 lg:hidden">
+          <div className="flex items-center justify-between ">
+            <Link href="/" onClick={closeMenu}>
+              <Image className="h-8 w-auto" src={logo} alt="CC Diagnostics Logo" />
+            </Link>
+            <button type="button" className="-m-2.5 rounded-md p-2.5 text-gray-700" onClick={toggleMenu}>
+              <span className="sr-only">Close menu</span>
+              <svg
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+                aria-hidden="true"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
 
-            <div className="mt-6 flow-root">
-              <div className="-my-6 divide-y divide-gray-500/10">
-                <div className="space-y-2 py-6 text-center">
-                  <Link href="/" className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-ccDarkBlue hover:bg-gray-50" onClick={closeMenu}>
-                    Home
-                  </Link>
+          <div className="mt-6 flow-root">
+            <div className="-my-6 divide-y divide-gray-500/10">
+            <div className="absolute left-0 right-0 w-full space-y-2 py-6 text-center bg-white">
+            <Link href="/" className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-ccDarkBlue hover:bg-gray-50" onClick={closeMenu}>
+                  Home
+                </Link>
 
-                  {dropdown()}
+                {dropdown()}
 
-                  <Link href="/about" className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-ccDarkBlue hover:bg-gray-50" onClick={closeMenu}>
-                    About
-                  </Link>
-                  <Link href="/news" className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-ccDarkBlue hover:bg-gray-50" onClick={closeMenu}>
-                    News
-                  </Link>
-                  <ContactHeavy />
+                <Link href="/about" className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-ccDarkBlue hover:bg-gray-50" onClick={closeMenu}>
+                  About
+                </Link>
+                <Link href="/news" className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-ccDarkBlue hover:bg-gray-50" onClick={closeMenu}>
+                  News
+                </Link>
+                <div className="py-6">
+                <ContactHeavy />
                 </div>
               </div>
             </div>

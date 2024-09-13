@@ -2,7 +2,7 @@
 
 import '../styles/globals.css'; // Import your global CSS
 import Nav from './Nav';
-// import ServerFooterData from '@/pages/api/ServerFooterData'; 
+import AsyncFooter from '@/src/components/AysncFooter';
 
 // Metadata configuration
 export const metadata = {
@@ -26,6 +26,7 @@ export const metadata = {
   },
 };
 
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en"> {/* Add the <html> tag with a lang attribute */}
@@ -35,7 +36,7 @@ export default function RootLayout({ children }) {
       <body> {/* Add the <body> tag */}
         <Nav />
         {children}
-        {/* <ServerFooterData /> */}
+        <AsyncFooter />
       </body>
     </html>
   );

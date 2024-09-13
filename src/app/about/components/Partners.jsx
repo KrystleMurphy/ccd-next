@@ -1,10 +1,8 @@
 // components/Partners.jsx
-import Image from 'next/image'; // Import Next.js Image component
-import Airtable from "../../common/Airtable/Airtable";
-import ContactHeavy from "../../common/ContactButtons/ContactHeavy";
+import Image from 'next/image';
+import ContactHeavy from "@/src/components/contact-buttons/ContactHeavy";
 
 const renderPartnerLogo = (partner) => {
-  // Safely access fields and provide fallback for missing or empty values
   const logoUrl = partner.fields.Logo?.[0]?.url || '/images/placeholder.png';
   const partnerSite = partner.fields.Site || '#';
 
@@ -27,7 +25,7 @@ const renderPartnerLogo = (partner) => {
   );
 };
 
-export default function Partners() {
+export default function Partners({ partnersData }) {
   return (
     <div className="bg-white py-32 sm:py-40">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -49,11 +47,7 @@ export default function Partners() {
           role="list"
           className="mx-auto mt-20 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3"
         >
-          <Airtable
-            tableName="Partners"
-            view="Grid view"
-            renderItem={renderPartnerLogo}
-          />
+          {partnersData.map(renderPartnerLogo)}
         </ul>
         
         <div className="mt-8 flex items-center gap-x-6 justify-center">

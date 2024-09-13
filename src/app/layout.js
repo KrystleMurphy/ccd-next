@@ -2,7 +2,7 @@
 
 import '../styles/globals.css'; // Import your global CSS
 import Nav from './Nav';
-import ServerFooterData from '@/pages/api/ServerFooterData'; // Ensure this path is correct
+// import ServerFooterData from '@/pages/api/ServerFooterData'; 
 
 // Metadata configuration
 export const metadata = {
@@ -35,7 +35,7 @@ export default function RootLayout({ children }) {
       <body> {/* Add the <body> tag */}
         <Nav />
         {children}
-        <ServerFooterData />
+        {/* <ServerFooterData /> */}
       </body>
     </html>
   );

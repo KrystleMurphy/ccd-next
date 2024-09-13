@@ -1,9 +1,7 @@
 // components/Advisors.jsx
-import Image from 'next/image'; // Import Next.js Image component
-import Airtable from "../../common/Airtable/Airtable";
+import Image from 'next/image';
 
 const renderAdvisor = (advisor) => {
-  // Safely access fields and handle missing or empty values
   const photoUrl = advisor.fields.Photo?.[0]?.thumbnails?.large?.url || '/images/placeholder.png';
   const linkedInUrl = advisor.fields.LinkedIn?.[0]?.url || '#';
 
@@ -12,8 +10,8 @@ const renderAdvisor = (advisor) => {
       <Image
         src={photoUrl}
         alt={advisor.fields.Name || 'Advisor Photo'}
-        width={224} // Width equivalent to 56 * 4 for consistent sizing
-        height={224} // Height equivalent to 56 * 4 for consistent sizing
+        width={224}
+        height={224}
         className="mx-auto h-56 w-56 rounded-full object-cover"
       />
       <h3 className="mt-6 text-base font-semibold leading-7 tracking-tight text-ccDarkBlue">
@@ -48,7 +46,10 @@ const renderAdvisor = (advisor) => {
   );
 };
 
-export default function Advisors() {
+export default function Advisors({ advisorsData }) {
+  // Filter advisors from the data
+  const advisors = advisorsData.filter((item) => item.fields.Category === 'Advisor');
+
   return (
     <div id="team" className="bg-white py-32 sm:py-40">
       <div className="mx-auto max-w-7xl px-6 text-center lg:px-8">
@@ -61,16 +62,7 @@ export default function Advisors() {
           role="list"
           className="mx-auto mt-20 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3"
         >
-          <Airtable
-            tableName="Team"
-            view="Grid view"
-            renderItem={(advisor) => {
-              if (advisor.fields.Category === 'Advisor') {
-                return renderAdvisor(advisor);
-              }
-              return null;
-            }}
-          />
+          {advisors.map(renderAdvisor)}
         </ul>
       </div>
     </div>

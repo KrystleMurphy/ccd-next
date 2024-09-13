@@ -1,11 +1,11 @@
 import React from 'react';
 import Hero from './components/Hero';
-// import Team from './components/Team';
-// import Advisors from './components/Advisors';
-// import Partners from './components/Partners';
+import Team from './components/Team';
+import Advisors from './components/Advisors';
+import Partners from './components/Partners';
 // import SEO from '../common/SEO';
 
-function About() {
+function About({ teamData, partnersData}) {
     return (
         <>
             {/* SEO Component */}
@@ -19,9 +19,9 @@ function About() {
             
             {/* Page Components */}
             <Hero />
-            {/* <Team /> */}
-            {/* <Advisors /> */}
-            {/* <Partners /> */}
+            <Team teamData={teamData}/>
+            <Advisors advisorsData={teamData}/>
+            <Partners partnersData={partnersData} />
         </>
     );
 }

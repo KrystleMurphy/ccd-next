@@ -1,13 +1,10 @@
 // src/app/Footer.jsx
-'use client'; // Ensure this component is a Client Component
-
-import Image from "next/image";
+import Link from 'next/link';
+import Image from 'next/image';
 import logo from "@/src/assets/images/logo.png";
 import { PhoneIcon, EnvelopeIcon, MapPinIcon } from "@heroicons/react/24/outline";
-import SearchBar from "./search-docs/SearchBar";
-import Link from 'next/link';
 
-// Define icons for contact methods
+// Define icons for different contact methods
 const methodIcons = {
   Phone: <PhoneIcon className="h-5 w-5 text-ccDarkBlue" aria-hidden="true" />,
   Email: <EnvelopeIcon className="h-5 w-5 text-ccDarkBlue" aria-hidden="true" />,
@@ -17,7 +14,6 @@ const methodIcons = {
 // Component to render individual contact information
 const ContactInfo = ({ contact }) => {
   const { Method, info } = contact.fields;
-
   return (
     <ul role="list" className="mt-6 space-y-4">
       <li key={contact.id} className="flex items-center space-x-2">
@@ -28,39 +24,69 @@ const ContactInfo = ({ contact }) => {
   );
 };
 
-// Component to render policy links
-const Policy = ({ policy }) => (
-  <Link 
-    href={policy.fields.Document[0].url} 
-    target="_blank" 
-    rel="noopener noreferrer"
-    className="text-sm leading-6 text-gray-600 hover:text-ccLightBlue"
-  >
-    {policy.fields.Policy}
-  </Link>
-);
+// Component to render individual policies
+const Policy = ({ policy }) => {
+  return (
+    <Link
+      href={policy.fields.Document[0].url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-sm leading-6 text-gray-600 hover:text-ccLightBlue"
+    >
+      {policy.fields.Policy}
+    </Link>
+  );
+};
 
-// Main Footer component that renders the contact details and policies
-export default function Footer({ contactDetails, policies }) {
+// Main Footer component
+export default function Footer({ policies, contactDetails }) {
   return (
     <footer aria-labelledby="footer-heading" className="bg-ccAliceBlue">
       <h2 id="footer-heading" className="sr-only">Footer</h2>
       <div className="mx-auto max-w-7xl px-6 pb-8 pt-16 sm:pt-24 lg:px-8 lg:pt-32">
-        <Image src={logo} alt="CC Diagnostics Logo" width={100} height={28} />
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div>
-            {/* Site Map and Social Media */}
+        <div className="xl:grid xl:grid-cols-3 xl:gap-8">
+          {/* Logo and social links */}
+          <div className="space-y-2">
+            <Image
+              alt="CC Diagnostics Logo"
+              src={logo}
+              width={100}
+              height={28}
+            />
+            <p className="text-sm text-left leading-6 text-ccDarkBlue font-bold">
+              Revolutionising cancer diagnostics
+            </p>
+            <div className="flex space-x-6 align-center justify-center">
+              {/* Social links */}
+              {/* Add your social links mapping here if needed */}
+            </div>
           </div>
-          <div>
-            {/* Policies */}
-            {policies.map(policy => <Policy key={policy.id} policy={policy} />)}
-          </div>
-          <div>
-            {/* Contact Details */}
-            {contactDetails.map(contact => <ContactInfo key={contact.id} contact={contact} />)}
+          {/* Site map, policies, and contact sections */}
+          <div className="mt-16 grid grid-cols-4 gap-8 xl:col-span-2 xl:mt-0">
+            <div className="mt-10 md:mt-0 px-6">
+              <h3 className="text-sm font-semibold leading-6 text-ccDarkBlue">Site Map</h3>
+              <ul role="list" className="mt-6 space-y-4">
+                {/* Map your navigation links here */}
+              </ul>
+            </div>
+            <div className="mt-10 md:mt-0 px-6">
+              <h3 className="text-sm font-semibold leading-6 text-ccDarkBlue">Policies</h3>
+              {policies.map((policy) => (
+                <Policy key={policy.id} policy={policy} />
+              ))}
+            </div>
+            <div className="mt-10 md:mt-0 px-6 col-span-2">
+              <h3 className="text-sm font-semibold leading-6 text-ccDarkBlue">Contact</h3>
+              {contactDetails.map((contact) => (
+                <ContactInfo key={contact.id} contact={contact} />
+              ))}
+            </div>
           </div>
         </div>
-        <SearchBar />
+        {/* Footer bottom */}
+        <div className="mt-16 border-t border-ccLightBlue/10 pt-8 sm:mt-20 lg:mt-24">
+          <p className="text-xs leading-5 text-gray-400">&copy; 2024 CC Diagnostics</p>
+        </div>
       </div>
     </footer>
   );

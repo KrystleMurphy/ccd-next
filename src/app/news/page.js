@@ -16,7 +16,7 @@ export default async function Page() {
         image="https://www.cc-diagnostics.netlify.app/assets/logo-COHLTM4X.png"  // Using company logo for meta image
       /> */}
       <FeaturedNews featuredNews={featuredNewsData} />
-      <NewsFeed allNews={allNewsData} /> 
-      </>
-    );
-  }
+      <NewsFeed allNews={allNewsData} />
+    </>
+  );
+}

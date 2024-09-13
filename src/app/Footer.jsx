@@ -38,6 +38,15 @@ const Policy = ({ policy }) => {
   );
 };
 
+const navigationLinks = [
+  { name: 'Home', path: '/' },
+  { name: 'About', path: '/about' },
+  { name: 'Products', path: '/products' },
+  { name: 'News', path: '/news' },
+  { name: 'Contact', path: '/contact' },
+];
+
+
 // Main Footer component
 export default function Footer({ policies, contactDetails }) {
   return (
@@ -50,10 +59,10 @@ export default function Footer({ policies, contactDetails }) {
             <Image
               alt="CC Diagnostics Logo"
               src={logo}
-              width={100}
-              height={28}
+              // width={100}
+              height={48}
             />
-            <p className="text-sm text-left leading-6 text-ccDarkBlue font-bold">
+            <p className="py-6 text-xl text-left leading-6 text-ccDarkBlue font-bold">
               Revolutionising cancer diagnostics
             </p>
             <div className="flex space-x-6 align-center justify-center">
@@ -62,26 +71,42 @@ export default function Footer({ policies, contactDetails }) {
             </div>
           </div>
           {/* Site map, policies, and contact sections */}
-          <div className="mt-16 grid grid-cols-4 gap-8 xl:col-span-2 xl:mt-0">
-            <div className="mt-10 md:mt-0 px-6">
-              <h3 className="text-sm font-semibold leading-6 text-ccDarkBlue">Site Map</h3>
-              <ul role="list" className="mt-6 space-y-4">
-                {/* Map your navigation links here */}
-              </ul>
-            </div>
-            <div className="mt-10 md:mt-0 px-6">
-              <h3 className="text-sm font-semibold leading-6 text-ccDarkBlue">Policies</h3>
-              {policies.map((policy) => (
-                <Policy key={policy.id} policy={policy} />
-              ))}
-            </div>
-            <div className="mt-10 md:mt-0 px-6 col-span-2">
-              <h3 className="text-sm font-semibold leading-6 text-ccDarkBlue">Contact</h3>
-              {contactDetails.map((contact) => (
-                <ContactInfo key={contact.id} contact={contact} />
-              ))}
-            </div>
-          </div>
+<div className="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:col-span-2 xl:mt-0 m-12">
+  {/* Site Map Section */}
+  <div className="px-6">
+    <h3 className="text-base font-semibold leading-6 text-ccDarkBlue">Site Map</h3>
+    <ul role="list" className="mt-4 space-y-3">
+      {navigationLinks.map((link, index) => (
+        <li key={index}>
+          <Link href={link.path} className="text-sm text-gray-600 hover:text-ccLightBlue transition-colors duration-200">
+            {link.name}
+          </Link>
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  {/* Policies Section */}
+  <div className="px-6">
+    <h3 className="text-base font-semibold leading-6 text-ccDarkBlue">Policies</h3>
+    <ul role="list" className="mt-4 space-y-3">
+      {policies.map((policy) => (
+        <Policy key={policy.id} policy={policy} />
+      ))}
+    </ul>
+  </div>
+
+  {/* Contact Section */}
+  <div className="px-6 col-span-2">
+    <h3 className="text-base font-semibold leading-6 text-ccDarkBlue">Contact</h3>
+    <ul className="mt-4 space-y-6">
+      {contactDetails.map((contact) => (
+        <ContactInfo key={contact.id} contact={contact} />
+      ))}
+    </ul>
+  </div>
+</div>
+
         </div>
         {/* Footer bottom */}
         <div className="mt-16 border-t border-ccLightBlue/10 pt-8 sm:mt-20 lg:mt-24">

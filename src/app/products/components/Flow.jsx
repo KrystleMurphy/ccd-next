@@ -41,7 +41,7 @@ const Section = ({ steps, textSectionProps }) => (
   <div className="divide-y divide-gray-200 overflow-hidden rounded-lg mx-auto max-w-7xl sm:px-2 lg:px-4">
     <div className="rounded group relative bg-white p-6 flex flex-col lg:flex-row w-full">
       <div className="flex items-center justify-between w-full lg:w-1/2 bg-white rounded">
-        <div className="flex gap-12 w-full">
+        <div className="flex gap-12 w-full text-ccDarkBlue">
           {steps.map((step, index) => (
             <Step
               key={index}

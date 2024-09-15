@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { MagnifyingGlassIcon, FolderArrowDownIcon, FolderOpenIcon } from "@heroicons/react/24/outline";
-import airtableBase from "../../utils/airtableapi";
+import airtableBase from "../../lib/airtable";
 
 const SearchBar = () => {
   const [lotNo, setLotNo] = useState("");

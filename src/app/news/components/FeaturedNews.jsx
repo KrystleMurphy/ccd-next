@@ -63,14 +63,14 @@
 //     </div>
 //   );
 // }
-
+'use client';
 import React from "react";
 import dayjs from "dayjs";
 import placeholder from "@/src/assets/images/placeholder.png";
 import Link from "next/link"; // Use Next.js's Link component
 
 export default function FeaturedNews({ featuredNews }) { // Receive featuredNews as a prop
-
+  console.log("featuredNews received in FeaturedNews component:", featuredNews); // Log the prop
   // Function to render each news item
   const renderNewsItem = (post) => {
     const formattedDate = dayjs(post.fields.Published).format("D MMM, YYYY");
@@ -121,7 +121,11 @@ export default function FeaturedNews({ featuredNews }) { // Receive featuredNews
           </h2>
         </div>
         <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-          {featuredNews.map(renderNewsItem)}
+        {featuredNews ? ( // Check if featuredNews is defined
+          featuredNews.map(renderNewsItem)
+        ) : (
+          <div>Loading featured news...</div> 
+        )}
         </div>
       </div>
     </div>

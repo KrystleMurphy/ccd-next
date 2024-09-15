@@ -37,7 +37,7 @@
 
 
 // pages/api/FooterData.js
-import airtableBase from '@/src/utils/airtableapi'; 
+import airtableBase from '@/src/lib/airtable'; 
 
 export default async function FooterData(req, res) {
   // Safely destructure query parameters with default values

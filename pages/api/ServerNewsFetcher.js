@@ -1,5 +1,5 @@
 // src/app/components/ServerNewsFetcher.js
-import airtableBase from '@/src/utils/airtableapi'; // Ensure this path is correct
+import airtableBase from '@/src/lib/airtable'; // Ensure this path is correct
 
 // Server component that fetches data from Airtable
 export default async function ServerNewsFetcher({ view, revalidate }) {

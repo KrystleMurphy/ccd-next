@@ -1,5 +1,5 @@
 // pages/api/ContactData.js
-import airtableBase from '@/src/utils/airtableapi';
+import airtableBase from '@/src/lib/airtable';
 
 export async function fetchContactData(view) {
   try {

@@ -4,7 +4,7 @@ import { use } from 'react';
 import FeaturedNews from './components/FeaturedNews';
 import NewsFeed from './components/NewsFeed';
 // import SEO from '@/src/components/SEO'
-import NewsData from '../../../pages/api/NewsData'
+import NewsData from '../data/AirtableData'
 
 export default function NewsPage() {
     const featuredNewsData = use(NewsData({ view: 'Featured', revalidate: 604800 })); 

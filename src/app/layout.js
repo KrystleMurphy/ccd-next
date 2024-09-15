@@ -29,10 +29,14 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en"> {/* Add the <html> tag with a lang attribute */}
-      <head>
-        {/* Next.js automatically injects the metadata here based on the metadata object */}
-      </head>
+<html lang="en">
+  <head>
+    <meta charSet="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"   
+ />
+    <link rel="icon" type="png"
+ href="/favicon.ico" /> 
+  </head>
       <body> {/* Add the <body> tag */}
         <Nav />
         {children}

@@ -1,30 +1,33 @@
-'use client'; // This is now a Client Component
-
-import { useParams } from 'next/navigation';
 import { ArrowUturnLeftIcon, InformationCircleIcon } from '@heroicons/react/20/solid';
 import dayjs from "dayjs";
 import ReactMarkdown from 'react-markdown';
 import ImageGallery from '../components/ImageGallery';
 import Link from 'next/link';
-import { use } from 'react';
-import NewsData from '../../data/AirtableData'; // Import your Server Component
+import { fetchAirtableData } from '../../data/AirtableData';
 
-export default function NewsArticlePage() {
-    const params = useParams();
-     // Fetch the article data from the Server Component
-     const postData = use(NewsData({ 
-      baseName: 'News', 
-      view: 'Grid view', 
-      filterByFormula: `RECORD_ID()='${params.id}'`, // Filter by the ID from the URL
-      revalidate: 604800 
-    })); 
-  
+export const revalidate = 60;
+export const dynamicParams = true; 
+
+export async function generateStaticParams() {
+  const allNewsData = await fetchAirtableData({ baseName: 'News', view: 'Grid view' });
+  return allNewsData.map((newsItem) => ({
+      id: newsItem.id,
+    }));
+}
+
+export default async function Page({ params }) {
+  const postData = await fetchAirtableData({ 
+    baseName: 'News', 
+    view: 'Grid view', 
+    filterByFormula: `RECORD_ID() = '${params.id}'`
+  }); 
+
     if (!postData || postData.length === 0) {
       return <div>Article not found</div>;
     }
 
   const post = postData[0]; // Get the first (and only) record
-  const formattedDate = dayjs(postData.fields.Published).format("D MMM, YYYY");
+  const formattedDate = dayjs(post.fields.Published).format("D MMM, YYYY");
 
     return (
       <div className="relative bg-white px-6 py-32 lg:px-8">
@@ -56,16 +59,3 @@ export default function NewsArticlePage() {
       </div>
     );
   }
-
-  export async function generateStaticParams() {
-    const allNewsData = await fetchAirtableData({ baseName: 'News', view: 'Grid view' });
-  
-    return {
-      paths: allNewsData.map((newsItem) => ({
-        params: { id: newsItem.id },
-      })),
-      fallback: 'blocking',
-    };
-  }
-  
-  export const dynamicParams = true; 

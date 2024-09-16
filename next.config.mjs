@@ -2,8 +2,15 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['v5.airtableusercontent.com'], // Add the Airtable domain here
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'v5.airtableusercontent.com',
+        port: '',
+      },
+    ],
   },
-};
+}
 
 export default nextConfig;
+

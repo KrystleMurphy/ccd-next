@@ -7,7 +7,6 @@ export default function Info() {
       <div className="relative bg-white">
         <div className="relative">
           <div className="mx-auto max-w-7xl">
-            {/* Adjust padding and margins to reduce vertical space */}
             <div className="relative z-10 lg:w-full lg:max-w-2xl py-10 sm:py-20">
               <svg
                 viewBox="0 0 100 100"
@@ -38,15 +37,13 @@ export default function Info() {
               </div>
             </div>
           </div>
-          {/* Adjust container height to fit the image naturally */}
+          {/* Ensure the image covers the container */}
           <div className="bg-gray-50 lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2 overflow-hidden">
-            <Image
+          <Image
               src={Methica_CC_prototype_2}
               alt="Methica CC Prototype"
-              className="object-contain" // Ensure the image is contained within its space
-              layout="intrinsic" // Use intrinsic layout to size based on image dimensions
-              objectFit="contain" // Keep the image within the bounds of its container
-              objectPosition="center" // Center the image within its space
+              className="aspect-[3/2] object-cover object-right lg:aspect-auto lg:h-full lg:w-full"
+              layout="cover"
               priority // Optionally prioritize loading of this image
             />
           </div>

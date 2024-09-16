@@ -7,18 +7,23 @@ import ReactMarkdown from 'react-markdown';
 import ImageGallery from '../components/ImageGallery';
 import Link from 'next/link';
 import { use } from 'react';
-import NewsData from '../../../../pages/api/NewsData'; // Import your Server Component
+import NewsData from '../../data/AirtableData'; // Import your Server Component
 
 export default function NewsArticlePage() {
     const params = useParams();
      // Fetch the article data from the Server Component
-  const postData = use(NewsData({ id: params.id, revalidate: 604800 })); // Revalidate every week
+     const postData = use(NewsData({ 
+      baseName: 'News', 
+      view: 'Grid view', 
+      filterByFormula: `RECORD_ID()='${params.id}'`, // Filter by the ID from the URL
+      revalidate: 604800 
+    })); 
+  
+    if (!postData || postData.length === 0) {
+      return <div>Article not found</div>;
+    }
 
-  if (!postData) {
-    // Handle the case where the post is not found
-    return <div>Article not found</div>;
-  }
-
+  const post = postData[0]; // Get the first (and only) record
   const formattedDate = dayjs(postData.fields.Published).format("D MMM, YYYY");
 
     return (
@@ -51,3 +56,16 @@ export default function NewsArticlePage() {
       </div>
     );
   }
+
+  export async function generateStaticParams() {
+    const allNewsData = await fetchAirtableData({ baseName: 'News', view: 'Grid view' });
+  
+    return {
+      paths: allNewsData.map((newsItem) => ({
+        params: { id: newsItem.id },
+      })),
+      fallback: 'blocking',
+    };
+  }
+  
+  export const dynamicParams = true; 

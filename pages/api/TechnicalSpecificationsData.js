@@ -1,12 +1,12 @@
-import airtableBase from '@/src/utils/airtableapi';
+import airtableBase from '@/src/lib/airtable';
 
 export async function fetchTechnicalSpecificationsData(view) {
   try {
-    const records = await airtableBase('TechnicalSpecifications').select({ view }).all();
+    const records = await airtableBase('Technical Specifications').select({ view }).all();
     const TechnicalSpecificationsData = records.map((record) => record._rawJson);
     return TechnicalSpecificationsData;
   } catch (error) {
-    console.error("Error fetching TechnicalSpecifications data:", error);
+    console.error("Error fetching Technical Specifications data:", error);
     return [];
   }
 }

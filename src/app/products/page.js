@@ -1,7 +1,5 @@
-// src/app/products/page.js
-
-import Products from './Products'; // Import the client component
-import { getTechnicalSpecificationsData } from '@/pages/api/TechnicalSpecificationsData';
+import Products from './Products';
+import { fetchAirtableData } from '../data/AirtableData';
 
 // Metadata object for SEO purposes
 export const metadata = {
@@ -25,13 +23,14 @@ export const metadata = {
     ],
   },
 };
+export const revalidate = 60; 
 
-export default async function ProductsPage() {
+export default async function Page() {
   // Fetch the technical specifications data
-  const technicalSpecifications = await getTechnicalSpecificationsData('Grid view');
-
-  return (
-    // Pass the fetched data to the Products component
-    <Products technicalSpecifications={technicalSpecifications} />
+  const productData = await fetchAirtableData({ baseName: 'Technical Specifications', view: 'Grid view' });
+return (
+    <>
+    <Products technicalSpecifications={productData} />
+    </>
   );
 }

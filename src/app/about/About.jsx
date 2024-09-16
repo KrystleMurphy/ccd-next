@@ -37,3 +37,4 @@ function About({ teamData, partnersData}) {
 }
 
 export default About;
+

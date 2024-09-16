@@ -1,13 +1,21 @@
-// src/app/about/page.js
-import About from '@/src/app/about/About';
-import { getTeamData } from '@/pages/api/TeamData';
-import { getPartnersData } from '@/pages/api/PartnersData';
+import React from 'react';
+import Hero from './components/Hero';
+import Team from './components/Team';
+import Advisors from './components/Advisors';
+import Partners from './components/Partners';
+import { fetchAirtableData } from '../data/AirtableData';
 
-export default async function AboutPage() {
-  // Fetch data for Team, Advisors, and Partners
-  const teamData = await getTeamData('Grid view');
-  const partnersData = await getPartnersData('Grid view');
-
-  // Pass data as props to the About component
-  return <About teamData={teamData} partnersData={partnersData} />;
+export const revalidate = 60;
+// Server-side component to fetch data
+export default async function Page() {
+  const teamData = await fetchAirtableData({ baseName: 'Team', view: 'Grid view' });
+  const partnersData = await fetchAirtableData({ baseName: 'Partners', view: 'Grid view' });
+    return (
+        <>
+            <Hero />
+            <Team teamData={teamData}/>
+            <Advisors advisorsData={teamData}/>
+            <Partners partnersData={partnersData} />
+        </>
+    );
 }

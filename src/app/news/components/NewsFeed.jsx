@@ -42,6 +42,7 @@ const NewsFeed = ({ allNews }) => { // Receive allNews as a prop
 
   const renderNewsItem = (post) => {
     const formattedDate = dayjs(post.fields.Published).format("D MMM, YYYY");
+    console.log("Placeholder image path:", placeholder);
 
 
     return (
@@ -67,12 +68,15 @@ const NewsFeed = ({ allNews }) => { // Receive allNews as a prop
         </div>
         
         <div className="group relative max-w-xl">
-          <h3 className="mt-0 text-lg font-semibold leading-6 text-ccDarkBlue group-hover:text-ccLightBlue text-left">
+          
           <Link href={`/news/${post.id}`} legacyBehavior>
+          <div>
               <a className="absolute inset-0 pointer-events-none" />
+              <h3 className="mt-0 text-lg font-semibold leading-6 text-ccDarkBlue group-hover:text-ccLightBlue text-left">
               {post.fields.Title}
+              </h3>
+              </div>
             </Link>
-          </h3>
           <div className="mt-3 flex items-center gap-x-4 text-xs">
             <time dateTime={post.fields.Published} className="text-gray-500">
               {formattedDate}

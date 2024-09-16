@@ -1,4 +1,4 @@
-import Products from './Products'; // Import the client component
+import Products from './Products';
 import { fetchAirtableData } from '../data/AirtableData';
 
 // Metadata object for SEO purposes
@@ -25,7 +25,7 @@ export const metadata = {
 };
 export const revalidate = 60; 
 
-export default async function ProductsPage() {
+export default async function Page() {
   // Fetch the technical specifications data
   const productData = await fetchAirtableData({ baseName: 'Technical Specifications', view: 'Grid view' });
 return (

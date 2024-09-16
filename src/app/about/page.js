@@ -7,7 +7,7 @@ import { fetchAirtableData } from '../data/AirtableData';
 
 export const revalidate = 60;
 // Server-side component to fetch data
-export default async function About() {
+export default async function Page() {
   const teamData = await fetchAirtableData({ baseName: 'Team', view: 'Grid view' });
   const partnersData = await fetchAirtableData({ baseName: 'Partners', view: 'Grid view' });
     return (

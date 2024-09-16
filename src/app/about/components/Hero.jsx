@@ -2,7 +2,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import teamPhoto from '@/src/assets/images/teamPhoto.jpg'; 
 import ContactHeavy from '@/src/components/contact-buttons/ContactHeavy';
-
 export default function Hero() {
   return (
     <div className="bg-white">

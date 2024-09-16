@@ -1,15 +1,11 @@
-'use client';
-
-import { use } from 'react';
 import FeaturedNews from './components/FeaturedNews';
 import NewsFeed from './components/NewsFeed';
-// import SEO from '@/src/components/SEO'
-import NewsData from '../data/AirtableData'
+import { fetchAirtableData } from '../data/AirtableData';
 
-export default function NewsPage() {
-    const featuredNewsData = use(NewsData({ view: 'Featured', revalidate: 604800 })); 
-    const allNewsData = use(NewsData({ view: 'Grid view', revalidate: 604800 })); 
-  
+export const revalidate = 60;
+export default async function Page() {
+    const featuredNewsData = await fetchAirtableData({ baseName: 'News', view: 'Featured' });
+    const allNewsData = await fetchAirtableData({ baseName: 'News', view: 'Grid view' }); 
     return (
       <>
       {/* <SEO 

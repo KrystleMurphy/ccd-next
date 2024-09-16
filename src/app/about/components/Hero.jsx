@@ -17,7 +17,7 @@ export default function Hero() {
             </h1>
             <div className="mt-6 max-w-xl lg:mt-0 xl:col-end-1 xl:row-start-1">
               <p className="text-lg leading-8 text-gray-600">
-                At CC Diagnostics, we are dedicated to pushing the boundaries of medical technology to improve cervical cancer detection. With a strong commitment to innovation and patient care, we strive to make a positive impact on women's health.
+                At CC Diagnostics, we are dedicated to pushing the boundaries of medical technology to improve cervical cancer detection. With a strong commitment to innovation and patient care, we strive to make a positive impact on women&apos;s health.
               </p>
               <div className="mt-10 flex items-center gap-x-6">
                 <ContactHeavy />

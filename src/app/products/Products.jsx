@@ -1,16 +1,16 @@
 'use client'; // Marks this as a Client Component
 
 import React, { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import Info from './components/Info';
 import Tabs from './components/Tabs';
 import Flow from './components/Flow';
-import SearchCTA from '@/src/app/search-docs/SearchCTA';
+import SearchCTA from '../search-docs/SearchCTA';
 import Pipeline from './components/Pipeline'; 
 
-export default function Products({ technicalSpecifications }) {
-  const router = useRouter();
-  const { hash } = router; // Since next/navigation doesn't directly expose 'hash', you need to handle hash differently.
+function Products({ technicalSpecifications }) {
+  const searchParams = useSearchParams();
+  const hash = searchParams.get('hash'); // Extract hash from search params
 
   useEffect(() => {
     if (window.location.hash) {
@@ -32,3 +32,5 @@ export default function Products({ technicalSpecifications }) {
     </>
   );
 }
+
+export default Products;

@@ -4,6 +4,7 @@ import Image from 'next/image';
 import logo from "@/src/assets/images/logo.png";
 import { PhoneIcon, EnvelopeIcon, MapPinIcon } from "@heroicons/react/24/outline";
 import SearchBar from './search-docs/SearchBar';
+import { fetchAirtableData } from './data/AirtableData';
 
 // Define icons for different contact methods
 const methodIcons = {
@@ -93,7 +94,11 @@ const socialLinks = {
 };
 
 // Main Footer component
-export default function Footer({ policies, contactDetails }) {
+export const revalidate = 60; 
+export default async function Footer() {
+  const policiesData = await fetchAirtableData({ baseName: 'Policies', view: 'Grid view' });
+  const contactDetailsData = await fetchAirtableData({ baseName: 'Contact', view: 'Grid view' });
+
   return (
     <footer aria-labelledby="footer-heading" className="bg-ccAliceBlue">
       <h2 id="footer-heading" className="sr-only">Footer</h2>
@@ -155,7 +160,7 @@ export default function Footer({ policies, contactDetails }) {
             <div className="px-6">
               <h3 className="text-base font-semibold leading-6 text-ccDarkBlue">Policies</h3>
               <ul role="list" className="mt-4 space-y-3">
-                {policies.map((policy) => (
+                {policiesData.map((policy) => (
                   <Policy key={policy.id} policy={policy} />
                 ))}
               </ul>
@@ -165,7 +170,7 @@ export default function Footer({ policies, contactDetails }) {
             <div className="px-6 col-span-2">
               <h3 className="text-base font-semibold leading-6 text-ccDarkBlue">Contact</h3>
               <ul className="mt-4 space-y-6">
-                {contactDetails.map((contact) => (
+                {contactDetailsData.map((contact) => (
                   <ContactInfo key={contact.id} contact={contact} />
                 ))}
               </ul>

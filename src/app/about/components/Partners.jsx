@@ -1,6 +1,5 @@
 // components/Partners.jsx
 import Image from 'next/image';
-import ContactHeavy from '@/src/components/contact-buttons/ContactHeavy';
 import logo_erdf2014 from '@/src/assets/images/logo_erdf2014.png'
 const renderPartnerLogo = (partner) => {
   const logoUrl = partner.fields.Logo?.[0]?.url || '/images/placeholder.png';
@@ -53,10 +52,6 @@ export default function Partners({ partnersData }) {
         >
           {partnersData.map(renderPartnerLogo)}
         </ul>
-
-        <div className="py-8 mt-8 flex items-center gap-x-6 justify-center">
-          <ContactHeavy />
-        </div>
       </div>
     </div>
   );

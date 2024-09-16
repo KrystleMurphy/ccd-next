@@ -1,4 +1,5 @@
 import Products from './Products';
+import { Suspense } from 'react'
 import { fetchAirtableData } from '../data/AirtableData';
 
 // Metadata object for SEO purposes
@@ -30,7 +31,9 @@ export default async function Page() {
   const productData = await fetchAirtableData({ baseName: 'Technical Specifications', view: 'Grid view' });
 return (
     <>
+    <Suspense>
     <Products technicalSpecifications={productData} />
+    </Suspense>
     </>
   );
 }

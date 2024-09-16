@@ -5,7 +5,6 @@ import teamPhoto from '@/src/assets/images/teamPhoto.jpg';
 import emailjs from '@emailjs/browser';
 import Image from 'next/image';
 
-
 export default function ContactPage() {
   const privacyPolicyUrl = '/pdf/PrivacyPolicy.pdf';
   const form = useRef();

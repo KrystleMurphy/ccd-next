@@ -10,10 +10,10 @@ export default function ContactPage() {
   const form = useRef();
   const [captchaValue, setCaptchaValue] = useState(null);
   const [message, setMessage] = useState('');
-  const serviceID = process.env.NEXT_PUBLIC_EMAIL_JS_SERVICE_ID;
-  const templateID = process.env.NEXT_PUBLIC_EMAIL_JS_TEMPLATE_ID;
-  const userID = process.env.NEXT_PUBLIC_EMAIL_JS_USER_ID;
-  const recaptchaKey = process.env.NEXT_PUBLIC_RECAPTCHA_KEY;
+  const serviceID = process.env.EMAIL_JS_SERVICE_ID;
+  const templateID = process.env.EMAIL_JS_TEMPLATE_ID;
+  const userID = process.env.EMAIL_JS_USER_ID;
+  const recaptchaKey = process.env.RECAPTCHA_KEY;
 
   const [isEmpty, setEmpty] = useState(false);
   const [recaptchaLoaded, setRecaptchaLoaded] = useState(false);

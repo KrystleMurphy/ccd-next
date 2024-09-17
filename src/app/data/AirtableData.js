@@ -3,6 +3,8 @@
 import airtableBase from '@/src/lib/airtable';
 
 export async function fetchAirtableData({ baseName, view, filterByFormula = null }) {
+  console.log("Airtable API Key:", process.env.AIRTABLE_API_KEY);
+console.log("Airtable Base ID:", process.env.AIRTABLE_BASE_ID);
   try {
     // Build the select options dynamically
     const selectOptions = { view };

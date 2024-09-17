@@ -31,7 +31,9 @@ export const metadata = {
   
 export default async function Page() {
   const teamData = await fetchAirtableData({ baseName: 'Team', view: 'Grid view' });
+  await sleep(1000);
   const partnersData = await fetchAirtableData({ baseName: 'Partners', view: 'Grid view' });
+  await sleep(1000);
     return (
         <>
             <Hero />

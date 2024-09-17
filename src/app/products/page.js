@@ -30,6 +30,7 @@ export const metadata = {
 export default async function Page() {
   // Fetch the technical specifications data
   const productData = await fetchAirtableData({ baseName: 'Technical Specifications', view: 'Grid view' });
+  await sleep(1000);
 return (
     <>
     <Suspense>

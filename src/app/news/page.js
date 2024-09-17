@@ -24,7 +24,9 @@ export const metadata = {
 };
 export default async function Page() {
     const featuredNewsData = await fetchAirtableData({ baseName: 'News', view: 'Featured' });
-    const allNewsData = await fetchAirtableData({ baseName: 'News', view: 'Grid view' }); 
+    await sleep(1000);
+    const allNewsData = await fetchAirtableData({ baseName: 'News', view: 'Grid view' });
+    await sleep(1000);
     return (
       <>
       <FeaturedNews featuredNews={featuredNewsData} />

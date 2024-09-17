@@ -10,6 +10,7 @@ import { fetchAirtableData } from './data/AirtableData';
 // Server-side component to fetch data
 export default async function Page() {
   const featuredNewsData = await fetchAirtableData({ baseName: 'News', view: 'Featured' });
+  await sleep(1000);
 return (
     <>
       <Hero />

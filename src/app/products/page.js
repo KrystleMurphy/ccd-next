@@ -1,3 +1,5 @@
+export const revalidate = 60; 
+
 import Products from './Products';
 import { Suspense } from 'react'
 import { fetchAirtableData } from '../data/AirtableData';
@@ -24,7 +26,6 @@ export const metadata = {
     ],
   },
 };
-export const revalidate = 60; 
 
 export default async function Page() {
   // Fetch the technical specifications data

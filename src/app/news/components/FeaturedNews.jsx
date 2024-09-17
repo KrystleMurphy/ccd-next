@@ -2,19 +2,23 @@
 import React from "react";
 import dayjs from "dayjs";
 import placeholder from "@/src/assets/images/placeholder.png";
-import Link from "next/link"; // Use Next.js's Link component
-import Image from "next/image"; 
+import Link from "next/link";
+import Image from "next/image";
 
-export default function FeaturedNews({ featuredNews }) { // Receive featuredNews as a prop
-  console.log("featuredNews received in FeaturedNews component:", featuredNews); // Log the prop
+export default function FeaturedNews({ featuredNews }) {
+  console.log("featuredNews received in FeaturedNews component:", featuredNews);
+
   // Function to render each news item
   const renderNewsItem = (post) => {
     const formattedDate = dayjs(post.fields.Published).format("D MMM, YYYY");
 
     return (
-      <div className="lg:w-full" key={post.id}> {/* Key prop placed here */}
+      <div className="lg:w-full" key={post.id}>
         <article className="flex flex-col items-start justify-between">
-        <div className="flex-shrink-0 w-full relative overflow-hidden rounded-2xl bg-gray-100" style={{ paddingBottom: '62.25%' }}> {/* Maintain 16:9 aspect ratio using padding-bottom */}
+          <div
+            className="flex-shrink-0 w-full relative overflow-hidden rounded-2xl bg-gray-100"
+            style={{ paddingBottom: "62.25%" }}
+          >
             <Image
               alt=""
               src={
@@ -23,9 +27,7 @@ export default function FeaturedNews({ featuredNews }) { // Receive featuredNews
                   : placeholder
               }
               fill
-              sizes="(max-width: 768px) 100vw,
-                     (max-width: 1200px) 50vw,
-                     33vw"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               className="aspect-[16/9] w-full rounded-2xl bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
             />
             <div className="absolute inset-0 pointer-events-none rounded-2xl ring-1 ring-inset ring-gray-900/10" />
@@ -37,17 +39,15 @@ export default function FeaturedNews({ featuredNews }) { // Receive featuredNews
               </time>
             </div>
             <div className="group relative">
-              <Link href={`/news/${post.id}`}> {/* Directly use Link without an <a> tag */}
-              <div>
-              <a className="absolute inset-0 pointer-events-none" />
+              <Link href={`/news/${post.id}`}>
+                {/* Only wrap the heading and description without adding extra <a> tags */}
                 <h3 className="mt-3 text-lg font-semibold leading-6 text-ccDarkBlue group-hover:text-ccLightBlue">
                   {post.fields.Title}
                 </h3>
-                </div>
-                </Link>
-                <p className="mt-3 line-clamp-3 text-sm leading-6 text-gray-600">
-                  {post.fields.Description}
-                </p>
+              </Link>
+              <p className="mt-3 line-clamp-3 text-sm leading-6 text-gray-600">
+                {post.fields.Description}
+              </p>
             </div>
           </div>
         </article>
@@ -64,11 +64,11 @@ export default function FeaturedNews({ featuredNews }) { // Receive featuredNews
           </h2>
         </div>
         <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-        {featuredNews ? ( // Check if featuredNews is defined
-          featuredNews.map(renderNewsItem)
-        ) : (
-          <div>Loading featured news...</div> 
-        )}
+          {featuredNews ? (
+            featuredNews.map(renderNewsItem)
+          ) : (
+            <div>Loading featured news...</div>
+          )}
         </div>
       </div>
     </div>

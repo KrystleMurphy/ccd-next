@@ -98,7 +98,6 @@ export const revalidate = 60;
 export default async function Footer() {
   const policiesData = await fetchAirtableData({ baseName: 'Policies', view: 'Grid view' });
   const contactDetailsData = await fetchAirtableData({ baseName: 'Contact', view: 'Grid view' });
-
   return (
     <footer aria-labelledby="footer-heading" className="bg-ccAliceBlue">
       <h2 id="footer-heading" className="sr-only">Footer</h2>

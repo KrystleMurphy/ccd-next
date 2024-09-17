@@ -21,7 +21,6 @@ export default async function Page({ params }) {
     view: 'Grid view', 
     filterByFormula: `RECORD_ID() = '${params.id}'`
   }); 
-
     if (!postData || postData.length === 0) {
       return <div>Article not found</div>;
     }

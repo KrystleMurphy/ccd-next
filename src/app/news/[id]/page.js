@@ -4,6 +4,7 @@ import ReactMarkdown from 'react-markdown';
 import ImageGallery from '../components/ImageGallery';
 import Link from 'next/link';
 import { fetchAirtableData } from '../../data/AirtableData';
+import { sleep } from '../../data/AirtableData';
 
 export const revalidate = 60;
 export const dynamicParams = true; 

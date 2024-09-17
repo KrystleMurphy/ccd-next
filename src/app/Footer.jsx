@@ -5,6 +5,7 @@ import logo from "@/src/assets/images/logo.png";
 import { PhoneIcon, EnvelopeIcon, MapPinIcon } from "@heroicons/react/24/outline";
 import SearchBar from './search-docs/SearchBar';
 import { fetchAirtableData } from './data/AirtableData';
+import { sleep } from './data/AirtableData';
 
 // Define icons for different contact methods
 const methodIcons = {

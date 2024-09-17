@@ -6,6 +6,7 @@ import Team from './components/Team';
 import Advisors from './components/Advisors';
 import Partners from './components/Partners';
 import { fetchAirtableData } from '../data/AirtableData';
+import { sleep } from '../data/AirtableData';
 
 // Server-side component to fetch data
 

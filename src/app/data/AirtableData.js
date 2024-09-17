@@ -2,8 +2,13 @@
 
 import airtableBase from '@/src/lib/airtable';
 
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 export async function fetchAirtableData({ baseName, view, filterByFormula = null }) {
   console.log(`Fetching data from Airtable base: ${baseName}, view: ${view}`);
+  await sleep(1000);
   try {
     // Build the select options dynamically
     const selectOptions = { view };

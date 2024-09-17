@@ -6,12 +6,10 @@ import Mission from './home/Mission';
 import MethicaKit from './home/MethicaKit';
 import FeaturedNews from './news/components/FeaturedNews';
 import { fetchAirtableData } from './data/AirtableData';
-import { sleep } from './data/AirtableData';
 
 // Server-side component to fetch data
 export default async function Page() {
   const featuredNewsData = await fetchAirtableData({ baseName: 'News', view: 'Featured' });
-  await sleep(1000);
 return (
     <>
       <Hero />

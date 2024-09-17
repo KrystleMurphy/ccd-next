@@ -4,14 +4,12 @@ import ReactMarkdown from 'react-markdown';
 import ImageGallery from '../components/ImageGallery';
 import Link from 'next/link';
 import { fetchAirtableData } from '../../data/AirtableData';
-import { sleep } from '../../data/AirtableData';
 
 export const revalidate = 60;
 export const dynamicParams = true; 
 
 export async function generateStaticParams() {
   const allNewsData = await fetchAirtableData({ baseName: 'News', view: 'Grid view' });
-  await sleep(1000);
   return allNewsData.map((newsItem) => ({
       id: newsItem.id,
     }));
@@ -23,7 +21,6 @@ export default async function Page({ params }) {
     view: 'Grid view', 
     filterByFormula: `RECORD_ID() = '${params.id}'`
   }); 
-  await sleep(1000);
     if (!postData || postData.length === 0) {
       return <div>Article not found</div>;
     }

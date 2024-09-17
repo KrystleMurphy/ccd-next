@@ -5,7 +5,6 @@ import logo from "@/src/assets/images/logo.png";
 import { PhoneIcon, EnvelopeIcon, MapPinIcon } from "@heroicons/react/24/outline";
 import SearchBar from './search-docs/SearchBar';
 import { fetchAirtableData } from './data/AirtableData';
-import { sleep } from './data/AirtableData';
 
 // Define icons for different contact methods
 const methodIcons = {
@@ -98,9 +97,7 @@ const socialLinks = {
 export const revalidate = 60; 
 export default async function Footer() {
   const policiesData = await fetchAirtableData({ baseName: 'Policies', view: 'Grid view' });
-  await sleep(1000);
   const contactDetailsData = await fetchAirtableData({ baseName: 'Contact', view: 'Grid view' });
-  await sleep(1000);await sleep(1000);
   return (
     <footer aria-labelledby="footer-heading" className="bg-ccAliceBlue">
       <h2 id="footer-heading" className="sr-only">Footer</h2>

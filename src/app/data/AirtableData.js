@@ -3,8 +3,7 @@
 import airtableBase from '@/src/lib/airtable';
 
 export async function fetchAirtableData({ baseName, view, filterByFormula = null }) {
-  console.log("Airtable API Key:", process.env.AIRTABLE_API_KEY);
-console.log("Airtable Base ID:", process.env.AIRTABLE_BASE_ID);
+  console.log(`Fetching data from Airtable base: ${baseName}, view: ${view}`);
   try {
     // Build the select options dynamically
     const selectOptions = { view };
@@ -17,10 +16,10 @@ console.log("Airtable Base ID:", process.env.AIRTABLE_BASE_ID);
         .select(selectOptions)
         .all();
     const data = records.map((record) => record._rawJson);
-
+    console.log(`Fetched ${data.length} records from ${baseName}`);
     return data;
   } catch (error) {
-    console.error(`Error fetching data from ${baseName}:`, error);
+    console.error(`Error fetching data from ${baseName}:`, error.response || error);
     return [];
   }
 }

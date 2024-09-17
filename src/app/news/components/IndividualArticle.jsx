@@ -44,15 +44,15 @@ export default function IndividualArticle() {
         <button
           type="button"
           onClick={() => navigate('/news')}
-          className="fixed bottom-4 right-4 rounded-full bg-indigo-600 p-2 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2   
- focus-visible:outline-indigo-600"   
+          className="fixed bottom-4 right-4 rounded-full bg-ccLightBlue p-2 text-white shadow-sm hover:bg-ccLightBlue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2   
+ focus-visible:outline-ccLightBlue"   
 
         >
           <ArrowUturnLeftIcon aria-hidden="true" className="h-5 w-5" />
         </button>
         <div className="mx-auto max-w-3xl text-base leading-7 text-gray-700">
-          <p className="text-base font-semibold leading-7 text-indigo-600">News</p>
-          <h1 className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">{post.fields.Title}</h1>   
+          <p className="text-base font-semibold leading-7 text-ccLightBlue">News</p>
+          <h1 className="mt-2 text-3xl font-bold tracking-tight text-ccDarkBlue sm:text-4xl">{post.fields.Title}</h1>   
           {post.fields.Photo && post.fields.Photo.length > 0 && (
           <ImageGallery images={post.fields.Photo} />
         )}

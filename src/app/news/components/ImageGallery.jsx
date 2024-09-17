@@ -1,5 +1,6 @@
 'use client';
-import React, { useState } from "react";
+import React, { useState } from 'react';
+import Image from 'next/image';
 
 const ImageGallery = ({ images }) => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0); // State to track the selected image
@@ -7,43 +8,45 @@ const ImageGallery = ({ images }) => {
   const handleThumbnailClick = (index) => {
     setSelectedImageIndex(index);
   };
+
   return (
     <figure className="mt-5 grid gap-4">
       {/* Main Image (Dynamically Selected) */}
       {images.length > 0 && (
-        <div>
-          <img
+        <div className="relative w-full h-auto md:h-[480px]">
+          <Image
             src={images[selectedImageIndex].url} // Use the selected image
-            alt=""
-            className="h-auto w-full max-w-full rounded-lg object-cover object-center md:h-[480px]"
-            onError={(e) => {
-              e.target.src = placeholder;
-            }}
+            alt={`Image ${selectedImageIndex + 1}`}
+            layout="responsive" // Automatically adjust based on the container's size
+            width={800} // Provide a width for responsive scaling
+            height={480} // Provide a height for responsive scaling
+            className="w-full h-auto max-w-full rounded-lg object-cover object-center py-8"
           />
         </div>
       )}
 
       {/* Thumbnail Grid (Remaining Images) */}
       {images.length > 1 && (
-        <div className="grid grid-cols-8 gap-0">
+        <div className="grid grid-cols-8 gap-0 py-8">
           {images.map((image, index) => (
-            <div key={index} onClick={() => handleThumbnailClick(index)} className="m-0 !m-0"> {/* Add onClick handler */}
-              <img
+            <div
+              key={index}
+              onClick={() => handleThumbnailClick(index)}
+              className="relative w-full h-20 cursor-pointer"
+            >
+              <Image
                 src={image.url}
-                className={`object-cover object-center h-20 max-w-full rounded-lg cursor-pointer ${
-                  index === selectedImageIndex ? "ring-2 ring-indigo-500" : "" // Add a visual cue for the selected thumbnail
-                }`}
-                alt="gallery-image"
-                onError={(e) => {
-                  e.target.src = placeholder;
-                }}
+                alt={`Thumbnail ${index + 1}`}
+                layout="fill" // Use fill to keep the image within the div without distortion
+                objectFit="cover"
+                className={`object-cover object-center py-8 ${
+                  index === selectedImageIndex ? 'ring-2 ring-ccLightBlue' : ''
+                }`} // Highlight selected thumbnail
               />
             </div>
           ))}
         </div>
       )}
-
-      {/* ... (figcaption if needed) ... */}
     </figure>
   );
 };

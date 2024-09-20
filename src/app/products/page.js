@@ -18,10 +18,10 @@ export const metadata = {
     'molecular screening',
   ],
   openGraph: {
-    url: 'https://www.cc-diagnostics.netlify.app/products',
+    url: 'https://www.ccdiagnostics.netlify.app/products',
     images: [
       {
-        url: 'https://www.cc-diagnostics.netlify.app/assets/logo-COHLTM4X.png',
+        url: 'https://www.ccdiagnostics.netlify.app/assets/Methica_CC_prototype_2.jpg',
       },
     ],
   },

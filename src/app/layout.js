@@ -20,7 +20,7 @@ export const metadata = {
     url: 'https://www.ccdiagnostics.netlify.app/',
     images: [
       {
-        url: 'https://ccdiagnostics.netlify.app/assets/teamPhoto.jpg',
+        url: 'https://ccdiagnostics.netlify.app/assets/placeholder.png',
       },
     ],
   },

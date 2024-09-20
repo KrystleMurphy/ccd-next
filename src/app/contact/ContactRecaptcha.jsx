@@ -1,5 +1,6 @@
 'use client';
 
+import { metadata } from './metadata';
 import { useRef, useState, useEffect } from 'react';
 import emailjs from '@emailjs/browser';
 import teamPhoto from '@/src/assets/images/teamPhoto.jpg';

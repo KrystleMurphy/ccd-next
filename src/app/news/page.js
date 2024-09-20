@@ -1,8 +1,8 @@
+export const revalidate = 60;
+
 import FeaturedNews from './components/FeaturedNews';
 import NewsFeed from './components/NewsFeed';
 import { fetchAirtableData } from '../data/AirtableData';
-
-export const revalidate = 60;
 
 export const metadata = {
   title: 'Latest News - CC Diagnostics',
@@ -24,7 +24,7 @@ export const metadata = {
 };
 export default async function Page() {
     const featuredNewsData = await fetchAirtableData({ baseName: 'News', view: 'Featured' });
-    const allNewsData = await fetchAirtableData({ baseName: 'News', view: 'Grid view' }); 
+    const allNewsData = await fetchAirtableData({ baseName: 'News', view: 'Grid view' });
     return (
       <>
       <FeaturedNews featuredNews={featuredNewsData} />

@@ -21,7 +21,6 @@ export default async function Page({ params }) {
     view: 'Grid view', 
     filterByFormula: `RECORD_ID() = '${params.id}'`
   }); 
-
     if (!postData || postData.length === 0) {
       return <div>Article not found</div>;
     }
@@ -32,22 +31,22 @@ export default async function Page({ params }) {
     return (
       <div className="relative bg-white px-6 py-32 lg:px-8">
         <Link href="/news" legacyBehavior>
-          <a className="fixed bottom-4 right-4 rounded-full bg-indigo-600 p-2 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2   
-   focus-visible:outline-indigo-600">   
+          <a className="fixed bottom-4 right-4 rounded-full bg-ccDarkBlue p-2 text-white shadow-sm hover:bg-ccLightBlue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2   
+   focus-visible:outline-ccDarkBlue">   
   
             <ArrowUturnLeftIcon aria-hidden="true" className="h-5 w-5" />
           </a>
         </Link>
   
-        <div className="mx-auto max-w-3xl text-base leading-7 text-gray-700">
-        <p className="text-base font-semibold leading-7 text-indigo-600">News</p>
-          <h1 className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">{post.fields.Title}</h1>   
+        <div className="mx-auto max-w-3xl text-base leading-7">
+        <p className="text-base font-semibold leading-7 text-ccLightBlue">News</p>
+          <h1 className="mt-2 text-3xl font-bold tracking-tight text-ccDarkBlue sm:text-4xl">{post.fields.Title}</h1>   
           {post.fields.Photo && post.fields.Photo.length > 0 && (
           <ImageGallery images={post.fields.Photo} />
         )}
-          <p className="mt-6 text-xl leading-8 text-justify">{post.fields.Description}</p>
+          <p className="mt-6 text-xl leading-8 text-justify text-gray-600">{post.fields.Description}</p>
           
-          <div className="mt-6 max-w-7xl prose text-justify">
+          <div className="mt-6 max-w-7xl prose text-justify text-gray-600">
           <ReactMarkdown>{post.fields['Full Content']}</ReactMarkdown>
           </div>
           

@@ -1,6 +1,8 @@
+'use server';
+
 import Airtable from "airtable";
-const apiKey = process.env.NEXT_PUBLIC_AIRTABLE_API_KEY;
-const baseId = process.env.NEXT_PUBLIC_AIRTABLE_BASE_ID;
+const apiKey = process.env.AIRTABLE_API_KEY;
+const baseId = process.env.AIRTABLE_BASE_ID;
 
 Airtable.configure({
     endpointUrl: 'https://api.airtable.com',

@@ -1,4 +1,7 @@
+export const revalidate = 60; 
+
 import Products from './Products';
+import { Suspense } from 'react'
 import { fetchAirtableData } from '../data/AirtableData';
 
 // Metadata object for SEO purposes
@@ -15,22 +18,23 @@ export const metadata = {
     'molecular screening',
   ],
   openGraph: {
-    url: 'https://www.cc-diagnostics.netlify.app/products',
+    url: 'https://www.ccdiagnostics.netlify.app/products',
     images: [
       {
-        url: 'https://www.cc-diagnostics.netlify.app/assets/logo-COHLTM4X.png',
+        url: 'https://www.ccdiagnostics.netlify.app/assets/Methica_CC_prototype_2.jpg',
       },
     ],
   },
 };
-export const revalidate = 60; 
 
 export default async function Page() {
   // Fetch the technical specifications data
   const productData = await fetchAirtableData({ baseName: 'Technical Specifications', view: 'Grid view' });
 return (
     <>
+    <Suspense>
     <Products technicalSpecifications={productData} />
+    </Suspense>
     </>
   );
 }

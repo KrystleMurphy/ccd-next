@@ -1,5 +1,6 @@
 'use client';
-import React, { useState } from "react";
+import React, { useState } from 'react';
+import Image from 'next/image';
 
 const ImageGallery = ({ images }) => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0); // State to track the selected image
@@ -7,18 +8,18 @@ const ImageGallery = ({ images }) => {
   const handleThumbnailClick = (index) => {
     setSelectedImageIndex(index);
   };
+
   return (
     <figure className="mt-5 grid gap-4">
       {/* Main Image (Dynamically Selected) */}
       {images.length > 0 && (
-        <div>
-          <img
+        <div className="relative h-auto w-full max-w-full rounded-lg md:h-[480px]">
+          <Image
             src={images[selectedImageIndex].url} // Use the selected image
-            alt=""
-            className="h-auto w-full max-w-full rounded-lg object-cover object-center md:h-[480px]"
-            onError={(e) => {
-              e.target.src = placeholder;
-            }}
+            alt={`Selected Image ${selectedImageIndex + 1}`}
+            layout="fill" // Fill the container
+            objectFit="cover" // Maintain the aspect ratio and cover the area
+            className="rounded-lg"
           />
         </div>
       )}
@@ -27,23 +28,24 @@ const ImageGallery = ({ images }) => {
       {images.length > 1 && (
         <div className="grid grid-cols-8 gap-0">
           {images.map((image, index) => (
-            <div key={index} onClick={() => handleThumbnailClick(index)} className="m-0 !m-0"> {/* Add onClick handler */}
-              <img
+            <div
+              key={index}
+              onClick={() => handleThumbnailClick(index)}
+              className={`relative h-20 cursor-pointer overflow-hidden rounded-lg ${
+                index === selectedImageIndex ? 'ring-2 ring-ccDarkBlue' : ''
+              }`}
+            >
+              <Image
                 src={image.url}
-                className={`object-cover object-center h-20 max-w-full rounded-lg cursor-pointer ${
-                  index === selectedImageIndex ? "ring-2 ring-indigo-500" : "" // Add a visual cue for the selected thumbnail
-                }`}
-                alt="gallery-image"
-                onError={(e) => {
-                  e.target.src = placeholder;
-                }}
+                alt={`Thumbnail ${index + 1}`}
+                layout="fill" // Fill the container
+                objectFit="cover" // Maintain aspect ratio
+                className="object-cover"
               />
             </div>
           ))}
         </div>
       )}
-
-      {/* ... (figcaption if needed) ... */}
     </figure>
   );
 };

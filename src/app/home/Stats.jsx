@@ -10,7 +10,7 @@ const stats = [
         <div id="stats" className="bg-white px-2 py-32 sm:py-40 lg:px-6">
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-4xl font-bold tracking-tight text-ccDarkBlue sm:text-6xl">
-              Detect Cancer Early with Advanced Technology
+              Detect Cancer Early with epigenetic DNA analysis
             </h2>
             <p className="mt-6 text-lg leading-8 text-gray-600">
               Our cutting-edge technology allows for the early detection of cervical cancer, providing patients with a higher chance of successful treatment. With our innovative approach, we are able to identify abnormalities at the earliest stage, ensuring timely intervention and improved outcomes.

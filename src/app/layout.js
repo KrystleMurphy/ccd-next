@@ -17,10 +17,10 @@ export const metadata = {
     'CC Diagnostics',
   ],
   openGraph: {
-    url: 'https://www.cc-diagnostics.netlify.app/',
+    url: 'https://www.ccdiagnostics.netlify.app/',
     images: [
       {
-        url: 'https://www.cc-diagnostics.netlify.app/assets/logo-COHLTM4X.png',
+        url: 'https://ccdiagnostics.netlify.app/assets/placeholder.png',
       },
     ],
   },

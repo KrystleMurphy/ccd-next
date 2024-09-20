@@ -1,4 +1,5 @@
-import ContactForm from './LoadCaptcha';
+'use client';
+import ContactForm from "./LoadCaptcha";
 
 export default function ContactPage() {
   return (

@@ -11,13 +11,13 @@ export const metadata = {
   keywords:
     'news, CC Diagnostics, latest updates, cervical cancer, medical advancements',
   openGraph: {
-    url: 'https://www.cc-diagnostics.netlify.app/news',
+    url: 'https://www.ccdiagnostics.netlify.app/news',
     title: 'Latest News - CC Diagnostics',
     description:
       'Stay updated with the latest news, updates, and insights from CC Diagnostics. Explore our featured news and news feed to stay informed about our innovations and advancements in cervical cancer detection.',
     images: [
       {
-        url: 'https://www.cc-diagnostics.netlify.app/assets/logo-COHLTM4X.png',
+        url: 'https://www.ccdiagnostics.netlify.app/assets/placeholder.png',
       },
     ],
   },

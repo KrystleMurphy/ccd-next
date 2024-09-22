@@ -4,7 +4,6 @@ import Products from './Products';
 import { Suspense } from 'react'
 import { fetchAirtableData } from '../data/AirtableData';
 
-// Metadata object for SEO purposes
 export const metadata = {
   title: 'Methica CC Kit - Superior Cervical Cancer Detection',
   description:
@@ -19,13 +18,20 @@ export const metadata = {
   ],
   openGraph: {
     url: 'https://www.ccdiagnostics.netlify.app/products',
+    title: 'Methica CC Kit - Superior Cervical Cancer Detection',
+    description:
+      'Discover the Methica CC Kit, a superior diagnostic tool for cervical cancer detection.',
     images: [
       {
         url: 'https://www.ccdiagnostics.netlify.app/assets/MethicaKit.jpg',
+        width: 1200, 
+        height: 630, 
+        alt: 'Methica CC Kit',
       },
     ],
   },
 };
+
 
 export default async function Page() {
   // Fetch the technical specifications data

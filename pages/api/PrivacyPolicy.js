@@ -1,4 +1,4 @@
-import airtableBase from 'src/lib/airtable.js'; 
+import airtableBase from '@/src/lib/airtable'; 
 
 // const base = new airtableBase({ apiKey: process.env.AIRTABLE_API_KEY }).base(process.env.AIRTABLE_BASE_ID);
 // const table = base(process.env.AIRTABLE_TABLE_NAME);

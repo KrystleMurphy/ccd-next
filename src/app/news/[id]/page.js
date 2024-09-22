@@ -15,6 +15,53 @@ export async function generateStaticParams() {
     }));
 }
 
+
+// Generate metadata dynamically based on fetched data
+export async function generateMetadata({ params }) {
+  const postData = await fetchAirtableData({ 
+    baseName: 'News', 
+    view: 'Grid view', 
+    filterByFormula: `RECORD_ID() = '${params.id}'`
+  });
+
+  if (!postData || postData.length === 0) {
+    return {
+      title: "Article Not Found",
+      description: "This article could not be found.",
+    };
+  }
+
+  const post = postData[0];
+
+  return {
+    title: `${post.fields.Title} - CC Diagnostics`,
+    description: post.fields.Description,
+    openGraph: {
+      url: `https://www.ccdiagnostics.netlify.app/news/${params.id}`,
+      images: [
+        {
+          url: post.fields.Photo ? post.fields.Photo[0].url : '/assets/placeholder.png',
+          width: 1200,
+          height: 630,
+          alt: post.fields.Title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.fields.Title,
+      description: post.fields.Description,
+      images: [
+        {
+          url: post.fields.Photo ? post.fields.Photo[0].url : '/assets/placeholder.png',
+          alt: post.fields.Title,
+        },
+      ],
+    },
+  };
+}
+
+
 export default async function Page({ params }) {
   const postData = await fetchAirtableData({ 
     baseName: 'News', 

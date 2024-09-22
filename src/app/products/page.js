@@ -21,7 +21,7 @@ export const metadata = {
     url: 'https://www.ccdiagnostics.netlify.app/products',
     images: [
       {
-        url: 'https://www.ccdiagnostics.netlify.app/assets/Methica_CC_prototype_2.jpg',
+        url: 'https://www.ccdiagnostics.netlify.app/assets/MethicaKit.jpg',
       },
     ],
   },

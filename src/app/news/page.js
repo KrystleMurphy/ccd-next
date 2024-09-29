@@ -17,7 +17,7 @@ export const metadata = {
       'Stay updated with the latest news, updates, and insights from CC Diagnostics. Explore our featured news and news feed to stay informed about our innovations and advancements in cervical cancer detection.',
     images: [
       {
-        url: 'https://www.ccdiagnostics.netlify.app/assets/Methica_CC_prototype_2.jpg',
+        url: 'https://ccdiagnostics.netlify.app/assets/MethicaKit.png',
       },
     ],
   },

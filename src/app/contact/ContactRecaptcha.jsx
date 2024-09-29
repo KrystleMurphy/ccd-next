@@ -97,14 +97,14 @@ export default function ContactLogic() {
 return (
         <>
           <div className="relative bg-white">
-            <div className="lg:absolute lg:inset-0 lg:left-1/2 pb-24 pt-16 sm:pb-32 sm:pt-24 lg:pt-32">
+            <div className="flex lg:absolute lg:inset-0 lg:left-1/2 pb-24 pt-16 sm:pb-32 sm:pt-24 lg:pt-32 items-center">
     
               <Image
       alt="Team photo"
       src={teamPhoto}
-      className="h-64 w-full bg-gray-50 object-contain sm:h-80 lg:absolute lg:h-full"
-      layout="responsive" 
-      objectFit="contain"
+      className="h-64 w-full object-contain sm:h-80 lg:absolute lg:h-full"
+      // layout="responsive" 
+      // objectFit="contain"
       priority
     />
             </div>
@@ -129,6 +129,7 @@ return (
                             name="from_name"
                             required
                             className="block w-full rounded-md border-0 px-3.5 py-2 text-ccDarkBlue shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-ccLightBlue sm:text-sm sm:leading-6"
+                            aria-label="First Name"
                           />
                         </div>
                       </div>
@@ -145,6 +146,7 @@ return (
                             name="from_lastname"
                             required
                             className="block w-full rounded-md border-0 px-3.5 py-2 text-ccDarkBlue shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-ccLightBlue sm:text-sm sm:leading-6"
+                            aria-label="Last Name"
                           />
                         </div>
                       </div>
@@ -161,6 +163,7 @@ return (
                             name="from_email"
                             required
                             className="block w-full rounded-md border-0 px-3.5 py-2 text-ccDarkBlue shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-ccLightBlue sm:text-sm sm:leading-6"
+                            aria-label="Email"
                           />
                         </div>
                       </div>
@@ -177,6 +180,7 @@ return (
                             name="from_company"
                             required
                             className="block w-full rounded-md border-0 px-3.5 py-2 text-ccDarkBlue shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-ccLightBlue sm:text-sm sm:leading-6"
+                            aria-label="Company"
                           />
                         </div>
                       </div>
@@ -188,7 +192,7 @@ return (
                           >
                             Phone
                           </label>
-                          <p id="phone-description" className="text-gray-400">
+                          <p id="phone-description" className="text-gray-500">
                             Optional
                           </p>
                         </div>
@@ -197,6 +201,7 @@ return (
                             type="text"
                             name="from_phone"
                             className="block w-full rounded-md border-0 px-3.5 py-2 text-ccDarkBlue shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-ccLightBlue sm:text-sm sm:leading-6"
+                            aria-label="Phone Number"
                           />
                         </div>
                       </div>
@@ -213,16 +218,17 @@ return (
                           defaultValue="general"
                           required
                           className="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-ccDarkBlue ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-ccLightBlue sm:text-sm sm:leading-6"
+                          aria-label="enquiry"
                         >
-                          <option>Product Support</option>
-                          <option>Purchasing Support</option>
-                          <option>Complaint</option>
-                          <option>Other inquiry</option>
+                          <option aria-label="Product Support">Product Support</option>
+                          <option aria-label="Purchasing Support">Purchasing Support</option>
+                          <option aria-label="Complaint">Complaint</option>
+                          <option aria-label="Other inquiry">Other inquiry</option>
                         </select>
                       </div>
                       <div className="sm:col-span-2">
                         <div className="flex justify-between text-sm leading-6">
-                          <p id="message-description" className="text-gray-400">
+                          <p id="message-description" className="text-gray-500">
                             Max 500 characters
                           </p>
                         </div>
@@ -231,6 +237,7 @@ return (
                             name="message"
                             required
                             className="block w-full rounded-md border-0 px-3.5 py-2 text-ccDarkBlue shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-ccLightBlue sm:text-sm sm:leading-6"
+                            aria-label="Message"
                           />
                         </div>
                       </div>
@@ -251,6 +258,7 @@ return (
                         value=""
                         required
                         className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:border-gray-600"
+                        aria-label="Agree to Privacy Policy"
                       />
                       <label
                         htmlFor="default-checkbox"

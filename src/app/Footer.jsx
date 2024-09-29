@@ -99,7 +99,7 @@ export default async function Footer() {
   const policiesData = await fetchAirtableData({ baseName: 'Policies', view: 'Grid view' });
   const contactDetailsData = await fetchAirtableData({ baseName: 'Contact', view: 'Grid view' });
   return (
-    <footer aria-labelledby="footer-heading" className="bg-ccAliceBlue">
+    <footer aria-labelledby="footer-heading" className="bg-ccLightBlue/5">
       <h2 id="footer-heading" className="sr-only">Footer</h2>
       <div className="mx-auto max-w-7xl px-6 pb-8 pt-16 sm:pt-24 lg:px-8 lg:pt-32">
         <div className="xl:grid xl:grid-cols-3 xl:gap-8">
@@ -155,22 +155,27 @@ export default async function Footer() {
               </ul>
             </div>
 
-            {/* Policies Section */}
-            <div className="px-6">
-              <h3 className="text-base font-semibold leading-6 text-ccDarkBlue">Policies</h3>
-              <ul role="list" className="mt-4 space-y-3">
-                {policiesData.map((policy) => (
-                  <Policy key={policy.id} policy={policy} />
-                ))}
-              </ul>
-            </div>
+{/* Policies Section */}
+<div className="px-6">
+  <h3 className="text-base font-semibold leading-6 text-ccDarkBlue">Policies</h3>
+  <ul role="list" className="mt-4 space-y-3">
+    {policiesData.map((policy) => (
+      <li key={policy.id} role="listitem">
+        <Policy policy={policy} />
+      </li>
+    ))}
+  </ul>
+</div>
+
 
             {/* Contact Section */}
             <div className="px-6 col-span-2">
               <h3 className="text-base font-semibold leading-6 text-ccDarkBlue">Contact</h3>
               <ul className="mt-4 space-y-6">
                 {contactDetailsData.map((contact) => (
-                  <ContactInfo key={contact.id} contact={contact} />
+                  <li key={contact.id} role="listitem">
+                  <ContactInfo  contact={contact} />
+                  </li>
                 ))}
               </ul>
             </div>
@@ -181,7 +186,7 @@ export default async function Footer() {
         </div>
         {/* Footer bottom */}
         <div className="mt-16 border-t border-ccLightBlue/10 pt-8 sm:mt-20 lg:mt-24">
-          <p className="text-xs leading-5 text-gray-400">&copy; 2024 CC Diagnostics</p>
+          <p className="text-xs leading-5 text-gray-500">&copy; 2024 CC Diagnostics</p>
         </div>
       </div>
     </footer>

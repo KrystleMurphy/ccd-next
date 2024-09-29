@@ -45,8 +45,8 @@ export default function Testimonials() {
   return (
     <div className="bg-white">
       <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
-        <h2 className="text-lg font-medium text-ccDarkBlue">Client Feedback</h2>
-        <div className="mt-6 space-y-10 divide-y divide-gray-200 border-b border-t border-ccLightBlue/20 pb-10">
+        <h2 className="text-2xl font-medium text-ccDarkBlue">Client Feedback</h2>
+        <div className="mt-6 space-y-10 divide-y divide-ccLightBlue/20 border-b border-t border-ccLightBlue/20 pb-10">
           {reviews.length > 0 ? (
             reviews.map((review) => (
               <div key={review.id} className="pt-10 lg:grid lg:grid-cols-12 lg:gap-x-8">
@@ -64,23 +64,23 @@ export default function Testimonials() {
                         />
                       ))}
                     </div>
-                    <p className="ml-3 text-sm text-ccDarkBlue">
+                    <p className="ml-3 text-md text-ccDarkBlue">
                       {review.rating}
                       <span className="sr-only"> out of 5 stars</span>
                     </p>
                   </div>
 
                   <div className="mt-4 lg:mt-6 xl:col-span-2 xl:mt-0">
-                    <h3 className="text-sm font-medium text-ccDarkBlue">{review.title}</h3>
+                    <h3 className="text-md font-medium text-ccDarkBlue">{review.title}</h3>
 
                     <div
                       dangerouslySetInnerHTML={{ __html: review.content }}
-                      className="mt-3 space-y-6 text-sm text-gray-500"
+                      className="mt-3 space-y-6 text-md text-gray-500"
                     />
                   </div>
                 </div>
 
-                <div className="mt-6 flex items-center text-sm lg:col-span-4 lg:col-start-1 lg:row-start-1 lg:mt-0 lg:flex-col lg:items-start xl:col-span-3">
+                <div className="mt-6 flex items-center text-md lg:col-span-4 lg:col-start-1 lg:row-start-1 lg:mt-0 lg:flex-col lg:items-start xl:col-span-3">
                   <p className="font-medium text-ccDarkBlue">{review.author}</p>
                   <time
                     dateTime={review.datetime}

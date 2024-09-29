@@ -26,7 +26,7 @@ export default function ContactForm() {
     <>
       <div ref={recaptchaRef}></div>
       <ContactLogic />
-      <button type="submit">Submit</button>
+      {/* <button type="submit">Submit</button> */}
     </>
   );
 }

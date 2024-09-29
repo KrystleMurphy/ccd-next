@@ -16,8 +16,8 @@ return (
     <>
       <Hero />
       <Stats />
-      <Issues/>
       <Mission />
+      <Issues/>
       <MethicaKit />
       <FeaturedNews featuredNews={featuredNewsData} />
       <Testimonials />

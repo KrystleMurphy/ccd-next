@@ -155,15 +155,18 @@ export default async function Footer() {
               </ul>
             </div>
 
-            {/* Policies Section */}
-            <div className="px-6">
-              <h3 className="text-base font-semibold leading-6 text-ccDarkBlue">Policies</h3>
-              <ul role="list" className="mt-4 space-y-3">
-                {policiesData.map((policy) => (
-                  <Policy key={policy.id} policy={policy} />
-                ))}
-              </ul>
-            </div>
+{/* Policies Section */}
+<div className="px-6">
+  <h3 className="text-base font-semibold leading-6 text-ccDarkBlue">Policies</h3>
+  <ul role="list" className="mt-4 space-y-3">
+    {policiesData.map((policy) => (
+      <li key={policy.id} role="listitem">
+        <Policy policy={policy} />
+      </li>
+    ))}
+  </ul>
+</div>
+
 
             {/* Contact Section */}
             <div className="px-6 col-span-2">

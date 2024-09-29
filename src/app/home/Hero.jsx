@@ -21,10 +21,10 @@ export default function Hero() {
 
         <div className="m-20 max-w-2xl">
           <div className="text-left">
-            <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
+            <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl" style={{ textShadow: '3px 3px 20px rgba(0, 0, 0, 0.8)' }}>
               Superior Diagnostic Methods for Cervical Cancer Detection
             </h1>
-            <p className="mt-6 text-lg leading-8 text-gray-300">
+            <p className="mt-6 text-xl leading-8 text-white" style={{ textShadow: '3px 3px 5px rgba(0, 0, 0, 1)' }}>
               At CC Diagnostics, we harness the power of medical advancements to improve the detection of cervical cancer. Our PCR-based reagent kit provide accurate and timely results, ensuring early intervention and better outcomes for patients.
             </p>
             <div className="mt-10 flex items-center justify-left gap-x-6">

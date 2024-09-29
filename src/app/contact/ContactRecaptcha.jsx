@@ -97,14 +97,14 @@ export default function ContactLogic() {
 return (
         <>
           <div className="relative bg-white">
-            <div className="lg:absolute lg:inset-0 lg:left-1/2 pb-24 pt-16 sm:pb-32 sm:pt-24 lg:pt-32">
+            <div className="flex lg:absolute lg:inset-0 lg:left-1/2 pb-24 pt-16 sm:pb-32 sm:pt-24 lg:pt-32 items-center">
     
               <Image
       alt="Team photo"
       src={teamPhoto}
-      className="h-64 w-full bg-gray-50 object-contain sm:h-80 lg:absolute lg:h-full"
-      layout="responsive" 
-      objectFit="contain"
+      className="h-64 w-full object-contain sm:h-80 lg:absolute lg:h-full"
+      // layout="responsive" 
+      // objectFit="contain"
       priority
     />
             </div>

@@ -99,7 +99,7 @@ export default async function Footer() {
   const policiesData = await fetchAirtableData({ baseName: 'Policies', view: 'Grid view' });
   const contactDetailsData = await fetchAirtableData({ baseName: 'Contact', view: 'Grid view' });
   return (
-    <footer aria-labelledby="footer-heading" className="bg-ccAliceBlue">
+    <footer aria-labelledby="footer-heading" className="bg-ccAliceBlue/50">
       <h2 id="footer-heading" className="sr-only">Footer</h2>
       <div className="mx-auto max-w-7xl px-6 pb-8 pt-16 sm:pt-24 lg:px-8 lg:pt-32">
         <div className="xl:grid xl:grid-cols-3 xl:gap-8">
@@ -173,7 +173,9 @@ export default async function Footer() {
               <h3 className="text-base font-semibold leading-6 text-ccDarkBlue">Contact</h3>
               <ul className="mt-4 space-y-6">
                 {contactDetailsData.map((contact) => (
-                  <ContactInfo key={contact.id} contact={contact} />
+                  <li key={contact.id} role="listitem">
+                  <ContactInfo  contact={contact} />
+                  </li>
                 ))}
               </ul>
             </div>

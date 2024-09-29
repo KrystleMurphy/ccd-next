@@ -20,16 +20,18 @@ export default function Testimonials() {
           view: 'Grid view',
         });
 
-        // Transform the data structure to match component
-        const formattedReviews = testimonialData.map((testimonial) => ({
-          id: testimonial.id,
-          title: testimonial.fields.Headline,
-          rating: testimonial.fields.Rating,
-          content: testimonial.fields.Review,
-          author: testimonial.fields.Name,
-          date: testimonial.fields.Date,
-          datetime: testimonial.fields.Date,
-        }));
+        // Transform the data structure and sort by the most recent date
+        const formattedReviews = testimonialData
+          .map((testimonial) => ({
+            id: testimonial.id,
+            title: testimonial.fields.Headline,
+            rating: testimonial.fields.Rating,
+            content: testimonial.fields.Review,
+            author: testimonial.fields.Name,
+            date: testimonial.fields.Date, 
+            datetime: testimonial.fields.Date,
+          }))
+          .sort((a, b) => new Date(b.date) - new Date(a.date)); // Sort by date, descending (most recent first)
 
         setReviews(formattedReviews);
       } catch (error) {

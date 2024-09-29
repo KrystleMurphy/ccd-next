@@ -38,7 +38,7 @@ export async function generateMetadata() {
         `Learn about CC Diagnostics' journey towards medical advancements in cervical cancer detection. Meet our dedicated team: ${teamNames}. Explore our advisors and partners who support our mission to improve women's health.`,
       images: [
         {
-          url: 'https://www.ccdiagnostics.netlify.app/assets/teamPhoto.jpg', // Use dynamic URL if needed
+          url: 'https://ccdiagnostics.netlify.app/assets/teamPhoto.jpg', // Use dynamic URL if needed
           width: 1200,
           height: 630,
           alt: 'Team Photo of CC Diagnostics',
@@ -52,7 +52,7 @@ export async function generateMetadata() {
         `Learn about CC Diagnostics' journey towards medical advancements in cervical cancer detection. Meet our dedicated team: ${teamNames}.`,
       images: [
         {
-          url: 'https://www.ccdiagnostics.netlify.app/assets/teamPhoto.jpg',
+          url: 'https://ccdiagnostics.netlify.app/assets/teamPhoto.jpg',
           alt: 'Team Photo of CC Diagnostics',
         },
       ],

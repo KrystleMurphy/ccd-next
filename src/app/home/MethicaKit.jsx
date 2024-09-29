@@ -90,7 +90,6 @@ const stats = [
   { id: 1, name: 'Of cases detected using CC Diagnostics superior technology', value: '97%' },
   { id: 2, name: 'More sensitive than Pap smear', value: '26%' },
   { id: 3, name: 'Times less hands on time of lab-technicians.', value: '6X' },
-  // { id: 4, name: 'Paid out to creators', value: '$70M' },
 ]
 
 export default function MethicaKit() {
@@ -99,7 +98,7 @@ export default function MethicaKit() {
       <Image
         src={Methica_CC_prototype_2}
           alt="Methica Kit"
-        className="h-56 w-full bg-gray-50 object-cover lg:absolute lg:inset-y-0 lg:left-0 lg:h-full lg:w-1/2"
+        className="h-56 w-full object-cover lg:absolute lg:inset-y-0 lg:left-0 lg:h-full lg:w-1/2"
       />
       <div className="mx-auto grid max-w-7xl lg:grid-cols-2">
         <div className="px-6 pb-24 pt-16 sm:pb-32 sm:pt-20 lg:col-start-2 lg:px-8 lg:pt-32">

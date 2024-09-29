@@ -23,7 +23,7 @@ export const metadata = {
       'Discover the Methica CC Kit, a superior diagnostic tool for cervical cancer detection.',
     images: [
       {
-        url: 'https://www.ccdiagnostics.netlify.app/assets/MethicaKit.jpg',
+        url: 'https://ccdiagnostics.netlify.app/assets/MethicaKit.png',
         width: 1200, 
         height: 630, 
         alt: 'Methica CC Kit',

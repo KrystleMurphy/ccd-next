@@ -99,7 +99,7 @@ export default async function Footer() {
   const policiesData = await fetchAirtableData({ baseName: 'Policies', view: 'Grid view' });
   const contactDetailsData = await fetchAirtableData({ baseName: 'Contact', view: 'Grid view' });
   return (
-    <footer aria-labelledby="footer-heading" className="bg-ccAliceBlue">
+    <footer aria-labelledby="footer-heading" className="bg-ccLightBlue/5">
       <h2 id="footer-heading" className="sr-only">Footer</h2>
       <div className="mx-auto max-w-7xl px-6 pb-8 pt-16 sm:pt-24 lg:px-8 lg:pt-32">
         <div className="xl:grid xl:grid-cols-3 xl:gap-8">

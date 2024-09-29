@@ -25,7 +25,7 @@ export default function Hero() {
               Superior Diagnostic Methods for Cervical Cancer Detection
             </h1>
             <p className="mt-6 text-lg leading-8 text-gray-300">
-              At CC Diagnostics, we harness the power of medical advancements to improve the detection of cervical cancer. Our innovative solutions provide accurate and timely results, ensuring early intervention and better outcomes for patients.
+              At CC Diagnostics, we harness the power of medical advancements to improve the detection of cervical cancer. Our PCR-based reagent kit provide accurate and timely results, ensuring early intervention and better outcomes for patients.
             </p>
             <div className="mt-10 flex items-center justify-left gap-x-6">
             <Link href="/contact" className="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-ccDarkBlue shadow-sm hover:bg-ccLightBlue hover:text-ccDarkBlue 

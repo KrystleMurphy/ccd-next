@@ -15,10 +15,10 @@ const supportLinks = [
     icon: ArrowTrendingUpIcon,
   },
   {
-    name: '100%',
+    name: '26%',
     href: '#',
     description:
-      'Cervical cancer detected of 3421 samples',
+      'More sensitive than Pap smear',
     icon: ShieldCheckIcon,
   },
   {

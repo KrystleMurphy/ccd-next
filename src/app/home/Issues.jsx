@@ -2,7 +2,7 @@
 'use client';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowTrendingUpIcon, BeakerIcon, LifebuoyIcon, NewspaperIcon, PhoneIcon, ShieldCheckIcon } from '@heroicons/react/24/outline'
+import { ClockIcon, ExclamationTriangleIcon, UserMinusIcon } from '@heroicons/react/24/outline'
 import Methica_CC_prototype_2 from '@/src/assets/images/Methica_CC_prototype_2.jpg'
 import ContactLight from "@/src/components/contact-buttons/ContactLight"
 
@@ -12,21 +12,21 @@ const supportLinks = [
     href: '#',
     description:
       'almost 30% missed cancers',
-    icon: ArrowTrendingUpIcon,
+    icon: ExclamationTriangleIcon,
   },
   {
     name: 'painful & uncomfortable',
     href: '#',
     description:
       'painful & uncomfortable',
-    icon: ShieldCheckIcon,
+    icon: UserMinusIcon,
   },
   {
     name: 'long & laborious process',
     href: '#',
     description:
       'long & laborious process',
-    icon: BeakerIcon,
+    icon: ClockIcon,
   },
 ]
 

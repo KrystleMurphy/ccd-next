@@ -6,6 +6,7 @@ import Issues from './home/Issues'
 import Mission from './home/Mission';
 import MethicaKit from './home/MethicaKit';
 import FeaturedNews from './news/components/FeaturedNews';
+import Testimonials from './home/Testimonials';
 import { fetchAirtableData } from './data/AirtableData';
 
 // Server-side component to fetch data
@@ -19,6 +20,7 @@ return (
       <Mission />
       <MethicaKit />
       <FeaturedNews featuredNews={featuredNewsData} />
+      <Testimonials />
     </>
   );
 }

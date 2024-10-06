@@ -6,7 +6,6 @@ import Link from "next/link";
 import Image from "next/image";
 
 export default function FeaturedNews({ featuredNews }) {
-  console.log("featuredNews received in FeaturedNews component:", featuredNews);
 
   // Function to render each news item
   const renderNewsItem = (post) => {

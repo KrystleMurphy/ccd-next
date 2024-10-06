@@ -39,7 +39,7 @@ export default function RootLayout({ children }) {
           rel="stylesheet"
         />
       </head>
-      <body className="antialiased">
+      <body>
         <Nav />
         {children}
         <Footer />

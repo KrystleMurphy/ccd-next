@@ -1,33 +1,32 @@
 // components/Partners.jsx
 import Image from 'next/image';
-import logo_erdf2014 from '@/src/assets/images/logo_erdf2014.png'
+import logo_erdf2014 from '@/src/assets/images/logo_erdf2014.png';
+
 const renderPartnerLogo = (partner) => {
   const logoUrl = partner.fields.Logo?.[0]?.url || '/images/placeholder.png';
   const partnerSite = partner.fields.Site || '#';
 
   return (
-    <a
-      key={partner.id}
-      href={partnerSite}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="text-sm leading-6 text-gray-600 hover:text-ccLightBlue"
-    >
-      <Image
-        src={logoUrl}
-        alt={partner.fields.Partner || 'Partner Logo'}
-        width={105}
-        height={48}
-        className="max-h-24 w-full object-contain object-center shadow-md"
-      />
-    </a>
+    <li key={partner.id} role="listitem"> {/* Moved the li here */}
+      <a
+        href={partnerSite}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-sm leading-6 text-gray-600 hover:text-ccLightBlue"
+      >
+        <Image
+          src={logoUrl}
+          alt={partner.fields.Partner || 'Partner Logo'}
+          width={105}
+          height={48}
+          className="max-h-24 w-full object-contain object-center shadow-md"
+        />
+      </a>
+    </li>
   );
 };
 
 export default function Partners({ partnersData }) {
- 
-  // const euLogo = "/images/logo_erdf2014.png";
-
   return (
     <div className="bg-white py-12 md:py-16">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -36,7 +35,7 @@ export default function Partners({ partnersData }) {
         </h2>
 
         {/* Render the EU Logo */}
-        <div className="flex justify-center items-center mx-auto w-full max-w-xl grid-cols-2 gap-y-12 sm:gap-y-14 lg:mx-0 lg:max-w-none lg:pl-8">
+        <div className="flex justify-center items-center mx-auto w-full max-w-xl gap-y-12 sm:gap-y-14 lg:mx-0 lg:max-w-none lg:pl-8">
           <Image
             src={logo_erdf2014}
             alt="European Logo"
@@ -48,11 +47,9 @@ export default function Partners({ partnersData }) {
         {/* Render Partner Logos */}
         <ul
           role="list"
-          className="mx-auto mt-20 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3"
+          className="mx-auto mt-20 grid max-w-2xl grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-16 lg:mx-0 lg:max-w-none lg:grid-cols-3"
         >
-          <li role="listitem">
-          {partnersData.map(renderPartnerLogo)}
-          </li>
+          {partnersData.map(renderPartnerLogo)} {/* No wrapping li here */}
         </ul>
       </div>
     </div>

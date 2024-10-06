@@ -1,6 +1,7 @@
 export const revalidate = 60;
 
 import ContactForm from "./ContactForm";
+import Script from 'next/script';
 
 export const metadata = {
   title: "Contact Us - CC Diagnostics",
@@ -38,6 +39,13 @@ export const metadata = {
 export default async function Page() {
   return (
     <>
+    {/* reCAPTCHA script, loaded specifically for the Contact page */}
+           <Script
+          src="https://www.google.com/recaptcha/api.js"
+          strategy="lazyOnload"
+          async
+          defer
+        />
     <ContactForm />
    </>
   );

@@ -1,97 +1,87 @@
 'use client';
 
 import { useRef, useState, useEffect } from 'react';
-import emailjs from '@emailjs/browser';
-import teamPhoto from '@/src/assets/images/teamPhoto.jpg';
+import teamPhoto from '../../assets/images/teamPhoto.jpg';
 import Image from 'next/image';
-import MyPage from './ContactPdf';
-import ReCAPTCHA from 'react-google-recaptcha';
 
 export default function ContactLogic() {
     const form = useRef();
+    const recaptchaRef = useRef(null);
+
     const [captchaValue, setCaptchaValue] = useState(null);
     const [message, setMessage] = useState('');
-    const serviceID = process.env.NEXT_PUBLIC_EMAIL_JS_SERVICE_ID;
-    const templateID = process.env.NEXT_PUBLIC_EMAIL_JS_TEMPLATE_ID;
-    const userID = process.env.NEXT_PUBLIC_EMAIL_JS_USER_ID;
-    const recaptchaKey = process.env.NEXT_PUBLIC_RECAPTCHA_KEY;
-  
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const [isEmpty, setEmpty] = useState(false);
     const [recaptchaLoaded, setRecaptchaLoaded] = useState(false);
-    const recaptchaRef = useRef(null);
-    const [isLoading, setIsLoading] = useState(false);
 
-    const handleCaptchaChange = (value) => {
-        setCaptchaValue(value);
-        setEmpty(false);
-      };
-    
-      const handleClick = () => {
-        if (!captchaValue) {
-          setEmpty(true);
-        } else {
-          setEmpty(false);
-        }
-      };
-    
-      const sendEmail = (e) => {
-        e.preventDefault();
-        const recaptchaValue = recaptchaRef.current.getValue();
+  // Handle reCAPTCHA change
+  const handleCaptchaChange = (value) => {
+    setCaptchaValue(value);
+    setEmpty(false);
+  };
 
-        if (!recaptchaValue) {
-          setMessage('Please complete the CAPTCHA.');
-          return;
-        }
+   // Handle the form submission
+   const sendEmail = async (e) => {
+    e.preventDefault();
 
-        setIsLoading(true);
-    
-        emailjs
-          .sendForm(serviceID, templateID, form.current, userID, {
-            'g-recaptcha-response': captchaValue,
-          })
-          .then(
-            () => {
-              console.log('SUCCESS!');
-              form.current.reset();
-              setCaptchaValue(null);
-              setEmpty(false);
-              setMessage(
-                'Thank you for contacting us. We will be in touch with you soon.'
-              );
+    if (!captchaValue) {
+      setEmpty(true);
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const formData = new FormData(form.current);
+      const formDataObj = Object.fromEntries(formData.entries());
+
+           // Send data to API route
+           const response = await fetch("/api/sendEmail", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
             },
-            (error) => {
-              console.log('FAILED...', error.text);
-              setMessage(
-                'There seems to be an error, please try again later or alternatively you contact us at info@cc-diagnostics.com.'
-              );
-            }
-          )
-          .finally(() => {
-            setIsLoading(false);
-            recaptchaRef.current.reset();
+            body: JSON.stringify({ formData: formDataObj, captchaValue }),
           });
+    
+          const result = await response.json();
+    
+          if (result.success) {
+            form.current.reset();
+            setMessage("Thank you for contacting us. We will be in touch soon.");
+          } else {
+            throw new Error(result.error);
+          }
+        } catch (error) {
+          console.error("Error sending email:", error);
+          setMessage("Error: Could not send message, please try again.");
+        } finally {
+          setIsSubmitting(false);
+        }
       };
     
-      useEffect(() => {
-        if (window.grecaptcha) {
-          setRecaptchaLoaded(true);
-        } else {
-          console.error(
-            'reCAPTCHA script not found. Please check your index.html.'
-          );
-        }
-      }, []);
-    
-      useEffect(() => {
-        if (recaptchaLoaded && recaptchaRef.current) {
-          window.grecaptcha.ready(() => {
-            window.grecaptcha.render(recaptchaRef.current, {
-              sitekey: recaptchaKey,
-              callback: handleCaptchaChange,
-            });
+  // Load and render reCAPTCHA when the component is mounted
+  useEffect(() => {
+    const loadRecaptcha = () => {
+      if (window.grecaptcha) {
+        setRecaptchaLoaded(true);
+        window.grecaptcha.ready(() => {
+          window.grecaptcha.render(recaptchaRef.current, {
+            sitekey: process.env.NEXT_PUBLIC_RECAPTCHA_KEY,
+            callback: handleCaptchaChange,
           });
-        }
-      }, [recaptchaLoaded]);
+        });
+      } else {
+        console.error('reCAPTCHA script not found.');
+      }
+    };
+
+    // Load reCAPTCHA with a delay to ensure the script is available
+    const intervalId = setInterval(loadRecaptcha, 500);
+
+    // Clean up interval if successful or component unmounts
+    return () => clearInterval(intervalId);
+  }, []);
 
 return (
         <>
@@ -102,8 +92,6 @@ return (
       alt="Team photo"
       src={teamPhoto}
       className="h-64 w-full object-contain sm:h-80 lg:absolute lg:h-full"
-      // layout="responsive" 
-      // objectFit="contain"
       priority
     />
             </div>
@@ -235,21 +223,28 @@ return (
                           <textarea
                             name="message"
                             required
+                            maxLength="500"
                             className="block w-full rounded-md border-0 px-3.5 py-2 text-ccDarkBlue shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-ccLightBlue sm:text-sm sm:leading-6"
                             aria-label="Message"
                           />
                         </div>
                       </div>
                     </div>
-                    {recaptchaLoaded && (
-                      <div className="my-6" ref={recaptchaRef}></div>
-                    )}
-    
-                    {isEmpty && (
-                      <p className="block px-3.5 py-2 text-sm font-medium leading-6 text-red-600">
-                        *Please complete Captcha
-                      </p>
-                    )}
+                    {/* reCAPTCHA widget */}
+                {recaptchaLoaded && <div className="my-6" ref={recaptchaRef}></div>}
+
+{isEmpty && (
+  <p className="block px-3.5 py-2 text-sm font-medium leading-6 text-red-600">
+    *Please complete Captcha
+  </p>
+)}
+
+{/* Message feedback */}
+{message && (
+  <p className={`block py-2 text-sm font-medium leading-6 text-red-600`}>
+    {message}
+  </p>
+)}
                     <div className="flex items-center mb-4">
                       <input
                         id="default-checkbox"
@@ -265,42 +260,15 @@ return (
                       >
                         I agree to the Privacy Policy
                       </label>
-                      {/* <MyPage /> */}
-                      {/* <a
-                        href={privacyPolicyUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label="View Privacy Policy"
-                      >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          strokeWidth={1.5}
-                          stroke="currentColor"
-                          className="size-5 ms-2 text-red-600"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
-                          />
-                        </svg>
-                      </a> */}
                       <br />
                     </div>
-                    {message && (
-                      <p className="block py-2 text-sm font-medium leading-6 text-green-600">
-                        {message}
-                      </p>
-                    )}
                     <div className="mt-10 flex justify-end border-t border-gray-900/10 pt-8">
                       <button
                         type="submit"
                         className="rounded-md bg-ccDarkBlue px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-ccLightBlue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ccDarkBlue"
-                        onClick={handleClick}
+                        disabled={isSubmitting || !recaptchaLoaded}
                       >
-                        Send message
+                        {isSubmitting ? "Sending..." : "Send message"}
                       </button>
                     </div>
                   </form>

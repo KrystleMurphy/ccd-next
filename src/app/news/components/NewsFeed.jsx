@@ -91,7 +91,7 @@ const NewsFeed = ({ allNews }) => { // Receive allNews as a prop
   };
 
   return (
-    <div className="bg-white py-32 sm:py-40">
+    <div className="bg-white py-12 md:py-16">
       <div className="mx-auto max-w-7xl px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Year filter section */}
         <div className="years lg:col-span-1 lg:sticky lg:top-0 text-left text-xl font-bold tracking-tight text-ccDarkBlue">

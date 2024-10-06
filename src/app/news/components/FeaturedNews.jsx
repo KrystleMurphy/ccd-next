@@ -56,7 +56,7 @@ export default function FeaturedNews({ featuredNews }) {
   };
 
   return (
-    <div className="bg-white py-32 sm:py-40">
+    <div className="bg-white py-12 md:py-16">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-bold tracking-tight text-ccDarkBlue sm:text-4xl">

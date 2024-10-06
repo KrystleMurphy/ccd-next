@@ -4,10 +4,10 @@ import Link from 'next/link';
 export default function Info() {
   return (
     <>
-      <div className="relative bg-white">
+      <div className="relative bg-white py-12">
         <div className="relative">
           <div className="mx-auto max-w-7xl">
-            <div className="relative z-10 lg:w-full lg:max-w-2xl py-10 sm:py-20">
+            <div className="relative z-10 lg:w-full lg:max-w-2xl py-12 md:py-16">
               <svg
                 viewBox="0 0 100 100"
                 preserveAspectRatio="none"
@@ -17,7 +17,7 @@ export default function Info() {
                 <polygon points="0,0 90,0 50,100 0,100" />
               </svg>
 
-              <div className="relative px-6 py-10 sm:py-20 lg:px-8">
+              <div className="relative px-6 py-12 md:py-16 lg:px-8">
                 <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-xl">
                   <h1 className="text-4xl font-bold tracking-tight text-ccDarkBlue sm:text-6xl">
                     Methica CC Kit

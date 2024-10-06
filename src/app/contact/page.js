@@ -43,12 +43,6 @@ export default async function Page() {
   return (
     <>
     {/* reCAPTCHA script, loaded specifically for the Contact page */}
-           <Script
-          src="https://www.google.com/recaptcha/api.js"
-          strategy="lazyOnload"
-          async
-          defer
-        />
     <ContactForm privacyPolicy={privacyPolicy} />
    </>
   );

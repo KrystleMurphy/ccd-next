@@ -61,28 +61,33 @@ export default function ContactLogic({ privacyPolicy }) {
         }
       };
     
-  // Load and render reCAPTCHA when the component is mounted
-  useEffect(() => {
-    const loadRecaptcha = () => {
-      if (window.grecaptcha) {
-        setRecaptchaLoaded(true);
-        window.grecaptcha.ready(() => {
-          window.grecaptcha.render(recaptchaRef.current, {
-            sitekey: process.env.NEXT_PUBLIC_RECAPTCHA_KEY,
-            callback: handleCaptchaChange,
-          });
-        });
-      } else {
-        console.error('reCAPTCHA script not found.');
-      }
-    };
-
-    // Load reCAPTCHA with a delay to ensure the script is available
-    const intervalId = setInterval(loadRecaptcha, 500);
-
-    // Clean up interval if successful or component unmounts
-    return () => clearInterval(intervalId);
-  }, []);
+      useEffect(() => {
+        const loadRecaptcha = () => {
+          if (window.grecaptcha) {
+            setRecaptchaLoaded(true);
+            window.grecaptcha.ready(() => {
+              window.grecaptcha.render(recaptchaRef.current, {
+                sitekey: process.env.NEXT_PUBLIC_RECAPTCHA_KEY,
+                callback: handleCaptchaChange,
+              });
+            });
+          } else {
+            console.error("reCAPTCHA script not found.");
+          }
+        };
+      
+        // Check if the recaptcha script is already in the DOM
+        if (document.querySelector(`script[src="https://www.google.com/recaptcha/api.js"]`)) {
+          loadRecaptcha();  // if script already loaded, trigger it
+        } else {
+          const script = document.createElement("script");
+          script.src = "https://www.google.com/recaptcha/api.js";
+          script.async = true;
+          script.defer = true;
+          script.onload = loadRecaptcha;
+          document.body.appendChild(script);  // Inject script into the page
+        }
+      }, []);
 
 return (
         <>

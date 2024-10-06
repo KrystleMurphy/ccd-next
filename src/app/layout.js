@@ -1,6 +1,7 @@
 import '../styles/globals.css'; // Import your global CSS
 import Nav from './Nav';
 import Footer from './Footer';
+import Script from 'next/script';
 
 // Metadata configuration
 export const metadata = {
@@ -31,6 +32,10 @@ export default function RootLayout({ children }) {
   return (
 <html lang="en">
 <head>
+<Script
+          src="https://www.google.com/recaptcha/api.js"
+          strategy="beforeInteractive"
+        />
   {/* Fonts */}
   <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />

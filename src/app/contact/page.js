@@ -1,6 +1,8 @@
 export const revalidate = 60;
 
 import ContactForm from "./ContactForm";
+import Script from 'next/script';
+import { fetchAirtableData } from '../data/AirtableData';
 
 export const metadata = {
   title: "Contact Us - CC Diagnostics",
@@ -36,9 +38,18 @@ export const metadata = {
 };
 
 export default async function Page() {
+  const policiesData = await fetchAirtableData({ baseName: 'Policies', view: 'Grid view' });
+  const privacyPolicy = policiesData.find(policy => policy.fields.Policy.toLowerCase() === 'privacy policy'.toLowerCase());
   return (
     <>
-    <ContactForm />
+    {/* reCAPTCHA script, loaded specifically for the Contact page */}
+           <Script
+          src="https://www.google.com/recaptcha/api.js"
+          strategy="lazyOnload"
+          async
+          defer
+        />
+    <ContactForm privacyPolicy={privacyPolicy} />
    </>
   );
 }

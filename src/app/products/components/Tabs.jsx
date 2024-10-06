@@ -22,7 +22,7 @@ export default function Tabs({ technicalSpecifications }) {
   const tabs = transformRecordsToTabs(technicalSpecifications);
 
   return (
-    <div id="techspecs" className="bg-white">
+    <div id="techspecs" className="bg-white px-12">
       <section aria-labelledby="features-heading" className="mx-auto max-w-7xl py-12 md:py-16 sm:px-2 lg:px-8">
         <div className="mx-auto max-w-2xl px-6 lg:max-w-none lg:px-0">
           <div className="max-w-3xl">

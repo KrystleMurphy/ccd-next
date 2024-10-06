@@ -47,7 +47,7 @@ const Header = () => {
 
         <MenuItems className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div className="py-1">
-          <MenuItem>
+            <MenuItem>
               {({ active }) => (
                 <Link
                   href="/products"
@@ -159,8 +159,8 @@ const Header = () => {
 
           <div className="mt-6 flow-root">
             <div className="-my-6 divide-y divide-gray-500/10">
-            <div className="absolute left-0 right-0 w-full space-y-2 py-6 text-center bg-white">
-            <Link href="/" className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-ccDarkBlue hover:bg-gray-50" onClick={closeMenu}>
+              <div className="absolute left-0 right-0 w-full space-y-2 py-6 text-center bg-white">
+                <Link href="/" className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-ccDarkBlue hover:bg-gray-50" onClick={closeMenu}>
                   Home
                 </Link>
 
@@ -173,7 +173,7 @@ const Header = () => {
                   News
                 </Link>
                 <div className="py-6">
-                <ContactHeavy />
+                  <ContactHeavy />
                 </div>
               </div>
             </div>

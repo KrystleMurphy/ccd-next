@@ -3,6 +3,7 @@ import React from 'react';
 
 // Function to render individual team members
 const renderTeamMember = (member) => {
+
   const photoUrl = member.fields.Photo?.[0]?.thumbnails?.large?.url || '/images/placeholder.png';
   const linkedInUrl = member.fields.LinkedIn?.[0]?.url || '#';
 

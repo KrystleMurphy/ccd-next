@@ -6,7 +6,7 @@ import { PhoneIcon, EnvelopeIcon, MapPinIcon } from "@heroicons/react/24/outline
 import SearchBar from './search-docs/SearchBar';
 import { fetchAirtableData } from './data/AirtableData';
 
-export const revalidate = 60; 
+export const revalidate = 60;
 // Define icons for different contact methods
 const methodIcons = {
   Phone: <PhoneIcon className="h-5 w-5 text-ccDarkBlue" aria-hidden="true" />,
@@ -114,33 +114,28 @@ export default async function Footer() {
             <p className="py-6 text-l text-left leading-6 text-ccDarkBlue">
               Revolutionising cancer diagnostics
             </p>
-            
-            <div className="flex space-x-6 items-center justify-start">
-  {/* Social links */}
-  {socialLinks.social.map((item) => (
-    <a
-      key={item.name}
-      href={item.href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="text-ccDarkBlue hover:text-ccLightBlue flex items-center justify-center"
-    >
-      <span className="sr-only">{item.name}</span>
-      <item.icon aria-hidden="true" className="h-6 w-6" />
-    </a>
-  ))}
-</div>
-{/* 
-            <p className="py-8 mt-6 text-xs text-left leading-6 text-gray-600">
-          Documentation Search
-        </p> */}
-        <div className="py-8 mt-4 max-w-xs">
-          <SearchBar />
-        </div>
 
+            <div className="flex space-x-6 items-center justify-start">
+              {/* Social links */}
+              {socialLinks.social.map((item) => (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-ccDarkBlue hover:text-ccLightBlue flex items-center justify-center"
+                >
+                  <span className="sr-only">{item.name}</span>
+                  <item.icon aria-hidden="true" className="h-6 w-6" />
+                </a>
+              ))}
+            </div>
+            <div className="py-8 mt-4 max-w-xs">
+              <SearchBar />
+            </div>
           </div>
           {/* Site map, policies, and contact sections */}
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:col-span-2">
+          <div className="grid gap-8 md:grid-cols-4 xl:grid-cols-4 xl:col-span-2 py-12">
             {/* Site Map Section */}
             <div className="px-6">
               <h3 className="text-base font-semibold leading-6 text-ccDarkBlue">Site Map</h3>
@@ -155,17 +150,17 @@ export default async function Footer() {
               </ul>
             </div>
 
-{/* Policies Section */}
-<div className="px-6">
-  <h3 className="text-base font-semibold leading-6 text-ccDarkBlue">Policies</h3>
-  <ul role="list" className="mt-4 space-y-3">
-    {policiesData.map((policy) => (
-      <li key={policy.id} role="listitem">
-        <Policy policy={policy} />
-      </li>
-    ))}
-  </ul>
-</div>
+            {/* Policies Section */}
+            <div className="px-6">
+              <h3 className="text-base font-semibold leading-6 text-ccDarkBlue">Policies</h3>
+              <ul role="list" className="mt-4 space-y-3">
+                {policiesData.map((policy) => (
+                  <li key={policy.id} role="listitem">
+                    <Policy policy={policy} />
+                  </li>
+                ))}
+              </ul>
+            </div>
 
 
             {/* Contact Section */}
@@ -174,7 +169,7 @@ export default async function Footer() {
               <ul className="mt-4 space-y-6">
                 {contactDetailsData.map((contact) => (
                   <li key={contact.id} role="listitem">
-                  <ContactInfo  contact={contact} />
+                    <ContactInfo contact={contact} />
                   </li>
                 ))}
               </ul>

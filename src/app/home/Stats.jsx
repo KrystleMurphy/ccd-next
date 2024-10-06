@@ -7,7 +7,7 @@ const stats = [
   export default function Stats() {
     return (
       <>
-        <div id="stats" className="bg-white px-2 py-32 sm:py-40 lg:px-6">
+        <div id="stats" className="bg-white px-4 py-12 md:py-16 lg:px-6">
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-4xl font-bold tracking-tight text-ccDarkBlue sm:text-6xl">
               Detect Cancer Early with epigenetic DNA analysis
@@ -18,7 +18,7 @@ const stats = [
           </div>
         </div>
   
-        <div className="bg-white pb-32 sm:pb-40">
+        <div className="bg-white py-12 sm:py-16">
           <div className="mx-auto max-w-7xl px-4 lg:px-6">
             <dl className="grid grid-cols-1 gap-x-8 gap-y-16 text-center lg:grid-cols-3">
               {stats.map((stat) => (

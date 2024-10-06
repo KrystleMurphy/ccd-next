@@ -29,7 +29,7 @@ export default function Partners({ partnersData }) {
   // const euLogo = "/images/logo_erdf2014.png";
 
   return (
-    <div className="bg-white py-32 sm:py-40">
+    <div className="bg-white py-12 md:py-16">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <h2 className="pb-16 text-center text-3xl font-semibold leading-8 text-ccDarkBlue">
           Our Partners

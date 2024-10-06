@@ -60,7 +60,7 @@ const Section = ({ steps, textSectionProps }) => (
 export default function Flow() {
   return (
     <div className="bg-white">
-      <div className="mx-auto max-w-7xl sm:px-2 sm:py-32 lg:px-4">
+      <div className="mx-auto max-w-7xl  py-12 sm:px-2 md:py-16 lg:px-4">
         <div className="mx-auto max-w-2xl px-4 lg:max-w-none">
           <div className="max-w-3xl">
             <p className="mt-2 text-3xl font-bold tracking-tight text-ccDarkBlue sm:text-4xl">
@@ -69,7 +69,7 @@ export default function Flow() {
           </div>
         </div>
 
-        <div className="py-24 sm:py-24">
+        <div className="pt-12 sm:pt-16">
           {/* Section 1 */}
           <Section
             steps={[

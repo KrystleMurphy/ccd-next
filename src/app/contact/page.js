@@ -1,4 +1,5 @@
-'use client';
+export const revalidate = 60;
+
 import ContactForm from "./LoadCaptcha";
 
 export default function ContactPage() {

@@ -20,7 +20,7 @@ const ContactInfo = ({ contact }) => {
     <ul role="list" className="mt-6 space-y-4">
       <li key={contact.id} className="flex items-center space-x-2">
         <span className="flex items-center justify-center">{methodIcons[Method]}</span>
-        <p className="text-sm leading-6 text-gray-600">{info}</p>
+        <p className="text-xs leading-6 text-gray-600">{info}</p>
       </li>
     </ul>
   );
@@ -33,7 +33,7 @@ const Policy = ({ policy }) => {
       href={policy.fields.Document[0].url}
       target="_blank"
       rel="noopener noreferrer"
-      className="text-sm leading-6 text-gray-600 hover:text-ccLightBlue"
+      className="text-xs leading-6 text-gray-600 hover:text-ccLightBlue"
     >
       {policy.fields.Policy}
     </Link>
@@ -109,9 +109,9 @@ export default async function Footer() {
               alt="CC Diagnostics Logo"
               src={logo}
               // width={100}
-              height={48}
+              height={28}
             />
-            <p className="py-6 text-xl text-left leading-6 text-ccDarkBlue font-bold">
+            <p className="py-6 text-l text-left leading-6 text-ccDarkBlue">
               Revolutionising cancer diagnostics
             </p>
             
@@ -131,7 +131,7 @@ export default async function Footer() {
   ))}
 </div>
 {/* 
-            <p className="py-8 mt-6 text-sm text-left leading-6 text-gray-600">
+            <p className="py-8 mt-6 text-xs text-left leading-6 text-gray-600">
           Documentation Search
         </p> */}
         <div className="py-8 mt-4 max-w-xs">
@@ -147,7 +147,7 @@ export default async function Footer() {
               <ul role="list" className="mt-4 space-y-3">
                 {navigationLinks.map((link, index) => (
                   <li key={index}>
-                    <Link href={link.path} className="text-sm text-gray-600 hover:text-ccLightBlue transition-colors duration-200">
+                    <Link href={link.path} className="text-xs text-gray-600 hover:text-ccLightBlue transition-colors duration-200">
                       {link.name}
                     </Link>
                   </li>

@@ -1,31 +1,31 @@
-'use client'; 
+'use client';
 
 import { useState, useEffect } from "react";
 import dayjs from "dayjs";
 import placeholder from "@/src/assets/images/placeholder.png";
 import Link from "next/link";
-import Image from "next/image"; 
+import Image from "next/image";
 
 const NewsFeed = ({ allNews }) => { // Receive allNews as a prop
   const [selectedYear, setSelectedYear] = useState(dayjs().year().toString());
   const [years, setYears] = useState([]);
-  const [filteredPosts, setFilteredPosts] = useState([]); 
+  const [filteredPosts, setFilteredPosts] = useState([]);
 
 
- // Extract years and filter posts when allNews prop changes
- useEffect(() => {
-  const uniqueYears = [...new Set(allNews.map((post) => dayjs(post.fields.Published).year()))];
-  const currentYear = dayjs().year();
+  // Extract years and filter posts when allNews prop changes
+  useEffect(() => {
+    const uniqueYears = [...new Set(allNews.map((post) => dayjs(post.fields.Published).year()))];
+    const currentYear = dayjs().year();
 
-  const yearOptions = [];
-  for (let year = currentYear; year >= Math.min(...uniqueYears); year--) {
-    yearOptions.push(year.toString());
-  }
+    const yearOptions = [];
+    for (let year = currentYear; year >= Math.min(...uniqueYears); year--) {
+      yearOptions.push(year.toString());
+    }
 
-  setYears(yearOptions);
+    setYears(yearOptions);
 
-  filterPostsByYear(selectedYear); // Initial filtering
-  }, [allNews, selectedYear]); 
+    filterPostsByYear(selectedYear); // Initial filtering
+  }, [allNews, selectedYear]);
 
 
   const filterPostsByYear = (year) => {
@@ -51,7 +51,7 @@ const NewsFeed = ({ allNews }) => { // Receive allNews as a prop
         className="relative isolate flex flex-col gap-8 lg:flex-row lg:w-full"
       >
         <div className="relative aspect-[16/9] sm:aspect-[2/1] lg:aspect-square lg:w-64 lg:shrink-0">
-        <Image
+          <Image
             alt=""
             src={
               post.fields.Photo && post.fields.Photo.length > 0
@@ -66,17 +66,17 @@ const NewsFeed = ({ allNews }) => { // Receive allNews as a prop
           />
           <div className="absolute inset-0 pointer-events-none rounded-2xl ring-1 ring-inset ring-gray-900/10" />
         </div>
-        
+
         <div className="group relative max-w-xl">
-          
+
           <Link href={`/news/${post.id}`} legacyBehavior>
-          <div>
+            <div>
               <a className="absolute inset-0 pointer-events-none" />
               <h3 className="mt-0 text-lg font-semibold leading-6 text-ccDarkBlue group-hover:text-ccLightBlue text-left">
-              {post.fields.Title}
+                {post.fields.Title}
               </h3>
-              </div>
-            </Link>
+            </div>
+          </Link>
           <div className="mt-3 flex items-center gap-x-4 text-xs">
             <time dateTime={post.fields.Published} className="text-gray-500">
               {formattedDate}
@@ -93,27 +93,30 @@ const NewsFeed = ({ allNews }) => { // Receive allNews as a prop
   return (
     <div className="bg-white py-12 md:py-16">
       <div className="mx-auto max-w-7xl px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
+
         {/* Year filter section */}
-        <div className="years lg:col-span-1 lg:sticky lg:top-0 text-left text-xl font-bold tracking-tight text-ccDarkBlue">
-        {years.map((year) => (
+        <div className="years flex flex-row flex-wrap lg:flex-col lg:col-span-1 lg:sticky lg:top-0 md:text-left text-xl tracking-tight text-ccDarkBlue">
+          <h2 className="w-full text-center text-3xl font-bold tracking-tight text-ccDarkBlue sm:text-4xl lg:hidden">
+            News by Year
+          </h2>
+          {years.map((year) => (
             <h2
               key={year}
-              className={`lg:p-4 p-8 cursor-pointer hover:text-ccLightBlue ${
-                selectedYear === year ? "text-ccLightBlue" : ""
-              }`}
+              className={`w-1/4 lg:w-full p-4 cursor-pointer hover:font-bold ${selectedYear === year ? "underline decoration-ccLightBlue decoration-4 underline-offset-4 font-bold" : ""
+                }`}
               onClick={() => handleYearChange(year)}
             >
               {year}
             </h2>
-))}
-      </div>
+          ))}
+        </div>
 
         {/* News articles section */}
         <div className="col-span-2">
           <div className="mx-auto max-w-2xl lg:max-w-4xl">
             <div className="space-y-20 lg:space-y-20">
-{/* Render filtered posts */}
-{filteredPosts.map(renderNewsItem)}
+              {/* Render filtered posts */}
+              {filteredPosts.map(renderNewsItem)}
               {filteredPosts.length === 0 && (
                 <p>No article available for the selected year.</p>
               )}

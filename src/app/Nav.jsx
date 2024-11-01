@@ -113,7 +113,7 @@ const Header = () => {
           <Link href="/news" className="text-sm font-semibold leading-6 text-ccDarkBlue" onClick={closeMenu}>
             News
           </Link>
-          <ContactHeavy />
+          <ContactHeavy onClick={closeMenu} />
         </div>
         <div className="flex lg:hidden">
           <button
@@ -173,7 +173,12 @@ const Header = () => {
                   News
                 </Link>
                 <div className="py-6">
-                  <ContactHeavy />
+                  <Link
+                    href="/contact"
+                    className="rounded-md bg-ccDarkBlue px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-ccLightBlue hover:text-ccDarkBlue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ccDarkBlue"
+                    onClick={closeMenu}>
+                    Contact
+                  </Link>
                 </div>
               </div>
             </div>

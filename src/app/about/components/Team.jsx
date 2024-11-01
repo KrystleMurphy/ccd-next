@@ -5,7 +5,7 @@ import React from 'react';
 const renderTeamMember = (member) => {
 
   const photoUrl = member.fields.Photo?.[0]?.thumbnails?.large?.url || '/images/placeholder.png';
-  const linkedInUrl = member.fields.LinkedIn?.[0]?.url || '#';
+  const linkedInUrl = member.fields.LinkedIn || '#';
 
   return (
     <li key={member.id} className="text-center">
@@ -50,6 +50,7 @@ const renderTeamMember = (member) => {
 
 // Main Team component, receiving team data as props
 export default function Team({ teamData }) {
+  
   return (
     <div id="team" className="bg-white 32 py-12 md:py-16">
       <div className="mx-auto max-w-7xl px-6 text-center lg:px-8">

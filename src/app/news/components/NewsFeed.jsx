@@ -96,7 +96,7 @@ const NewsFeed = ({ allNews }) => { // Receive allNews as a prop
 
         {/* Year filter section */}
         <div className="years flex flex-row flex-wrap lg:flex-col lg:col-span-1 lg:sticky lg:top-0 md:text-left text-xl tracking-tight text-ccDarkBlue">
-          <h2 className="w-full text-center text-3xl font-bold tracking-tight text-ccDarkBlue sm:text-4xl lg:hidden">
+          <h2 className="w-full text-center text-3xl font-bold tracking-tight text-ccDarkBlue sm:text-4xl lg:hidde py-8">
             News by Year
           </h2>
           {years.map((year) => (

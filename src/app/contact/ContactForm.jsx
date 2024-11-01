@@ -92,16 +92,19 @@ export default function ContactLogic({ privacyPolicy }) {
 return (
         <>
           <div className="relative bg-white">
-            <div className="flex lg:absolute lg:inset-0 lg:left-1/2 pb-24 pt-16 sm:pb-32 sm:pt-24 lg:pt-32 items-center">
-    
-              <Image
+          <div className="flex justify-center lg:absolute lg:inset-0 lg:left-1/2 p-8 items-center">
+  <div className="relative w-full max-w-lg aspect-[4/3] rounded-3xl overflow-hidden">
+    <Image
       alt="Team photo"
       src={teamPhoto}
-      className="h-64 w-full object-contain sm:h-80 lg:absolute lg:h-full"
+      className="w-full h-full object-cover rounded-3xl"
       priority
     />
-            </div>
-            <div className="pb-24 pt-16 sm:pb-32 sm:pt-24 lg:mx-auto lg:grid lg:max-w-7xl lg:grid-cols-2 lg:pt-32">
+  </div>
+</div>
+
+
+            <div className="lg:mx-auto lg:grid lg:max-w-7xl lg:grid-cols-2 lg:pt-32">
               <div className="px-6 lg:px-8">
                 <div className="mx-auto max-w-xl lg:mx-0 lg:max-w-lg">
                   <h2 className="text-3xl font-bold tracking-tight text-ccDarkBlue py-6">
@@ -278,7 +281,7 @@ return (
                       </label>
                       <br />
                     </div>
-                    <div className="mt-10 flex justify-end border-t border-gray-900/10 pt-8">
+                    <div className="mt-10 flex justify-end border-t border-gray-900/10 p-8">
                       <button
                         type="submit"
                         className="rounded-md bg-ccDarkBlue px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-ccLightBlue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ccDarkBlue"

@@ -23,8 +23,8 @@ export default function Tabs({ technicalSpecifications }) {
 
   return (
     <div id="techspecs" className="bg-white px-12">
-      <section aria-labelledby="features-heading" className="mx-auto max-w-7xl py-12 md:py-16 sm:px-2 lg:px-8">
-        <div className="mx-auto max-w-2xl px-6 lg:max-w-none lg:px-0">
+      <section aria-labelledby="features-heading" className="mx-auto max-w-7xl py-12 md:py-16 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-2xl lg:max-w-none">
           <div className="max-w-3xl">
             <h2 id="features-heading" className="text-3xl font-bold tracking-tight text-ccDarkBlue sm:text-4xl">
               Technical Specifications

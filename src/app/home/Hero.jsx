@@ -19,7 +19,7 @@ export default function Hero() {
       />
         <div className="absolute inset-0 -z-10 bg-black opacity-40"></div> {/* Overlay */}
 
-        <div className="m-20 max-w-2xl">
+        <div className="px-6 md:pl-12 lg:pl-16 xl:pl-32 max-w-2xl">
           <div className="text-left">
             <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl" style={{ textShadow: '3px 3px 20px rgba(0, 0, 0, 0.8)' }}>
               Superior Diagnostic Methods for Cervical Cancer Detection

@@ -9,7 +9,7 @@ import isolatedDNA from '@/src/assets/images/isolatedDNA.png';
 import qPCR from '@/src/assets/images/qPCR.png';
 
 const Step = ({ icon: Icon, imageSrc, label }) => (
-  <div className="flex flex-col items-center justify-center p-4 w-1/3 sm:w-1/4 md:w-1/5 lg:w-1/6">
+  <div className="flex flex-col items-center justify-center p-4 w-1/3">
     {Icon && <Icon aria-hidden="true" className="h-8 w-8 sm:h-12 sm:w-12" />}
     {imageSrc && (
       <Image
@@ -38,8 +38,8 @@ const TextSection = ({ duration, handsOnTime, samples, description }) => (
 const Section = ({ steps, textSectionProps }) => (
   <div className="divide-y divide-gray-200 overflow-hidden rounded-lg mx-auto max-w-7xl sm:px-6 lg:px-8">
     <div className="bg-white p-6 flex flex-col lg:flex-row w-full gap-4">
-      {/* Steps in a single responsive row */}
-      <div className="flex flex-row flex-wrap items-center justify-center gap-4 w-full lg:w-1/2">
+      {/* Steps in a single row */}
+      <div className="flex flex-row items-center justify-between w-full">
         {steps.map((step, index) => (
           <Step key={index} icon={step.icon} imageSrc={step.imageSrc} label={step.label} />
         ))}

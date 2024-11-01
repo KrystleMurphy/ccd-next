@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import { ArrowRightIcon } from '@heroicons/react/24/outline';
 import bisulfiteDNA from '@/src/assets/images/bisulfiteDNA.png';
@@ -9,7 +9,7 @@ import isolatedDNA from '@/src/assets/images/isolatedDNA.png';
 import qPCR from '@/src/assets/images/qPCR.png';
 
 const Step = ({ icon: Icon, imageSrc, label }) => (
-  <div className="flex flex-col items-center justify-center p-4 min-w-[120px]">
+  <div className="flex flex-col items-center justify-center p-4 w-1/3 sm:w-1/4 md:w-1/5 lg:w-1/6">
     {Icon && <Icon aria-hidden="true" className="h-8 w-8 sm:h-12 sm:w-12" />}
     {imageSrc && (
       <Image
@@ -35,44 +35,20 @@ const TextSection = ({ duration, handsOnTime, samples, description }) => (
   </div>
 );
 
-const Section = ({ steps, textSectionProps }) => {
-  const scrollContainerRef = useRef(null);
-  let startY = 0;
-
-  const handleTouchStart = (e) => {
-    startY = e.touches[0].clientY;
-  };
-
-  const handleTouchMove = (e) => {
-    const currentY = e.touches[0].clientY;
-    const swipeDistance = startY - currentY;
-
-    // Trigger horizontal scroll if swipe distance is greater than 50 pixels upward
-    if (swipeDistance > 50 && scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({ left: 100, behavior: 'smooth' });
-    }
-  };
-
-  return (
-    <div className="divide-y divide-gray-200 overflow-hidden rounded-lg mx-auto max-w-7xl sm:px-6 lg:px-8">
-      <div className="bg-white p-6 flex flex-col lg:flex-row w-full gap-4">
-        {/* Steps in one row with horizontal scroll */}
-        <div
-          ref={scrollContainerRef}
-          onTouchStart={handleTouchStart}
-          onTouchMove={handleTouchMove}
-          className="flex flex-row items-center gap-4 overflow-x-auto lg:w-1/2"
-        >
-          {steps.map((step, index) => (
-            <Step key={index} icon={step.icon} imageSrc={step.imageSrc} label={step.label} />
-          ))}
-        </div>
-        {/* Text section */}
-        <TextSection {...textSectionProps} />
+const Section = ({ steps, textSectionProps }) => (
+  <div className="divide-y divide-gray-200 overflow-hidden rounded-lg mx-auto max-w-7xl sm:px-6 lg:px-8">
+    <div className="bg-white p-6 flex flex-col lg:flex-row w-full gap-4">
+      {/* Steps in a single responsive row */}
+      <div className="flex flex-row flex-wrap items-center justify-center gap-4 w-full lg:w-1/2">
+        {steps.map((step, index) => (
+          <Step key={index} icon={step.icon} imageSrc={step.imageSrc} label={step.label} />
+        ))}
       </div>
+      {/* Text section */}
+      <TextSection {...textSectionProps} />
     </div>
-  );
-};
+  </div>
+);
 
 export default function Flow() {
   return (

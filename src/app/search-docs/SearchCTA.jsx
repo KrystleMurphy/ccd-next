@@ -6,7 +6,7 @@ export default function SearchCTA() {
     <div id="searchCTA" className="bg-white py-12 md:py-16 px-12">
       <div className="mx-auto max-w-7xl px-6 lg:flex lg:items-center lg:justify-between lg:px-8">
         <div className="lg:w-1/2">
-          <h2 className="text-3xl font-bold tracking-tight text-ccDarkBlue sm:text-4xl">
+          <h2 className="text-3xl font-semibold tracking-tight text-ccDarkBlue sm:text-4xl">
             Already purchased?
             <br />
             Download your documentation

@@ -36,7 +36,7 @@ const Header = () => {
     return (
       <Menu as="div" className="relative inline-block text-left">
         <div className="flex items-center">
-          <Link href="/products" className="text-sm font-semibold leading-6 text-ccDarkBlue">
+          <Link href="/products" className="text-sm font-semibold leading-6 text-ccDarkBlue" onClick={closeMenu}>
             Products
           </Link>
 

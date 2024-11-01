@@ -107,7 +107,7 @@ return (
             <div className="lg:mx-auto lg:grid lg:max-w-7xl lg:grid-cols-2 lg:pt-32">
               <div className="px-6 lg:px-8">
                 <div className="mx-auto max-w-xl lg:mx-0 lg:max-w-lg">
-                  <h2 className="text-3xl font-bold tracking-tight text-ccDarkBlue py-6">
+                  <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-ccDarkBlue py-6">
                     Get in Touch
                   </h2>
                   <form ref={form} onSubmit={sendEmail}>

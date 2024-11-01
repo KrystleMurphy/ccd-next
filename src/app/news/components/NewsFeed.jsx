@@ -94,12 +94,12 @@ const NewsFeed = ({ allNews }) => { // Receive allNews as a prop
     <div className="bg-white py-12 md:py-16">
       <div className="mx-auto max-w-7xl px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Year filter section */}
-        <div className="years lg:col-span-1 lg:sticky lg:top-0 text-left text-xl font-bold tracking-tight text-ccDarkBlue">
+        <div className="years lg:col-span-1 lg:sticky lg:top-0 text-left text-xl tracking-tight text-ccDarkBlue">
         {years.map((year) => (
             <h2
               key={year}
-              className={`lg:p-4 p-8 cursor-pointer hover:text-ccLightBlue ${
-                selectedYear === year ? "text-ccLightBlue" : ""
+              className={`lg:p-4 p-8 cursor-pointer  hover:font-bold ${
+                selectedYear === year ? "underline decoration-ccLightBlue decoration-4 underline-offset-4 font-bold" : ""
               }`}
               onClick={() => handleYearChange(year)}
             >

@@ -9,10 +9,10 @@ const stats = [
       <>
         <div id="stats" className="bg-white px-6 py-12 md:py-16 lg:px-8">
           <div className="mx-auto max-w-2xl text-left sm:text-center">
-            <h2 className="text-4xl font-bold tracking-tight text-ccDarkBlue sm:text-6xl">
+            <h2 className="text-3xl font-bold tracking-tight text-ccDarkBlue sm:text-4xl">
               Detect Cancer Early with epigenetic DNA analysis
             </h2>
-            <p className="mt-6 text-xl leading-8 text-gray-600 text-left sm:text-center">
+            <p className="mt-6 text-lg leading-8 text-gray-600 text-left sm:text-center">
               Our cutting-edge technology allows for the early detection of cervical cancer, providing patients with a higher chance of successful treatment. With our innovative approach, we are able to identify abnormalities at the earliest stage, ensuring timely intervention and improved outcomes.
             </p>
           </div>
@@ -23,8 +23,8 @@ const stats = [
             <dl className="grid grid-cols-1 gap-x-8 gap-y-16 text-center lg:grid-cols-3">
               {stats.map((stat) => (
                 <div key={stat.id} className="mx-auto flex max-w-xs flex-col gap-y-4">
-                  <dt className="text-base text-xl leading-relaxed text-gray-600">{stat.des}</dt>
-                  <dd className="order-first text-3xl leading-relaxed font-semibold tracking-tight text-ccDarkBlue sm:text-5xl">
+                  <dt className="text-base text-lg leading-relaxed text-gray-600">{stat.des}</dt>
+                  <dd className="order-first text-3xl leading-relaxed font-semibold tracking-tight text-ccDarkBlue sm:text-4xl">
                     {stat.name}
                   </dd>
                 </div>

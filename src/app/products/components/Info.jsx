@@ -68,7 +68,7 @@ export default function Info() {
                   <h1 className="text-4xl font-bold tracking-tight text-ccDarkBlue sm:text-6xl">
                     Methica CC Kit
                   </h1>
-                  <p className="mt-6 text-lg leading-8 text-gray-600">
+                  <p className="mt-6 text-xl leading-8 text-gray-600">
                     Superior Diagnostic Methods for Cervical Cancer Detection
                   </p>
                   <div className="mt-10 flex items-center gap-x-6">

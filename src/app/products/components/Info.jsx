@@ -10,12 +10,11 @@ export default function Info() {
           aria-hidden="true"
           className="absolute inset-y-0 right-1/2 -z-10 -mr-96 w-[200%] origin-top-right skew-x-[-30deg] bg-white shadow-xl shadow-ccLightBlue/10 ring-1 ring-ccLightBlue/10 sm:-mr-80 lg:-mr-96"
         />
-        <div className="mx-auto max-w-7xl px-6 py-12 md:py-16 lg:px-8">
+        <div className="mx-auto max-w-7xl px-6 md:py-16 lg:px-8">
           <div className="mx-auto max-w-2xl lg:mx-0 lg:grid lg:max-w-none lg:grid-cols-2 lg:gap-x-16 lg:gap-y-6 xl:grid-cols-1 xl:grid-rows-1 xl:gap-x-8">
            
-
             {/* Text and links container */}
-            <div className="mt-6 max-w-xl lg:mt-0 xl:col-end-1 xl:row-start-1">
+            <div className="mt-0 max-w-xl lg:mt-0 xl:col-end-1 xl:row-start-1">
               <h1 className="max-w-2xl text-4xl font-bold tracking-tight text-ccDarkBlue sm:text-6xl lg:col-span-2 xl:col-auto">
                 Methica CC Kit
               </h1>
@@ -28,7 +27,7 @@ export default function Info() {
               <Image
                 alt="Methica CC Product"
                 src={Methica_CC_prototype_2}
-                className="my-10 max-h-[300px] w-full max-w-lg rounded-2xl object-cover"
+                className="my-10 max-h-[300px] w-full max-w-lg rounded-3xl object-cover"
                 priority
               />
             </div>

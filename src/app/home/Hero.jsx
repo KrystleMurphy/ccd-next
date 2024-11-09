@@ -21,7 +21,7 @@ export default function Hero() {
 
         <div className="px-6 md:pl-12 lg:pl-16 xl:pl-32 max-w-2xl">
           <div className="text-left">
-            <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl" style={{ textShadow: '3px 3px 20px rgba(0, 0, 0, 0.8)' }}>
+            <h1 className="text-4xl font-semibold tracking-tight text-white sm:text-6xl" style={{ textShadow: '3px 3px 20px rgba(0, 0, 0, 0.8)' }}>
               Superior Diagnostic Methods for Cervical Cancer Detection
             </h1>
             <p className="mt-6 text-xl leading-8 text-white" style={{ textShadow: '3px 3px 5px rgba(0, 0, 0, 1)' }}>

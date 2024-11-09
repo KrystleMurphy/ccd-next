@@ -36,11 +36,11 @@ const Header = () => {
     return (
       <Menu as="div" className="relative inline-block text-left">
         <div className="flex items-center">
-          <Link href="/products" className="text-sm font-semibold leading-6 text-ccDarkBlue" onClick={closeMenu}>
+          <Link href="/products" className="text-sm font-bold leading-6 text-ccDarkBlue" onClick={closeMenu}>
             Products
           </Link>
 
-          <MenuButton className="inline-flex items-center ml-2 text-sm font-semibold text-gray-900 bg-white rounded-md ring-gray-300 hover:bg-gray-50" aria-label="Open menu">
+          <MenuButton className="inline-flex items-center ml-2 text-sm text-gray-900 bg-white rounded-md ring-gray-300 hover:bg-gray-50" aria-label="Open menu">
             <ChevronDownIcon aria-hidden="true" className="h-5 w-5 text-ccLightBlue" />
           </MenuButton>
         </div>
@@ -101,16 +101,16 @@ const Header = () => {
           </Link>
         </div>
         <div className="hidden lg:flex lg:ml-auto lg:gap-x-12 items-center ">
-          <Link href="/" className="text-sm font-semibold leading-6 text-ccDarkBlue" onClick={closeMenu}>
+          <Link href="/" className="text-sm leading-6 text-ccDarkBlue" onClick={closeMenu}>
             Home
           </Link>
 
           {dropdown()}
 
-          <Link href="/about" className="text-sm font-semibold leading-6 text-ccDarkBlue" onClick={closeMenu}>
+          <Link href="/about" className="text-sm leading-6 text-ccDarkBlue" onClick={closeMenu}>
             About
           </Link>
-          <Link href="/news" className="text-sm font-semibold leading-6 text-ccDarkBlue" onClick={closeMenu}>
+          <Link href="/news" className="text-sm leading-6 text-ccDarkBlue" onClick={closeMenu}>
             News
           </Link>
           <ContactHeavy onClick={closeMenu} />
@@ -160,22 +160,22 @@ const Header = () => {
           <div className="mt-6 flow-root">
             <div className="-my-6 divide-y divide-gray-500/10">
               <div className="absolute left-0 right-0 w-full space-y-2 py-6 text-center bg-white">
-                <Link href="/" className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-ccDarkBlue hover:bg-gray-50" onClick={closeMenu}>
+                <Link href="/" className="-mx-3 block rounded-lg px-3 py-2 text-base leading-7 text-ccDarkBlue hover:bg-gray-50" onClick={closeMenu}>
                   Home
                 </Link>
 
                 {dropdown()}
 
-                <Link href="/about" className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-ccDarkBlue hover:bg-gray-50" onClick={closeMenu}>
+                <Link href="/about" className="-mx-3 block rounded-lg px-3 py-2 text-base leading-7 text-ccDarkBlue hover:bg-gray-50" onClick={closeMenu}>
                   About
                 </Link>
-                <Link href="/news" className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-ccDarkBlue hover:bg-gray-50" onClick={closeMenu}>
+                <Link href="/news" className="-mx-3 block rounded-lg px-3 py-2 text-base leading-7 text-ccDarkBlue hover:bg-gray-50" onClick={closeMenu}>
                   News
                 </Link>
                 <div className="py-6">
                   <Link
                     href="/contact"
-                    className="rounded-md bg-ccDarkBlue px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-ccLightBlue hover:text-ccDarkBlue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ccDarkBlue"
+                    className="rounded-md bg-ccDarkBlue px-3.5 py-2.5 text-sm font-bold text-white shadow-sm hover:bg-ccLightBlue hover:text-ccDarkBlue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ccDarkBlue"
                     onClick={closeMenu}>
                     Contact
                   </Link>

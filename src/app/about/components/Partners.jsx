@@ -30,7 +30,7 @@ export default function Partners({ partnersData }) {
   return (
     <div className="bg-white py-12 md:py-16">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <h2 className="pb-16 text-center text-3xl font-semibold leading-8 text-ccDarkBlue">
+        <h2 className="pb-16 text-center text-3xl sm:text-4xl font-semibold leading-8 text-ccDarkBlue">
           Our Partners
         </h2>
 

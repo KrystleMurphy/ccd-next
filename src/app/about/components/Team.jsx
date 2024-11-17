@@ -1,16 +1,16 @@
 import Image from 'next/image';
 import React from 'react';
+import PersonPlaceholder from "@/src/assets/images/person_placeholder.jpeg";
 
 // Function to render individual team members
 const renderTeamMember = (member) => {
 
-  const photoUrl = member.fields.Photo?.[0]?.thumbnails?.large?.url || '/images/placeholder.png';
   const linkedInUrl = member.fields.LinkedIn || '#';
 
   return (
     <li key={member.id} className="text-center">
       <Image
-        src={photoUrl}
+        src={member.fields.Photo && member.fields.Photo.length > 0 ? member.fields.Photo?.[0]?.thumbnails?.large?.url : PersonPlaceholder}
         alt={member.fields.Name || 'Team Member Photo'}
         width={224}
         height={224}

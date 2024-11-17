@@ -4,10 +4,10 @@ import { useState } from 'react';
 import { MagnifyingGlassIcon, FolderOpenIcon } from '@heroicons/react/24/outline';
 import { fetchAirtableData } from '@/src/app/data/AirtableData';
 
-const SearchBar = ({ initialDocuments, initialNoRecordsFound }) => {
+const SearchBar = () => {
   const [lotNo, setLotNo] = useState('');
-  const [documents, setDocuments] = useState(initialDocuments);
-  const [noRecordsFound, setNoRecordsFound] = useState(initialNoRecordsFound);
+  const [documents, setDocuments] = useState([]);
+  const [noRecordsFound, setNoRecordsFound] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [isSearchInitiated, setIsSearchInitiated] = useState(false);
   const [isLoading, setIsLoading] = useState(false);

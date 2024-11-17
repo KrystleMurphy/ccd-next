@@ -1,5 +1,3 @@
-export const revalidate = 60; 
-
 import Hero from './home/Hero';
 import Stats from './home/Stats';
 import Issues from './home/Issues'
@@ -19,7 +17,7 @@ return (
       <Mission />
       <Issues/>
       <MethicaKit />
-      <FeaturedNews featuredNews={featuredNewsData} />
+      {featuredNewsData.length > 0 && <FeaturedNews featuredNews={featuredNewsData} />}
       <Testimonials />
     </>
   );

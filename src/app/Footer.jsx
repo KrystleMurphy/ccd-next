@@ -6,7 +6,6 @@ import { PhoneIcon, EnvelopeIcon, MapPinIcon } from "@heroicons/react/24/outline
 import SearchBar from './search-docs/SearchBar';
 import { fetchAirtableData } from './data/AirtableData';
 
-export const revalidate = 60;
 // Define icons for different contact methods
 const methodIcons = {
   Phone: <PhoneIcon className="h-5 w-5 text-ccDarkBlue" aria-hidden="true" />,

@@ -1,5 +1,3 @@
-export const revalidate = 60;
-
 import React from 'react';
 import Hero from './components/Hero';
 import Team from './components/Team';

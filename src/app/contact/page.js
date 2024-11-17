@@ -1,7 +1,4 @@
-export const revalidate = 60;
-
 import ContactForm from "./ContactForm";
-import Script from 'next/script';
 import { fetchAirtableData } from '../data/AirtableData';
 
 export const metadata = {

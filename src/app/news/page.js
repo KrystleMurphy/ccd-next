@@ -1,5 +1,3 @@
-export const revalidate = 60;
-
 import FeaturedNews from './components/FeaturedNews';
 import NewsFeed from './components/NewsFeed';
 import { fetchAirtableData } from '../data/AirtableData';

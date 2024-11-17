@@ -1,5 +1,3 @@
-export const revalidate = 60; 
-
 import Products from './Products';
 import { Suspense } from 'react'
 import { fetchAirtableData } from '../data/AirtableData';

@@ -5,7 +5,6 @@ import ImageGallery from '../components/ImageGallery';
 import Link from 'next/link';
 import { fetchAirtableData } from '../../data/AirtableData';
 
-export const revalidate = 60;
 export const dynamicParams = true; 
 
 export async function generateStaticParams() {

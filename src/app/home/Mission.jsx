@@ -30,12 +30,12 @@ import women from "@/src/assets/images/women.png"
             <div>
               <div className="text-base leading-7 text-gray-700 lg:max-w-lg">
                 <p className="text-base font-semibold leading-7 text-ccDarkBlue">CC Diagnostics</p>
-                <h1 className="mt-2 text-3xl font-bold tracking-tight text-ccDarkBlue sm:text-4xl">
+                <h1 className="mt-2 text-3xl max-sm:text-2xl max-md:text-3xl max-lg:text-4xl max-xl:text-5xl font-bold tracking-tight text-ccDarkBlue sm:text-4xl">
                 Empowering women through
                 optimal cervical cancer screening performance, availability and comfort.
                 </h1>
                 <div className="max-w-xl">
-                  <p className="mt-8">
+                  <p className="mt-8 text-base max-sm:text-sm max-md:text-base max-2xl:text-lg max-sm:leading-5">
                   At CC Diagnostics, we believe that early detection is key to improving patient outcomes. Our innovative medical advances are revolutionizing cervical cancer detection, providing accurate and timely results that can save lives.
                   </p>
                 </div>

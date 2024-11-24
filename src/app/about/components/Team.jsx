@@ -58,7 +58,7 @@ export default function Team({ teamData }) {
           <h2 className="text-3xl font-bold tracking-tight text-ccDarkBlue sm:text-4xl relative p-3">
             Meet our team
           </h2>
-          <p className="mt-4 text-lg leading-8 text-gray-600">
+          <p className="mt-4 text-lg max-sm:leading-6 leading-8 text-gray-600">
             We’re a dynamic group of individuals who are passionate about what we do.
           </p>
         </div>

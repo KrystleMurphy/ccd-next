@@ -75,7 +75,7 @@ export default function Testimonials() {
 
                     <div
                       dangerouslySetInnerHTML={{ __html: review.content }}
-                      className="mt-3 space-y-6 text-md text-gray-500"
+                      className="mt-3 space-y-6 text-md max-sm:text-sm max-sm:leading-6 text-gray-500"
                     />
                   </div>
                 </div>

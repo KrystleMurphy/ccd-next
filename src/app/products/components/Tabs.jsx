@@ -39,7 +39,7 @@ export default function Tabs({ technicalSpecifications }) {
                   <div key={feature.name} className="flex flex-col-reverse lg:grid lg:grid-cols-12 lg:gap-x-8">
                     <div className="mt-6 lg:col-span-5 lg:mt-0">
                       <h3 className="text-lg sm:text-xl lg:text-2xl font-medium text-ccDarkBlue">{feature.name}</h3>
-                      <p className="mt-2 text-sm sm:text-base text-gray-500">{feature.description}</p>
+                      <p className="mt-2 text-sm sm:text-base max-sm:leading-5 text-gray-500">{feature.description}</p>
                     </div>
                     <div className="lg:col-span-7">
                       <div className="relative overflow-hidden rounded-lg bg-gray-100" style={{ paddingBottom: '56.25%' }}> {/* 16:9 Aspect Ratio */}

@@ -12,11 +12,11 @@ export default function Hero() {
         />
         <div className="mx-auto max-w-7xl px-6 py-12 md:py-16 lg:px-8">
           <div className=" mx-auto max-w-2xl lg:mx-0 lg:grid lg:max-w-none lg:grid-cols-2 lg:gap-x-16 lg:gap-y-6 xl:grid-cols-1 xl:grid-rows-1 xl:gap-x-8">
-            <h1 className="max-w-2xl text-4xl font-bold tracking-tight text-ccDarkBlue sm:text-6xl lg:col-span-2 xl:col-auto ">
+            <h1 className="max-sm:text-3xl max-md:text-3xl max-lg:text-4xl max-xl:text-5xl max-2xl:text-5xl font-bold tracking-tight text-ccDarkBlue sm:text-6xl lg:col-span-2 xl:col-auto ">
               Our Journey Towards Medical Advancements
             </h1>
             <div className="mt-6 max-w-xl lg:mt-0 xl:col-end-1 xl:row-start-1">
-              <p className="text-lg leading-8 text-gray-600">
+              <p className="text-base max-sm:text-sm max-md:text-base max-2xl:text-lg leading-8 text-gray-600">
                 At CC Diagnostics, we are dedicated to pushing the boundaries of medical technology to improve cervical cancer detection. With a strong commitment to innovation and patient care, we strive to make a positive impact on women&apos;s health.
               </p>
               <div className="mt-10 flex items-center gap-x-6">

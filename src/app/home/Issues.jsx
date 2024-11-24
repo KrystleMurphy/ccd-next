@@ -38,7 +38,7 @@ export default function Issues() {
           <h2 className="text-3xl font-bold tracking-tight text-ccDarkBlue sm:text-4xl">
           Current Issues
           </h2>
-          <p className="mt-6 text-lg leading-8 text-gray-600">
+          <p className="mt-6 text-base max-sm:text-sm max-md:text-base max-2xl:text-lg leading-8 text-gray-600">
             
 Cervical cancer is the 4th most common cancer in women that leads to high morbidity and mortality. There is a global inequity in access to screening and treatment.
 
@@ -55,7 +55,7 @@ Cervical cancer is the 4th most common cancer in women that leads to high morbi
                   {feature.name}
                 </dt>
                 <dd className="mt-1 flex flex-auto flex-col text-base leading-7 text-gray-600">
-                  <p className="flex-auto">{feature.description}</p>
+                  <p className="flex-auto text-sm max-sm:leading-5">{feature.description}</p>
                   <p className="mt-6">
                     {/* <a href={feature.href} className="text-sm font-semibold leading-6 text-indigo-600">
                       Learn more <span aria-hidden="true">→</span>

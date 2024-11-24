@@ -24,7 +24,7 @@ export default function MethicaKit() {
               <h1 className="mt-2 text-3xl font-bold tracking-tight text-ccDarkBlue sm:text-4xl">
                 Methica CC Kit
               </h1>
-              <p className="mt-6 text-lg leading-8 text-gray-600">
+              <p className="mt-6 text-base max-sm:text-sm max-md:text-base max-2xl:text-lg max-sm:leading-5 leading-8 text-gray-600">
                 Revolutionary screening technology detecting cervical cancer early using novel epigenetic markers.
               </p>
               <div className="py-8">
@@ -38,7 +38,7 @@ export default function MethicaKit() {
               <dl className="mt-16 grid max-w-xl grid-cols-1 gap-8 sm:mt-20 sm:grid-cols-2 xl:mt-16">
                 {stats.map((stat) => (
                   <div key={stat.id} className="flex flex-col gap-y-3 border-l border-ccLightBlue pl-6">
-                    <dt className="text-sm leading-6 text-gray-600">{stat.name}</dt>
+                    <dt className="text-sm max-sm:leading-5 leading-6 text-gray-600">{stat.name}</dt>
                     <dd className="order-first text-3xl font-semibold tracking-tight text-ccDarkBlue">{stat.value}</dd>
                   </div>
                 ))}

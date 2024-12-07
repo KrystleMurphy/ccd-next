@@ -1,9 +1,9 @@
 // components/Partners.jsx
 import Image from 'next/image';
 import logo_erdf2014 from '@/src/assets/images/logo_erdf2014.png';
+import placeholder from "@/src/assets/images/placeholder.png";
 
 const renderPartnerLogo = (partner) => {
-  const logoUrl = partner.fields.Logo?.[0]?.url || '/images/placeholder.png';
   const partnerSite = partner.fields.Site || '#';
 
   return (
@@ -15,7 +15,7 @@ const renderPartnerLogo = (partner) => {
         className="text-sm leading-6 text-gray-600 hover:text-ccLightBlue"
       >
         <Image
-          src={logoUrl}
+          src={partner.fields.Logo && partner.fields.Logo.length > 0 ? partner.fields.Logo?.[0]?.url : placeholder}
           alt={partner.fields.Partner || 'Partner Logo'}
           width={105}
           height={48}

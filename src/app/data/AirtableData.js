@@ -8,19 +8,29 @@ export async function fetchAirtableData({ baseName, view, filterByFormula = null
     filterByFormula ? `&filterByFormula=${encodeURIComponent(filterByFormula)}` : ''
   }`;
 
+  try {
   const response = await fetch(url, {
     headers: {
       Authorization: `Bearer ${apiKey}`,
     },
-    // Cache the Airtable response and revalidate every hour
-    next: { revalidate: 3600 },
   });
 
   if (!response.ok) {
-    console.error(`Error fetching Airtable data: ${response.statusText}`);
-    return [];
-  }
+    throw new Error(`Failed to fetch data: ${response.statusText}`);
+    }
 
   const data = await response.json();
+
+      // Log on successful fetch (successful revalidation)
+      console.log(
+        `[Revalidation Successful] Airtable fetch for "${baseName}" with view "${view}" at ${new Date().toISOString()}`
+      );
+
   return data.records || [];
-}
+} catch (error) {
+  console.error('Revalidation failed. Falling back to cached data.', error);
+
+      // Return an empty array or fallback data to prevent content failure
+      return [];
+    }
+  }

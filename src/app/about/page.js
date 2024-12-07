@@ -56,21 +56,28 @@ export async function generateMetadata() {
       ],
     },
     robots: 'index, follow',
-    viewport: 'width=device-width, initial-scale=1',
   };
 }
 
 
   
 export default async function Page() {
-  const teamData = await fetchAirtableData({ baseName: 'Team', view: 'Grid view' });
-  const partnersData = await fetchAirtableData({ baseName: 'Partners', view: 'Grid view' });
-    return (
-        <>
-            <Hero />
-            <Team teamData={teamData}/>
-            <Advisors advisorsData={teamData}/>
-            <Partners partnersData={partnersData} />
-        </>
-    );
+  let teamData = [];
+  let partnersData = [];
+
+  try {
+    teamData = await fetchAirtableData({ baseName: "Team", view: "Grid view" });
+    partnersData = await fetchAirtableData({ baseName: "Partners", view: "Grid view" });
+  } catch (error) {
+    console.error("Failed to fetch Airtable data:", error);
+  }
+
+  return (
+    <>
+      <Hero />
+      <Team teamData={teamData} />
+      <Advisors advisorsData={teamData} />
+      <Partners partnersData={partnersData} />
+    </>
+  );
 }

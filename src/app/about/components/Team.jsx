@@ -10,11 +10,12 @@ const renderTeamMember = (member) => {
   return (
     <li key={member.id} className="text-center">
       <Image
-        src={member.fields.Photo && member.fields.Photo.length > 0 ? member.fields.Photo?.[0]?.thumbnails?.large?.url : PersonPlaceholder}
+        src={member.fields.Photo && member.fields.Photo.length > 0 ? member.fields.Photo?.[0]?.url : PersonPlaceholder}
         alt={member.fields.Name || 'Team Member Photo'}
         width={224}
         height={224}
         className="mx-auto h-56 w-56 rounded-full object-cover"
+        priority={true} // Use this for above-the-fold images
       />
       <h3 className="mt-6 text-base font-semibold leading-7 tracking-tight text-ccDarkBlue">
         {member.fields.Name}

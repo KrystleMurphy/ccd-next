@@ -1,14 +1,14 @@
 // components/Advisors.jsx
 import Image from 'next/image';
+import PersonPlaceholder from "@/src/assets/images/person_placeholder.jpeg";
 
 const renderAdvisor = (advisor) => {
-  const photoUrl = advisor.fields.Photo?.[0]?.thumbnails?.large?.url || '/images/placeholder.png';
   const linkedInUrl = advisor.fields.LinkedIn?.[0]?.url || '#';
 
   return (
     <li key={advisor.id} className="text-center">
       <Image
-        src={photoUrl}
+        src={advisor.fields.Photo && advisor.fields.Photo.length > 0 ? advisor.fields.Photo?.[0]?.url : PersonPlaceholder}
         alt={advisor.fields.Name || 'Advisor Photo'}
         width={224}
         height={224}

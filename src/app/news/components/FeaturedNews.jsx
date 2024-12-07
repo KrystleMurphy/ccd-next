@@ -28,6 +28,7 @@ export default function FeaturedNews({ featuredNews }) {
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               className="aspect-[16/9] w-full rounded-2xl bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
+              priority={true}
             />
             <div className="absolute inset-0 pointer-events-none rounded-2xl ring-1 ring-inset ring-ccDarkBlue/10" />
           </div>

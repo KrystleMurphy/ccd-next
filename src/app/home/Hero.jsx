@@ -15,7 +15,7 @@ export default function Hero() {
         fill // Fill the container
         className="absolute inset-0 -z-10 h-full w-full object-cover"
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-        priority // Prioritize loading this image
+        priority={true} // Use this for above-the-fold images
       />
         <div className="absolute inset-0 -z-10 bg-black opacity-40"></div> {/* Overlay */}
 

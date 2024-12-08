@@ -8,8 +8,8 @@ export const viewport = {
   initialScale: 1,
 };
 
-// Revalidate the layout every two hours
-export const revalidate = 172800;
+// Revalidate the layout every two days
+export const revalidate = 86400;
 
 // Metadata configuration
 export const metadata = {

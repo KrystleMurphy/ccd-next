@@ -9,7 +9,10 @@ import { fetchAirtableData } from './data/AirtableData';
 
 // Server-side component to fetch data
 export default async function Page() {
-  const featuredNewsData = await fetchAirtableData({ baseName: 'News', view: 'Featured' });
+  const [featuredNewsData, testimonialsData] = await Promise.all([
+    fetchAirtableData({ baseName: 'News', view: 'Featured' }),
+    fetchAirtableData({ baseName: 'Testimonials', view: 'Grid view' }),
+  ]);
 return (
     <>
       <Hero />
@@ -18,7 +21,7 @@ return (
       <Issues/>
       <MethicaKit />
       {featuredNewsData.length > 0 && <FeaturedNews featuredNews={featuredNewsData} />}
-      <Testimonials />
+      {testimonialsData.length > 0 && <Testimonials reviews={testimonialsData} />}
     </>
   );
 }

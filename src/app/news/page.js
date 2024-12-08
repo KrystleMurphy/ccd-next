@@ -20,13 +20,23 @@ export const metadata = {
     ],
   },
 };
+// Centralized Data Fetching
+async function getNewsData() {
+  const [featuredNews, allNews] = await Promise.all([
+    fetchAirtableData({ baseName: 'News', view: 'Featured' }),
+    fetchAirtableData({ baseName: 'News', view: 'Grid view' }),
+  ]);
+
+  return { featuredNews, allNews };
+}
+
 export default async function Page() {
-    const featuredNewsData = await fetchAirtableData({ baseName: 'News', view: 'Featured' });
-    const allNewsData = await fetchAirtableData({ baseName: 'News', view: 'Grid view' });
-    return (
-      <>
-      <FeaturedNews featuredNews={featuredNewsData} />
-      <NewsFeed allNews={allNewsData} />
+  const { featuredNews, allNews } = await getNewsData();
+
+  return (
+    <>
+      <FeaturedNews featuredNews={featuredNews} />
+      <NewsFeed allNews={allNews} />
     </>
   );
 }

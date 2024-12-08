@@ -5,32 +5,46 @@ import ImageGallery from '../components/ImageGallery';
 import Link from 'next/link';
 import { fetchAirtableData } from '../../data/AirtableData';
 
-export const dynamicParams = true; 
+// Enable dynamic routes
+export const dynamicParams = true;
 
-export async function generateStaticParams() {
-  const allNewsData = await fetchAirtableData({ baseName: 'News', view: 'Grid view' });
-  return allNewsData.map((newsItem) => ({
-      id: newsItem.id,
-    }));
+// Centralized Airtable Fetch Function
+async function getPostData(recordId) {
+  try {
+    const postData = await fetchAirtableData({
+      baseName: 'News',
+      view: 'Grid view',
+      filterByFormula: `RECORD_ID() = '${recordId}'`,
+    });
+    return postData.length > 0 ? postData[0] : null;
+  } catch (error) {
+    console.error('Error fetching post data:', error);
+    return null;
+  }
 }
 
-
-// Generate metadata dynamically based on fetched data
-export async function generateMetadata({ params }) {
-  const postData = await fetchAirtableData({ 
-    baseName: 'News', 
-    view: 'Grid view', 
-    filterByFormula: `RECORD_ID() = '${params.id}'`
+// Generate static params for ISR
+export async function generateStaticParams() {
+  const allNewsData = await fetchAirtableData({
+    baseName: 'News',
+    view: 'Grid view',
   });
 
-  if (!postData || postData.length === 0) {
+  return allNewsData.map((newsItem) => ({
+    id: newsItem.id,
+  }));
+}
+
+// Generate metadata dynamically
+export async function generateMetadata({ params }) {
+  const post = await getPostData(params.id);
+
+  if (!post) {
     return {
-      title: "Article Not Found",
-      description: "This article could not be found.",
+      title: 'Article Not Found',
+      description: 'This article could not be found.',
     };
   }
-
-  const post = postData[0];
 
   return {
     title: `${post.fields.Title} - CC Diagnostics`,
@@ -61,17 +75,15 @@ export async function generateMetadata({ params }) {
 }
 
 
-export default async function Page({ params }) {
-  const postData = await fetchAirtableData({ 
-    baseName: 'News', 
-    view: 'Grid view', 
-    filterByFormula: `RECORD_ID() = '${params.id}'`
-  }); 
-    if (!postData || postData.length === 0) {
-      return <div>Article not found</div>;
-    }
 
-  const post = postData[0]; // Get the first (and only) record
+export default async function Page({ params }) {
+  // Fetch only once
+  const post = await getPostData(params.id);
+
+  if (!post) {
+    return <div>Article not found</div>;
+  }
+
   const formattedDate = dayjs(post.fields.Published).format("D MMM, YYYY");
 
     return (

@@ -18,8 +18,8 @@ const ImageGallery = ({ images }) => {
             src={images[selectedImageIndex].url} // Use the selected image
             alt={`Selected Image ${selectedImageIndex + 1}`}
             layout="fill" // Fill the container
-            objectFit="cover" // Maintain the aspect ratio and cover the area
-            className="rounded-lg"
+            fill
+            className="rounded-lg object-cover"
           />
         </div>
       )}
@@ -38,8 +38,7 @@ const ImageGallery = ({ images }) => {
               <Image
                 src={image.url}
                 alt={`Thumbnail ${index + 1}`}
-                layout="fill" // Fill the container
-                objectFit="cover" // Maintain aspect ratio
+                fill
                 className="object-cover"
               />
             </div>

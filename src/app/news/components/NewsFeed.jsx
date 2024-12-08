@@ -52,7 +52,7 @@ const NewsFeed = ({ allNews }) => { // Receive allNews as a prop
       >
         <div className="relative aspect-[16/9] sm:aspect-[2/1] lg:aspect-square lg:w-64 lg:shrink-0">
           <Image
-            alt=""
+            alt={post.fields.Title || "News Image"}
             src={
               post.fields.Photo && post.fields.Photo.length > 0
                 ? post.fields.Photo[0].url

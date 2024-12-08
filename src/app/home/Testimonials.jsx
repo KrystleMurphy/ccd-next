@@ -12,13 +12,17 @@ export default function Testimonials({ reviews }) {
     return <p className="text-gray-500">No reviews available at the moment.</p>;
   }
 
+  // Sort the reviews by date (most recent first)
+  const sortedReviews = [...reviews].sort(
+    (a, b) => new Date(b.fields.Date) - new Date(a.fields.Date)
+  );
 
   return (
     <div className="bg-white">
       <div className="mx-auto max-w-7xl px-6 md:px-8">
         <h2 className="text-3xl sm:text-4xl font-bold text-ccDarkBlue">Client Feedback</h2>
         <div className="mt-6 space-y-10 divide-y divide-ccLightBlue/20 border-b border-t border-ccLightBlue/20 pb-10">
-          {reviews.map((review) => (
+        {sortedReviews.map((review) => (
             <div key={review.id} className="pt-10 lg:grid lg:grid-cols-12 lg:gap-x-8">
               <div className="lg:col-span-8 lg:col-start-5 xl:col-span-9 xl:col-start-4 xl:grid xl:grid-cols-3 xl:items-start xl:gap-x-8">
                 <div className="flex items-center xl:col-span-1">

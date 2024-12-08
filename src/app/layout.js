@@ -8,11 +8,12 @@ export const viewport = {
   initialScale: 1,
 };
 
-// Revalidate the layout every two hours
-export const revalidate = 7200;
+// Revalidate the layout every two days
+export const revalidate = 86400;
 
 // Metadata configuration
 export const metadata = {
+  metadataBase: new URL('https://cc-diagnostics.netlify.app'),
   title: 'CC Diagnostics - Leading Cervical Cancer Detection',
   description:
     'CC Diagnostics offers superior diagnostic methods for cervical cancer detection using advanced technology. Our innovative solutions ensure early intervention and improved patient outcomes.',
@@ -24,7 +25,7 @@ export const metadata = {
     'CC Diagnostics',
   ],
   openGraph: {
-    url: 'https://www.ccdiagnostics.netlify.app/',
+    url: 'https://ccdiagnostics.netlify.app/',
     images: [
       {
         url: 'https://ccdiagnostics.netlify.app/assets/placeholder.png',

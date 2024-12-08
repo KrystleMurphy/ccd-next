@@ -5,15 +5,30 @@ import Advisors from './components/Advisors';
 import Partners from './components/Partners';
 import { fetchAirtableData } from '../data/AirtableData';
 
-// Server-side component to fetch data
+async function getAboutPageData() {
+  try {
+    const teamData = await fetchAirtableData({
+      baseName: 'Team',
+      view: 'Grid view',
+    });
+
+    const partnersData = await fetchAirtableData({
+      baseName: 'Partners',
+      view: 'Grid view',
+    });
+
+    return { teamData, partnersData };
+  } catch (error) {
+    console.error('Error fetching About page data:', error);
+    return { teamData: [], partnersData: [] }; // Return fallback data
+  }
+}
 
 // Dynamic metadata generation function
 export async function generateMetadata() {
   // Fetch team data
-  const teamData = await fetchAirtableData({ baseName: 'Team', view: 'Grid view' });
-  
-  // Extract team member names (assumes a 'Name' field in Airtable)
-  const teamNames = teamData.map(member => member.fields.Name).join(', ');
+  const { teamData } = await getAboutPageData();
+  const teamNames = teamData.map((member) => member.fields.Name).join(', ');
 
   return {
     title: 'About Us - CC Diagnostics',
@@ -59,18 +74,9 @@ export async function generateMetadata() {
   };
 }
 
-
-  
+// Main About Page Component
 export default async function Page() {
-  let teamData = [];
-  let partnersData = [];
-
-  try {
-    teamData = await fetchAirtableData({ baseName: "Team", view: "Grid view" });
-    partnersData = await fetchAirtableData({ baseName: "Partners", view: "Grid view" });
-  } catch (error) {
-    console.error("Failed to fetch Airtable data:", error);
-  }
+  const { teamData, partnersData } = await getAboutPageData();
 
   return (
     <>

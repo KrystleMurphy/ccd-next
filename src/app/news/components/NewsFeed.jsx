@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import dayjs from "dayjs";
 import placeholder from "@/src/assets/images/placeholder.png";
 import Link from "next/link";
@@ -11,10 +11,22 @@ const NewsFeed = ({ allNews }) => { // Receive allNews as a prop
   const [years, setYears] = useState([]);
   const [filteredPosts, setFilteredPosts] = useState([]);
 
+ // Memoize the filter function to prevent it from being re-created on every render
+ const filterPostsByYear = useCallback(
+  (year) => {
+    const postsForSelectedYear = allNews.filter(
+      (post) => dayjs(post.fields.Published).format("YYYY") === year
+    );
+    setFilteredPosts(postsForSelectedYear);
+  },
+  [allNews] // Only re-create if `allNews` changes
+);
 
-  // Extract years and filter posts when allNews prop changes
+  // Populate years and perform the initial filtering
   useEffect(() => {
-    const uniqueYears = [...new Set(allNews.map((post) => dayjs(post.fields.Published).year()))];
+    const uniqueYears = [
+      ...new Set(allNews.map((post) => dayjs(post.fields.Published).year())),
+    ];
     const currentYear = dayjs().year();
 
     const yearOptions = [];
@@ -23,22 +35,15 @@ const NewsFeed = ({ allNews }) => { // Receive allNews as a prop
     }
 
     setYears(yearOptions);
-
     filterPostsByYear(selectedYear); // Initial filtering
-  }, [allNews, selectedYear]);
+  }, [allNews, selectedYear, filterPostsByYear]);
 
-
-  const filterPostsByYear = (year) => {
-    const postsForSelectedYear = allNews.filter((post) =>
-      dayjs(post.fields.Published).format("YYYY") === year
-    );
-    setFilteredPosts(postsForSelectedYear);
-  };
-
+  // Handle year selection
   const handleYearChange = (year) => {
-    setSelectedYear(year);
-    filterPostsByYear(year);
+    setSelectedYear(year); 
+    filterPostsByYear(year); // Use the same memoized function
   };
+
 
   const renderNewsItem = (post) => {
     const formattedDate = dayjs(post.fields.Published).format("D MMM, YYYY");
@@ -52,7 +57,7 @@ const NewsFeed = ({ allNews }) => { // Receive allNews as a prop
       >
         <div className="relative aspect-[16/9] sm:aspect-[2/1] lg:aspect-square lg:w-64 lg:shrink-0">
           <Image
-            alt=""
+            alt={post.fields.Title || "News Image"}
             src={
               post.fields.Photo && post.fields.Photo.length > 0
                 ? post.fields.Photo[0].url

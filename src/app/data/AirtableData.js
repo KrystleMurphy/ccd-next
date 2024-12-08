@@ -10,7 +10,6 @@ export async function fetchAirtableData({ baseName, view, filterByFormula = null
 
   try {
   const response = await fetch(url, {
-    cache: 'no-store',
     headers: {
       Authorization: `Bearer ${apiKey}`,
     },

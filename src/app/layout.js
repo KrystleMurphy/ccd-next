@@ -9,7 +9,7 @@ export const viewport = {
 };
 
 // Revalidate the layout every two hours
-export const revalidate = 7200;
+export const revalidate = 172800;
 
 // Metadata configuration
 export const metadata = {
